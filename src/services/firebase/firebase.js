@@ -15,10 +15,10 @@ class Firebase {
   signUp = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
 
-  signIn = (email, password) =>
+  logIn = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
-  signOut = () => this.auth.signOut();
+  logOut = () => this.auth.signOut();
 
   verifyEmail = () =>
     this.auth.currentUser.sendEmailVerification({

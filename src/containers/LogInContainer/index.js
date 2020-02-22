@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { setUser } from '../../actions';
 import { withFirebase } from '../../services/firebase';
 
-import SignIn from '../../components/SignIn';
+import LogIn from '../../components/LogIn';
 
-class SignInContainer extends Component {
+class LogInContainer extends Component {
   state = {
     email: '',
     password: '',
@@ -24,7 +24,7 @@ class SignInContainer extends Component {
     const { email, password } = this.state;
 
     firebase
-      .signIn(email, password)
+      .logIn(email, password)
       .then(success => {
         const user = success.user;
         // console.log(user);
@@ -45,7 +45,7 @@ class SignInContainer extends Component {
 
   render() {
     return (
-      <SignIn
+      <LogIn
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         error={this.state.error}
@@ -57,4 +57,4 @@ class SignInContainer extends Component {
 export default compose(
   connect(null, { setUser }),
   withFirebase
-)(SignInContainer);
+)(LogInContainer);

@@ -7,11 +7,11 @@ import { withFirebase } from '../../services/firebase';
 import Home from '../../components/Home';
 
 class HomeContainer extends Component {
-  handleSignOut = () => {
+  handleLogOut = () => {
     const { firebase, removeUser } = this.props;
 
     firebase
-      .signOut()
+      .logOut()
       .then(() => {
         removeUser();
       })
@@ -22,7 +22,7 @@ class HomeContainer extends Component {
   };
 
   render() {
-    return <Home user={this.props.user} handleSignOut={this.handleSignOut} />;
+    return <Home user={this.props.user} handleLogOut={this.handleLogOut} />;
   }
 }
 

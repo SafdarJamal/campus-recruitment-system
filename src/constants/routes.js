@@ -1,6 +1,6 @@
 const LANDING = '/';
 const SIGN_UP = '/signup';
-const SIGN_IN = '/signin';
+const LOG_IN = '/login';
 const HOME = '/home';
 
-export { LANDING, SIGN_UP, SIGN_IN, HOME };
+export { LANDING, SIGN_UP, LOG_IN, HOME };

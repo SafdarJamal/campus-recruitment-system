@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SignIn = ({ handleChange, handleSubmit, error }) => {
+const LogIn = ({ handleChange, handleSubmit, error }) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h1>Sign In</h1>
+        <h1>Log In</h1>
         <p>{error}</p>
         <input
           type="email"
@@ -21,16 +21,16 @@ const SignIn = ({ handleChange, handleSubmit, error }) => {
           onChange={handleChange}
         />
         <br />
-        <button type="submit">Sign In</button>
+        <button type="submit">Log In</button>
       </form>
     </div>
   );
 };
 
-SignIn.propTypes = {
+LogIn.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.string.isRequired
 };
 
-export default SignIn;
+export default LogIn;
