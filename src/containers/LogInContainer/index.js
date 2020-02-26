@@ -27,7 +27,6 @@ class LogInContainer extends Component {
       .logIn(email, password)
       .then(success => {
         const user = success.user;
-        // console.log(user);
 
         return firebase.getUser(user.uid);
       })

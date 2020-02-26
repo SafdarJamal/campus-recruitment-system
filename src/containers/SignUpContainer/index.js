@@ -3,6 +3,9 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { setUser } from '../../actions';
 import { withFirebase } from '../../services/firebase';
+import { withRouter } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
 
 import SignUp from '../../components/SignUp';
 
@@ -22,19 +25,31 @@ class SignUpContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { firebase, setUser } = this.props;
+    const { firebase, setUser, location } = this.props;
     const { firstName, lastName, email, password } = this.state;
 
     firebase
       .signUp(email, password)
       .then(success => {
         const user = success.user;
-        // console.log(user);
+        let role = null;
+
+        switch (location.pathname) {
+          case ROUTES.SIGN_UP_COMPANY:
+            role = ROLES.COMPANY;
+            break;
+          case ROUTES.SIGN_UP_STUDENT:
+            role = ROLES.STUDENT;
+            break;
+          default:
+            break;
+        }
 
         const userData = {
           firstName,
           lastName,
-          email
+          email,
+          role
         };
 
         return firebase.addUser(user.uid, userData);
@@ -65,5 +80,6 @@ class SignUpContainer extends Component {
 
 export default compose(
   connect(null, { setUser }),
-  withFirebase
+  withFirebase,
+  withRouter
 )(SignUpContainer);
