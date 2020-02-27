@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as ROLES from '../../constants/roles';
 
-import Home from '../../components/Home';
+import Admin from '../../components/Home/Admin';
+import Company from '../../components/Home/Company';
+import Student from '../../components/Home/Student';
 
 class HomeContainer extends Component {
   render() {
-    return <Home user={this.props.user} />;
+    const { user } = this.props;
+
+    return (
+      <>
+        {user.role === ROLES.ADMIN && <Admin user={user} />}
+        {user.role === ROLES.COMPANY && <Company user={user} />}
+        {user.role === ROLES.STUDENT && <Student user={user} />}
+      </>
+    );
   }
 }
 
