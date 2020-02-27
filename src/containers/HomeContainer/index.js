@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as ROLES from '../../constants/roles';
 
-import Admin from '../../components/Home/Admin';
-import Company from '../../components/Home/Company';
-import Student from '../../components/Home/Student';
+import AdminContainer from './AdminContainer';
+import CompanyContainer from './CompanyContainer';
+import StudentContainer from './StudentContainer';
 
 class HomeContainer extends Component {
   render() {
@@ -12,9 +12,9 @@ class HomeContainer extends Component {
 
     return (
       <>
-        {user.role === ROLES.ADMIN && <Admin user={user} />}
-        {user.role === ROLES.COMPANY && <Company user={user} />}
-        {user.role === ROLES.STUDENT && <Student user={user} />}
+        {user.role === ROLES.ADMIN && <AdminContainer />}
+        {user.role === ROLES.COMPANY && <CompanyContainer />}
+        {user.role === ROLES.STUDENT && <StudentContainer />}
       </>
     );
   }

@@ -4,10 +4,10 @@ const SIGN_UP_COMPANY = '/signup/company';
 const SIGN_UP_STUDENT = '/signup/student';
 const LOG_IN = '/login';
 const HOME = '/home';
-const COMPANIES = '/companies';
-const STUDENTS = '/students';
-const JOBS = '/jobs';
-const PROFILE = '/profile';
+const COMPANIES = '/home/companies';
+const STUDENTS = '/home/students';
+const JOBS = '/home/jobs';
+const PROFILE = '/home/profile';
 
 export {
   LANDING,
