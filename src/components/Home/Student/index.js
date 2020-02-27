@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import LogOutContainer from '../../../containers/LogOutContainer';
-
 const Student = ({ user }) => {
   return (
     <div>
@@ -10,7 +8,6 @@ const Student = ({ user }) => {
       <p>First Name: {user.firstName}</p>
       <p>Last Name: {user.lastName}</p>
       <p>Email: {user.email}</p>
-      <LogOutContainer />
     </div>
   );
 };

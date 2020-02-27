@@ -1,28 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import * as ROUTES from '../../constants/routes';
 
-const Header = () => {
+import LogOutContainer from '../../containers/LogOutContainer';
+
+const Header = ({ links, isAuthenticated }) => {
   return (
     <header>
       <nav>
         <ul>
-          <li>
-            <Link to={ROUTES.LANDING}>Landing</Link>
-          </li>
-          <li>
-            <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-          </li>
-          <li>
-            <Link to={ROUTES.LOG_IN}>Log In</Link>
-          </li>
-          <li>
-            <Link to={ROUTES.HOME}>Home</Link>
-          </li>
+          {links.map((link, i) => (
+            <li key={i}>
+              <Link to={link.path}>{link.text}</Link>
+            </li>
+          ))}
+          {isAuthenticated && (
+            <li>
+              <LogOutContainer />
+            </li>
+          )}
         </ul>
       </nav>
     </header>
   );
+};
+
+Header.propTypes = {
+  links: PropTypes.array.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 export default Header;

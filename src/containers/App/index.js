@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-import Header from '../../components/Header';
+import HeaderContainer from '../HeaderContainer';
 import Routes from '../../routes';
 import Footer from '../../components/Footer';
 
 const App = () => {
   return (
     <Fragment>
-      <Header />
+      <HeaderContainer />
       <Routes />
       <Footer />
     </Fragment>
