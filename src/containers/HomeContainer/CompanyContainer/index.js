@@ -6,6 +6,7 @@ import Company from '../../../components/Home/Company';
 import StudentsContainer from './StudentsContainer';
 import JobsContainer from './JobsContainer';
 import ProfileContainer from './ProfileContainer';
+import EditContainer from './ProfileContainer/EditContainer';
 import NotFound from '../../../components/NotFound';
 
 class CompanyContainer extends Component {
@@ -15,7 +16,8 @@ class CompanyContainer extends Component {
         <Route path={ROUTES.HOME} component={Company} exact />
         <Route path={ROUTES.STUDENTS} component={StudentsContainer} />
         <Route path={ROUTES.JOBS} component={JobsContainer} />
-        <Route path={ROUTES.PROFILE} component={ProfileContainer} />
+        <Route path={ROUTES.PROFILE} component={ProfileContainer} exact />
+        <Route path={ROUTES.PROFILE_EDIT} component={EditContainer} />
         <Route component={NotFound} />
       </Switch>
     );
