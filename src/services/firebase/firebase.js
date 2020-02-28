@@ -62,6 +62,12 @@ class Firebase {
       .where('role', '==', 'COMPANY')
       .get();
 
+  postAJob = (uid, userData) =>
+    this.firestore
+      .collection('users')
+      .doc(uid)
+      .update(userData);
+
   updateProfile = (uid, userData) =>
     this.firestore
       .collection('users')

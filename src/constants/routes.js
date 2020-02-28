@@ -7,6 +7,7 @@ const HOME = '/home';
 const COMPANIES = '/home/companies';
 const STUDENTS = '/home/students';
 const JOBS = '/home/jobs';
+const JOBS_CREATE = '/home/jobs/create';
 const PROFILE = '/home/profile';
 const PROFILE_EDIT = '/home/profile/edit';
 
@@ -20,6 +21,7 @@ export {
   COMPANIES,
   STUDENTS,
   JOBS,
+  JOBS_CREATE,
   PROFILE,
   PROFILE_EDIT
 };

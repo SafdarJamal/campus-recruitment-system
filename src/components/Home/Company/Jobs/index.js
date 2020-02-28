@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import * as ROUTES from '../../../../constants/routes';
 
 const Jobs = ({ jobs }) => {
+  const history = useHistory();
+
   return (
     <div>
       <h1>Jobs</h1>
+      <button onClick={() => history.push(ROUTES.JOBS_CREATE)}>
+        Post a Job
+      </button>
       <table>
         <thead>
           <tr>
