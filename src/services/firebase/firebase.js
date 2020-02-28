@@ -44,6 +44,12 @@ class Firebase {
       .doc(uid)
       .get();
 
+  getStudents = () =>
+    this.firestore
+      .collection('users')
+      .where('role', '==', 'STUDENT')
+      .get();
+
   updateProfile = (uid, userData) =>
     this.firestore
       .collection('users')
