@@ -7,6 +7,7 @@ import CompaniesContainer from './CompaniesContainer';
 import StudentsContainer from './StudentsContainer';
 import JobsContainer from './JobsContainer';
 import ProfileContainer from './ProfileContainer';
+import EditContainer from './ProfileContainer/EditContainer';
 import NotFound from '../../../components/NotFound';
 
 class AdminContainer extends Component {
@@ -17,7 +18,8 @@ class AdminContainer extends Component {
         <Route path={ROUTES.COMPANIES} component={CompaniesContainer} />
         <Route path={ROUTES.STUDENTS} component={StudentsContainer} />
         <Route path={ROUTES.JOBS} component={JobsContainer} />
-        <Route path={ROUTES.PROFILE} component={ProfileContainer} />
+        <Route path={ROUTES.PROFILE} component={ProfileContainer} exact />
+        <Route path={ROUTES.PROFILE_EDIT} component={EditContainer} />
         <Route component={NotFound} />
       </Switch>
     );
