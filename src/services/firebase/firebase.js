@@ -56,6 +56,12 @@ class Firebase {
       .where('role', '==', 'COMPANY')
       .get();
 
+  getJobs = () =>
+    this.firestore
+      .collection('users')
+      .where('role', '==', 'COMPANY')
+      .get();
+
   updateProfile = (uid, userData) =>
     this.firestore
       .collection('users')
