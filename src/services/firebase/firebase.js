@@ -43,6 +43,12 @@ class Firebase {
       .collection('users')
       .doc(uid)
       .get();
+
+  updateProfile = (uid, userData) =>
+    this.firestore
+      .collection('users')
+      .doc(uid)
+      .update(userData);
 }
 
 export default Firebase;

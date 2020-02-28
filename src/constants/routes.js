@@ -8,6 +8,7 @@ const COMPANIES = '/home/companies';
 const STUDENTS = '/home/students';
 const JOBS = '/home/jobs';
 const PROFILE = '/home/profile';
+const PROFILE_EDIT = '/home/profile/edit';
 
 export {
   LANDING,
@@ -19,5 +20,6 @@ export {
   COMPANIES,
   STUDENTS,
   JOBS,
-  PROFILE
+  PROFILE,
+  PROFILE_EDIT
 };
