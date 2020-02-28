@@ -8,6 +8,7 @@ const Students = ({ students }) => {
       <table>
         <thead>
           <tr>
+            <th>No.</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
@@ -17,6 +18,7 @@ const Students = ({ students }) => {
         <tbody>
           {students.map((student, i) => (
             <tr key={i}>
+              <td>{i + 1}</td>
               <td>{student.firstName}</td>
               <td>{student.lastName}</td>
               <td>{student.email}</td>

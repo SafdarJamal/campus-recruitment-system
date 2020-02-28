@@ -8,6 +8,7 @@ const Companies = ({ companies }) => {
       <table>
         <thead>
           <tr>
+            <th>No.</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
@@ -16,6 +17,7 @@ const Companies = ({ companies }) => {
         <tbody>
           {companies.map((company, i) => (
             <tr key={i}>
+              <td>{i + 1}</td>
               <td>{company.companyName}</td>
               <td>{company.companyEmail}</td>
               <td>{company.companyPhone}</td>
