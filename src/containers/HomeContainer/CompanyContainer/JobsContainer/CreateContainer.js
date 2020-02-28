@@ -20,10 +20,17 @@ class CreateContainer extends Component {
     const { user, firebase, history, setUser } = this.props;
     const { title, description } = this.state;
 
-    user.jobs.push({
+    const jobPost = {
       title,
       description
-    });
+    };
+
+    if (user.jobs) {
+      user.jobs.push(jobPost);
+    } else {
+      user.jobs = [];
+      user.jobs.push(jobPost);
+    }
 
     firebase
       .postAJob(firebase.auth.currentUser.uid, user)
