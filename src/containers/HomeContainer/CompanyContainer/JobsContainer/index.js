@@ -1,35 +1,18 @@
 import React, { Component } from 'react';
-import { withFirebase } from '../../../../services/firebase';
+import { connect } from 'react-redux';
 
 import Jobs from '../../../../components/Home/Company/Jobs';
 
 class JobsContainer extends Component {
-  state = { jobs: [] };
-
-  componentDidMount() {
-    const { firebase } = this.props;
-
-    firebase
-      .getJobs()
-      .then(querySnapshot => {
-        let jobs = [];
-
-        querySnapshot.forEach(doc => {
-          const data = doc.data();
-
-          if (data.jobs) {
-            jobs = jobs.concat(data.jobs);
-          }
-        });
-
-        this.setState({ jobs });
-      })
-      .catch(error => console.log(error));
-  }
-
   render() {
-    return <Jobs jobs={this.state.jobs} />;
+    const { user } = this.props;
+
+    return <Jobs jobs={user.jobs ? user.jobs : []} />;
   }
 }
 
-export default withFirebase(JobsContainer);
+const mapStateToProps = state => {
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps)(JobsContainer);
