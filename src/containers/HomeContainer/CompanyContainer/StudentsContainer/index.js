@@ -7,6 +7,10 @@ class StudentsContainer extends Component {
   state = { students: [] };
 
   componentDidMount() {
+    this.getStudents();
+  }
+
+  getStudents = () => {
     const { firebase } = this.props;
 
     firebase
@@ -19,7 +23,7 @@ class StudentsContainer extends Component {
         this.setState({ students });
       })
       .catch(error => console.log(error));
-  }
+  };
 
   render() {
     return <Students students={this.state.students} />;

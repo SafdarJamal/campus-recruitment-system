@@ -7,6 +7,10 @@ class JobsContainer extends Component {
   state = { jobs: [] };
 
   componentDidMount() {
+    this.getJobs();
+  }
+
+  getJobs = () => {
     const { firebase } = this.props;
 
     firebase
@@ -25,7 +29,7 @@ class JobsContainer extends Component {
         this.setState({ jobs });
       })
       .catch(error => console.log(error));
-  }
+  };
 
   render() {
     return <Jobs jobs={this.state.jobs} />;
