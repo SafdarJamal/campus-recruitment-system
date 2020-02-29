@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { withFirebase } from '../../../services/firebase';
+import { withFirebase } from '../../../../services/firebase';
 
-import Students from '../../../components/Home/Admin/Students';
+import Students from '../../../../components/Home/Company/Students';
 
 class StudentsContainer extends Component {
   state = { students: [] };
