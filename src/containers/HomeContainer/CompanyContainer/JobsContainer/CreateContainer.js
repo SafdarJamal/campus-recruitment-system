@@ -5,6 +5,7 @@ import { setUser } from '../../../../actions';
 import { withFirebase } from '../../../../services/firebase';
 import { withRouter } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
+
 import Create from '../../../../components/Home/Company/Jobs/Create';
 
 class CreateContainer extends Component {
@@ -33,7 +34,7 @@ class CreateContainer extends Component {
     }
 
     firebase
-      .postAJob(firebase.auth.currentUser.uid, user)
+      .postAJob(firebase.auth.currentUser.uid, user.jobs)
       .then(() => setUser({ user }))
       .then(() => history.push(ROUTES.JOBS))
       .catch(error => this.setState({ error }));

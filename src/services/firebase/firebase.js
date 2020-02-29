@@ -44,16 +44,16 @@ class Firebase {
       .doc(uid)
       .get();
 
-  getStudents = () =>
-    this.firestore
-      .collection('users')
-      .where('role', '==', 'STUDENT')
-      .get();
-
   getCompanies = () =>
     this.firestore
       .collection('users')
       .where('role', '==', 'COMPANY')
+      .get();
+
+  getStudents = () =>
+    this.firestore
+      .collection('users')
+      .where('role', '==', 'STUDENT')
       .get();
 
   getJobs = () =>
@@ -62,11 +62,17 @@ class Firebase {
       .where('role', '==', 'COMPANY')
       .get();
 
-  postAJob = (uid, userData) =>
+  postAJob = (uid, jobs) =>
     this.firestore
       .collection('users')
       .doc(uid)
-      .update(userData);
+      .update({ jobs });
+
+  deleteAJob = (uid, jobs) =>
+    this.firestore
+      .collection('users')
+      .doc(uid)
+      .update({ jobs });
 
   updateProfile = (uid, userData) =>
     this.firestore

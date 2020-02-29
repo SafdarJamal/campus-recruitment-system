@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-const Jobs = ({ jobs }) => {
+const Jobs = ({ jobs, handleDelete }) => {
   const history = useHistory();
 
   return (
@@ -18,6 +18,7 @@ const Jobs = ({ jobs }) => {
             <th>No.</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +27,11 @@ const Jobs = ({ jobs }) => {
               <td>{i + 1}</td>
               <td>{job.title}</td>
               <td>{job.description}</td>
+              <td>
+                <button data-index={i} onClick={handleDelete}>
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -35,7 +41,8 @@ const Jobs = ({ jobs }) => {
 };
 
 Jobs.propTypes = {
-  jobs: PropTypes.array.isRequired
+  jobs: PropTypes.array.isRequired,
+  handleDelete: PropTypes.func.isRequired
 };
 
 export default Jobs;
