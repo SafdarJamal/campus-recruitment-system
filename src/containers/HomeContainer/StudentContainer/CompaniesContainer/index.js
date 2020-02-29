@@ -7,6 +7,10 @@ class CompaniesContainer extends Component {
   state = { companies: [] };
 
   componentDidMount() {
+    this.getCompanies();
+  }
+
+  getCompanies = () => {
     const { firebase } = this.props;
 
     firebase
@@ -19,7 +23,7 @@ class CompaniesContainer extends Component {
         this.setState({ companies });
       })
       .catch(error => console.log(error));
-  }
+  };
 
   render() {
     return <Companies companies={this.state.companies} />;

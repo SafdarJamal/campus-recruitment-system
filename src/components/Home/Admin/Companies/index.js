@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Companies = ({ companies }) => {
+const Companies = ({ companies, handleDelete }) => {
   return (
     <div>
       <h1>Companies</h1>
@@ -12,6 +12,7 @@ const Companies = ({ companies }) => {
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -21,6 +22,11 @@ const Companies = ({ companies }) => {
               <td>{company.companyName}</td>
               <td>{company.companyEmail}</td>
               <td>{company.companyPhone}</td>
+              <td>
+                <button data-id={company.id} onClick={handleDelete}>
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -30,7 +36,8 @@ const Companies = ({ companies }) => {
 };
 
 Companies.propTypes = {
-  companies: PropTypes.array.isRequired
+  companies: PropTypes.array.isRequired,
+  handleDelete: PropTypes.func.isRequired
 };
 
 export default Companies;

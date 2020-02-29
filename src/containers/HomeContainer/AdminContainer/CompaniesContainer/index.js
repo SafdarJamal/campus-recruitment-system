@@ -7,6 +7,10 @@ class CompaniesContainer extends Component {
   state = { companies: [] };
 
   componentDidMount() {
+    this.getCompanies();
+  }
+
+  getCompanies = () => {
     const { firebase } = this.props;
 
     firebase
@@ -14,15 +18,35 @@ class CompaniesContainer extends Component {
       .then(querySnapshot => {
         const companies = [];
 
-        querySnapshot.forEach(doc => companies.push(doc.data()));
+        querySnapshot.forEach(doc => {
+          const data = doc.data();
+          data.id = doc.id;
+
+          companies.push(data);
+        });
 
         this.setState({ companies });
       })
       .catch(error => console.log(error));
-  }
+  };
+
+  handleDelete = e => {
+    const { firebase } = this.props;
+
+    firebase
+      .deleteACompany(e.target.dataset.id)
+      .then(() => console.log('Document successfully deleted!'))
+      .then(() => this.getCompanies())
+      .catch(error => console.log(error));
+  };
 
   render() {
-    return <Companies companies={this.state.companies} />;
+    return (
+      <Companies
+        companies={this.state.companies}
+        handleDelete={this.handleDelete}
+      />
+    );
   }
 }
 

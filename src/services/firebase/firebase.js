@@ -74,6 +74,12 @@ class Firebase {
       .doc(uid)
       .update({ jobs });
 
+  deleteACompany = uid =>
+    this.firestore
+      .collection('users')
+      .doc(uid)
+      .delete();
+
   updateProfile = (uid, userData) =>
     this.firestore
       .collection('users')
