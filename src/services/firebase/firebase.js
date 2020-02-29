@@ -80,6 +80,12 @@ class Firebase {
       .doc(uid)
       .delete();
 
+  deleteAStudent = uid =>
+    this.firestore
+      .collection('users')
+      .doc(uid)
+      .delete();
+
   updateProfile = (uid, userData) =>
     this.firestore
       .collection('users')
