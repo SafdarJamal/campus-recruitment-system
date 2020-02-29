@@ -15,7 +15,7 @@ class JobsContainer extends Component {
     user.jobs.splice(e.target.dataset.index, 1);
 
     firebase
-      .deleteAJob(firebase.auth.currentUser.uid, user.jobs)
+      .deleteJob(firebase.auth.currentUser.uid, user.jobs)
       .then(() => setUser({ user }))
       .then(() => history.push(ROUTES.JOBS))
       .catch(error => console.log(error));

@@ -34,7 +34,7 @@ class CreateContainer extends Component {
     }
 
     firebase
-      .postAJob(firebase.auth.currentUser.uid, user.jobs)
+      .postJob(firebase.auth.currentUser.uid, user.jobs)
       .then(() => setUser({ user }))
       .then(() => history.push(ROUTES.JOBS))
       .catch(error => this.setState({ error }));

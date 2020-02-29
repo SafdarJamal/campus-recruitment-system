@@ -34,7 +34,7 @@ class StudentsContainer extends Component {
     const { firebase } = this.props;
 
     firebase
-      .deleteAStudent(e.target.dataset.id)
+      .deleteUser(e.target.dataset.id)
       .then(() => console.log('Document successfully deleted!'))
       .then(() => this.getStudents())
       .catch(error => console.log(error));

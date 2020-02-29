@@ -5,6 +5,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 import firebaseConfig from '../../config/firebaseConfig';
+import * as ROLES from '../../constants/roles';
 
 class Firebase {
   constructor() {
@@ -13,6 +14,8 @@ class Firebase {
     this.analytics = firebase.analytics();
     this.auth = firebase.auth();
     this.firestore = firebase.firestore();
+
+    this.usersCollectionRef = this.firestore.collection('users');
   }
 
   signUp = (email, password) =>
@@ -32,65 +35,24 @@ class Firebase {
 
   updatePassword = password => this.auth.currentUser.updatePassword(password);
 
-  addUser = (uid, userData) =>
-    this.firestore
-      .collection('users')
-      .doc(uid)
-      .set(userData);
+  addUser = (uid, userData) => this.usersCollectionRef.doc(uid).set(userData);
 
-  getUser = uid =>
-    this.firestore
-      .collection('users')
-      .doc(uid)
-      .get();
+  getUser = uid => this.usersCollectionRef.doc(uid).get();
 
   getCompanies = () =>
-    this.firestore
-      .collection('users')
-      .where('role', '==', 'COMPANY')
-      .get();
+    this.usersCollectionRef.where('role', '==', ROLES.COMPANY).get();
 
   getStudents = () =>
-    this.firestore
-      .collection('users')
-      .where('role', '==', 'STUDENT')
-      .get();
+    this.usersCollectionRef.where('role', '==', ROLES.STUDENT).get();
 
-  getJobs = () =>
-    this.firestore
-      .collection('users')
-      .where('role', '==', 'COMPANY')
-      .get();
+  postJob = (uid, jobs) => this.usersCollectionRef.doc(uid).update({ jobs });
 
-  postAJob = (uid, jobs) =>
-    this.firestore
-      .collection('users')
-      .doc(uid)
-      .update({ jobs });
-
-  deleteAJob = (uid, jobs) =>
-    this.firestore
-      .collection('users')
-      .doc(uid)
-      .update({ jobs });
-
-  deleteACompany = uid =>
-    this.firestore
-      .collection('users')
-      .doc(uid)
-      .delete();
-
-  deleteAStudent = uid =>
-    this.firestore
-      .collection('users')
-      .doc(uid)
-      .delete();
+  deleteJob = (uid, jobs) => this.usersCollectionRef.doc(uid).update({ jobs });
 
   updateProfile = (uid, userData) =>
-    this.firestore
-      .collection('users')
-      .doc(uid)
-      .update(userData);
+    this.usersCollectionRef.doc(uid).update(userData);
+
+  deleteUser = uid => this.usersCollectionRef.doc(uid).delete();
 }
 
 export default Firebase;

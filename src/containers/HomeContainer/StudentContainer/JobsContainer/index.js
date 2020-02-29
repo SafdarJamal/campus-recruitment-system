@@ -14,7 +14,7 @@ class JobsContainer extends Component {
     const { firebase } = this.props;
 
     firebase
-      .getJobs()
+      .getCompanies()
       .then(querySnapshot => {
         let jobs = [];
 
