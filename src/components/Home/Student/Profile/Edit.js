@@ -22,7 +22,7 @@ const Edit = ({
           type="text"
           name="firstName"
           placeholder="First Name"
-          defaultValue={firstName}
+          value={firstName}
           onChange={handleChange}
         />
         <br />
@@ -30,7 +30,7 @@ const Edit = ({
           type="text"
           name="lastName"
           placeholder="Last Name"
-          defaultValue={lastName}
+          value={lastName}
           onChange={handleChange}
         />
         <br />
@@ -38,7 +38,7 @@ const Edit = ({
           type="text"
           name="phone"
           placeholder="Phone"
-          defaultValue={phone}
+          value={phone}
           onChange={handleChange}
         />
         <br />

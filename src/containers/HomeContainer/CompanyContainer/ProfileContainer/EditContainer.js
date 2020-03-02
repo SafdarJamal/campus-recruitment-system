@@ -10,12 +10,12 @@ import Edit from '../../../../components/Home/Company/Profile/Edit';
 
 class EditContainer extends Component {
   state = {
-    firstName: '',
-    lastName: '',
-    companyName: '',
-    companyEmail: '',
-    companyPhone: '',
-    error: ''
+    firstName: this.props.user.firstName,
+    lastName: this.props.user.lastName,
+    companyName: this.props.user.companyName,
+    companyEmail: this.props.user.companyEmail,
+    companyPhone: this.props.user.companyPhone,
+    error: null
   };
 
   handleChange = e => {
@@ -52,14 +52,25 @@ class EditContainer extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const {
+      firstName,
+      lastName,
+      companyName,
+      companyEmail,
+      companyPhone,
+      error
+    } = this.state;
 
     return (
       <Edit
-        user={user}
+        firstName={firstName}
+        lastName={lastName}
+        companyName={companyName}
+        companyEmail={companyEmail}
+        companyPhone={companyPhone}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
-        error={this.state.error}
+        error={error}
       />
     );
   }
