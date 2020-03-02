@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-const Edit = ({ user, handleChange, handleSubmit, error }) => {
+const Edit = ({ firstName, lastName, handleChange, handleSubmit, error }) => {
   const history = useHistory();
 
   return (
@@ -15,7 +15,7 @@ const Edit = ({ user, handleChange, handleSubmit, error }) => {
           type="text"
           name="firstName"
           placeholder="First Name"
-          defaultValue={user.firstName}
+          value={firstName}
           onChange={handleChange}
         />
         <br />
@@ -23,7 +23,7 @@ const Edit = ({ user, handleChange, handleSubmit, error }) => {
           type="text"
           name="lastName"
           placeholder="Last Name"
-          defaultValue={user.lastName}
+          value={lastName}
           onChange={handleChange}
         />
         <br />
@@ -35,10 +35,11 @@ const Edit = ({ user, handleChange, handleSubmit, error }) => {
 };
 
 Edit.propTypes = {
-  user: PropTypes.object.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired
+  error: PropTypes.string
 };
 
 export default Edit;

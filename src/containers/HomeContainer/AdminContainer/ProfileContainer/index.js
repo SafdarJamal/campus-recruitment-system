@@ -4,10 +4,15 @@ import { connect } from 'react-redux';
 import Profile from '../../../../components/Home/Admin/Profile';
 
 class ProfileContainer extends Component {
-  render() {
-    const { user } = this.props;
+  state = {
+    firstName: this.props.user.firstName,
+    lastName: this.props.user.lastName
+  };
 
-    return <Profile user={user} />;
+  render() {
+    const { firstName, lastName } = this.state;
+
+    return <Profile firstName={firstName} lastName={lastName} />;
   }
 }
 
