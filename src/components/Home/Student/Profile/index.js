@@ -3,22 +3,24 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-const Profile = ({ user }) => {
+const Profile = ({ firstName, lastName, phone }) => {
   const history = useHistory();
 
   return (
     <div>
       <h1>Profile</h1>
-      <p>First Name: {user.firstName}</p>
-      <p>Last Name: {user.lastName}</p>
-      <p>Phone: {user.phone}</p>
+      <p>First Name: {firstName}</p>
+      <p>Last Name: {lastName}</p>
+      <p>Phone: {phone}</p>
       <button onClick={() => history.push(ROUTES.PROFILE_EDIT)}>Edit</button>
     </div>
   );
 };
 
 Profile.propTypes = {
-  user: PropTypes.object.isRequired
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired
 };
 
 export default Profile;

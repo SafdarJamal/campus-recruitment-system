@@ -10,10 +10,10 @@ import Edit from '../../../../components/Home/Student/Profile/Edit';
 
 class EditContainer extends Component {
   state = {
-    firstName: '',
-    lastName: '',
-    phone: '',
-    error: ''
+    firstName: this.props.user.firstName,
+    lastName: this.props.user.lastName,
+    phone: this.props.user.phone,
+    error: null
   };
 
   handleChange = e => {
@@ -42,14 +42,16 @@ class EditContainer extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { firstName, lastName, phone, error } = this.state;
 
     return (
       <Edit
-        user={user}
+        firstName={firstName}
+        lastName={lastName}
+        phone={phone}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
-        error={this.state.error}
+        error={error}
       />
     );
   }
