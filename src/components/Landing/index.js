@@ -1,11 +1,15 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 const Landing = () => {
   return (
-    <div>
-      <h1>Landing</h1>
-      <p>Not Protected. Anyone can see this.</p>
-    </div>
+    <Container>
+      <Jumbotron className="shadow-sm">
+        <h1>Landing</h1>
+        <p>Not Protected. Anyone can see this.</p>
+      </Jumbotron>
+    </Container>
   );
 };
 

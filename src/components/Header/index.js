@@ -11,7 +11,7 @@ import LogOutContainer from '../../containers/LogOutContainer';
 const Header = ({ links, isAuthenticated }) => {
   return (
     <header className={styles.header}>
-      <Navbar bg="dark" variant="dark" fixed="top">
+      <Navbar className="shadow" bg="dark" variant="dark" fixed="top">
         <LinkContainer to={ROUTES.LANDING}>
           <Navbar.Brand>CRS</Navbar.Brand>
         </LinkContainer>
