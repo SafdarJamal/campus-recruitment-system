@@ -12,10 +12,6 @@ const PUBLIC_LINKS = [
   {
     path: ROUTES.LOG_IN,
     text: 'Log In'
-  },
-  {
-    path: ROUTES.HOME,
-    text: 'Home'
   }
 ];
 
