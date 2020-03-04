@@ -6,6 +6,7 @@ import { store, persistor } from './store';
 import Firebase, { FirebaseContext } from './services/firebase';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './containers/App';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
