@@ -4,13 +4,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap';
 import * as ROUTES from '../../constants/routes';
+import styles from './style.module.css';
 
 import LogOutContainer from '../../containers/LogOutContainer';
 
 const Header = ({ links, isAuthenticated }) => {
   return (
-    <header>
-      <Navbar bg="dark" variant="dark">
+    <header className={styles.header}>
+      <Navbar bg="dark" variant="dark" fixed="top">
         <LinkContainer to={ROUTES.LANDING}>
           <Navbar.Brand>CRS</Navbar.Brand>
         </LinkContainer>
