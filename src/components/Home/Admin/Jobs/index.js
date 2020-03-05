@@ -10,7 +10,7 @@ const Jobs = ({ jobs }) => {
     <Container>
       <Card className="shadow-sm">
         <Card.Header as="h2" className="text-center">
-          Students
+          Jobs
         </Card.Header>
         <Card.Body>
           <Table bordered hover>
