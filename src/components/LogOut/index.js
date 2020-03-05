@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 
 const LogOut = ({ handleLogOut }) => {
-  return <button onClick={handleLogOut}>Log Out</button>;
+  return (
+    <Button variant="danger" onClick={handleLogOut}>
+      Log Out
+    </Button>
+  );
 };
 
 LogOut.propTypes = {
