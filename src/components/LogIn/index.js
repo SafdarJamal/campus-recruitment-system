@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
-const LogIn = ({ handleChange, handleSubmit, error }) => {
+const LogIn = ({ email, password, handleChange, handleSubmit, error }) => {
   return (
     <Container className="col-md-4">
       <Card className="shadow-sm">
@@ -26,6 +26,7 @@ const LogIn = ({ handleChange, handleSubmit, error }) => {
                 required
                 type="email"
                 name="email"
+                value={email}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -35,6 +36,7 @@ const LogIn = ({ handleChange, handleSubmit, error }) => {
                 required
                 type="password"
                 name="password"
+                value={password}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -52,9 +54,11 @@ const LogIn = ({ handleChange, handleSubmit, error }) => {
 };
 
 LogIn.propTypes = {
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired
+  error: PropTypes.string
 };
 
 export default LogIn;
