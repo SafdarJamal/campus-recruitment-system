@@ -3,7 +3,7 @@ import * as ROUTES from './routes';
 const PUBLIC_LINKS = [
   {
     path: ROUTES.LANDING,
-    text: 'Landing'
+    text: 'Home'
   },
   {
     path: ROUTES.SIGN_UP,
