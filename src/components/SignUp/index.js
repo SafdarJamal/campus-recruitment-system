@@ -15,7 +15,6 @@ const SignUp = ({ handleChange, handleSubmit, error }) => {
         <Card.Header as="h2" className="text-center">
           Sign Up
         </Card.Header>
-
         <Card.Body>
           <Alert variant="danger" show={error}>
             {error}
@@ -62,7 +61,6 @@ const SignUp = ({ handleChange, handleSubmit, error }) => {
             </Button>
           </Form>
         </Card.Body>
-
         <Card.Footer className="text-muted text-center">
           Already have an account? <Link to={ROUTES.LOG_IN}>Log In</Link>
         </Card.Footer>

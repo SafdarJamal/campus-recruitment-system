@@ -13,7 +13,6 @@ const SignUpType = () => {
         <Card.Header as="h2" className="text-center">
           Sign Up As
         </Card.Header>
-
         <Card.Body>
           <LinkContainer to={ROUTES.SIGN_UP_COMPANY}>
             <Button variant="light" size="lg" block>
@@ -26,7 +25,6 @@ const SignUpType = () => {
             </Button>
           </LinkContainer>
         </Card.Body>
-
         <Card.Footer className="text-muted text-center">
           Already have an account? <Link to={ROUTES.LOG_IN}>Log In</Link>
         </Card.Footer>

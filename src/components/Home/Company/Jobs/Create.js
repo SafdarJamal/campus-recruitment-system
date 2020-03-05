@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-const Create = ({ handleChange, handleSubmit, error }) => {
+const Create = ({ title, description, handleChange, handleSubmit, error }) => {
   const history = useHistory();
 
   return (
@@ -17,7 +17,6 @@ const Create = ({ handleChange, handleSubmit, error }) => {
         <Card.Header as="h2" className="text-center">
           Post a Job
         </Card.Header>
-
         <Card.Body>
           <Alert variant="danger" show={error}>
             {error}
@@ -29,6 +28,7 @@ const Create = ({ handleChange, handleSubmit, error }) => {
                 required
                 type="text"
                 name="title"
+                value={title}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -39,6 +39,7 @@ const Create = ({ handleChange, handleSubmit, error }) => {
                 rows="3"
                 as="textarea"
                 name="description"
+                value={description}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -56,9 +57,11 @@ const Create = ({ handleChange, handleSubmit, error }) => {
 };
 
 Create.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired
+  error: PropTypes.string
 };
 
 export default Create;

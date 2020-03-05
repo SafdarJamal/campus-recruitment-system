@@ -9,7 +9,7 @@ import * as ROUTES from '../../../../constants/routes';
 import Create from '../../../../components/Home/Company/Jobs/Create';
 
 class CreateContainer extends Component {
-  state = { title: '', description: '', error: '' };
+  state = { title: '', description: '', error: null };
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -41,11 +41,15 @@ class CreateContainer extends Component {
   };
 
   render() {
+    const { title, description, error } = this.state;
+
     return (
       <Create
+        title={title}
+        description={description}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
-        error={this.state.error}
+        error={error}
       />
     );
   }
