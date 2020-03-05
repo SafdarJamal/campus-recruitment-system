@@ -8,7 +8,15 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
-const SignUp = ({ handleChange, handleSubmit, error }) => {
+const SignUp = ({
+  firstName,
+  lastName,
+  email,
+  password,
+  handleChange,
+  handleSubmit,
+  error
+}) => {
   return (
     <Container className="col-md-4">
       <Card className="shadow-sm">
@@ -26,6 +34,7 @@ const SignUp = ({ handleChange, handleSubmit, error }) => {
                 required
                 type="text"
                 name="firstName"
+                value={firstName}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -35,6 +44,7 @@ const SignUp = ({ handleChange, handleSubmit, error }) => {
                 required
                 type="text"
                 name="lastName"
+                value={lastName}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -44,6 +54,7 @@ const SignUp = ({ handleChange, handleSubmit, error }) => {
                 required
                 type="email"
                 name="email"
+                value={email}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -53,6 +64,7 @@ const SignUp = ({ handleChange, handleSubmit, error }) => {
                 required
                 type="password"
                 name="password"
+                value={password}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -70,9 +82,13 @@ const SignUp = ({ handleChange, handleSubmit, error }) => {
 };
 
 SignUp.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired
+  error: PropTypes.string
 };
 
 export default SignUp;
