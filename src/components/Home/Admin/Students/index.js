@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 const Students = ({ students, handleDelete }) => {
   return (
     <Container>
-      <Card>
+      <Card className="shadow-sm">
         <Card.Header as="h2" className="text-center">
           Students
         </Card.Header>
