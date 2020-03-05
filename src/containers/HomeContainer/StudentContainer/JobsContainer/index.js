@@ -19,10 +19,10 @@ class JobsContainer extends Component {
         let jobs = [];
 
         querySnapshot.forEach(doc => {
-          const data = doc.data();
+          const userJobs = doc.data().jobs;
 
-          if (data.jobs) {
-            jobs = jobs.concat(data.jobs);
+          if (userJobs) {
+            jobs = jobs.concat(userJobs);
           }
         });
 

@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-const Jobs = ({ jobs }) => {
+const Jobs = ({ jobs, handleDelete }) => {
   return (
     <Container>
       <Card className="shadow-sm">
@@ -29,7 +29,12 @@ const Jobs = ({ jobs }) => {
                   <td>{job.title}</td>
                   <td>{job.description}</td>
                   <td>
-                    <Button variant="danger" data-id={job.id}>
+                    <Button
+                      variant="danger"
+                      data-uid={job.uid}
+                      data-index={job.index}
+                      onClick={handleDelete}
+                    >
                       Delete
                     </Button>
                   </td>
@@ -44,7 +49,8 @@ const Jobs = ({ jobs }) => {
 };
 
 Jobs.propTypes = {
-  jobs: PropTypes.array.isRequired
+  jobs: PropTypes.array.isRequired,
+  handleDelete: PropTypes.func.isRequired
 };
 
 export default Jobs;
