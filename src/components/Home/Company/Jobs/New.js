@@ -8,14 +8,14 @@ import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-const Create = ({ title, description, handleChange, handleSubmit, error }) => {
+const New = ({ title, description, handleChange, handleSubmit, error }) => {
   const history = useHistory();
 
   return (
     <Container className="col-md-4">
       <Card className="shadow-sm">
         <Card.Header as="h2" className="text-center">
-          Post a Job
+          Post New Job
         </Card.Header>
         <Card.Body>
           <Alert variant="danger" show={error}>
@@ -56,7 +56,7 @@ const Create = ({ title, description, handleChange, handleSubmit, error }) => {
   );
 };
 
-Create.propTypes = {
+New.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
@@ -64,4 +64,4 @@ Create.propTypes = {
   error: PropTypes.string
 };
 
-export default Create;
+export default New;

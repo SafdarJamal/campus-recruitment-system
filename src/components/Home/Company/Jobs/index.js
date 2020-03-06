@@ -20,9 +20,9 @@ const Jobs = ({ jobs, handleDelete }) => {
           <Button
             className="mb-4"
             variant="success"
-            onClick={() => history.push(ROUTES.JOBS_CREATE)}
+            onClick={() => history.push(ROUTES.JOBS_NEW)}
           >
-            Post a Job
+            Post New Job
           </Button>
           <Table bordered hover>
             <thead>

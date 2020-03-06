@@ -6,9 +6,9 @@ import { withFirebase } from '../../../../services/firebase';
 import { withRouter } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-import Create from '../../../../components/Home/Company/Jobs/Create';
+import New from '../../../../components/Home/Company/Jobs/New';
 
-class CreateContainer extends Component {
+class NewContainer extends Component {
   state = { title: '', description: '', error: null };
 
   handleChange = e => {
@@ -44,7 +44,7 @@ class CreateContainer extends Component {
     const { title, description, error } = this.state;
 
     return (
-      <Create
+      <New
         title={title}
         description={description}
         handleChange={this.handleChange}
@@ -63,4 +63,4 @@ export default compose(
   connect(mapStateToProps, { setUser }),
   withFirebase,
   withRouter
-)(CreateContainer);
+)(NewContainer);
