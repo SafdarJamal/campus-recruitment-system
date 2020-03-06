@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Alert from 'react-bootstrap/Alert';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
@@ -16,54 +21,79 @@ const Edit = ({
   const history = useHistory();
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Edit Profile</h1>
-        <p>{error}</p>
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          value={firstName}
-          onChange={handleChange}
-        />
-        <br />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          value={lastName}
-          onChange={handleChange}
-        />
-        <br />
-        <input
-          type="text"
-          name="companyName"
-          placeholder="Company Name"
-          value={companyName}
-          onChange={handleChange}
-        />
-        <br />
-        <input
-          type="text"
-          name="companyEmail"
-          placeholder="Company Email"
-          value={companyEmail}
-          onChange={handleChange}
-        />
-        <br />
-        <input
-          type="text"
-          name="companyPhone"
-          placeholder="Company Phone"
-          value={companyPhone}
-          onChange={handleChange}
-        />
-        <br />
-        <button type="submit">Update</button>
-        <button onClick={() => history.push(ROUTES.PROFILE)}>Cancel</button>
-      </form>
-    </div>
+    <Container className="col-md-4">
+      <Card className="shadow-sm">
+        <Card.Header as="h2" className="text-center">
+          Edit Profile
+        </Card.Header>
+        <Card.Body>
+          <Alert variant="danger" show={error}>
+            {error}
+          </Alert>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="firstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                name="firstName"
+                value={firstName}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="lastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                name="lastName"
+                value={lastName}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="companyName">
+              <Form.Label>Company Name</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                name="companyName"
+                value={companyName}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="companyEmail">
+              <Form.Label>Company Email</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                name="companyEmail"
+                value={companyEmail}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="companyPhone">
+              <Form.Label>Company Phone</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                name="companyPhone"
+                value={companyPhone}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Button className="mr-2" variant="success" type="submit">
+              Update
+            </Button>
+            <Button
+              variant="light"
+              onClick={() => history.push(ROUTES.PROFILE)}
+            >
+              Cancel
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 };
 
