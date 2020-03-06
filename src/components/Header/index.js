@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import logo from '../../images/logo.svg';
 import { LinkContainer } from 'react-router-bootstrap';
 import * as ROUTES from '../../constants/routes';
 import styles from './style.module.css';
@@ -11,11 +12,18 @@ import LogOutContainer from '../../containers/LogOutContainer';
 const Header = ({ links, isAuthenticated }) => {
   return (
     <header className={styles.header}>
-      <Navbar className="shadow" bg="dark" variant="dark" fixed="top">
+      <Navbar className="shadow-sm" bg="dark" variant="dark" fixed="top">
         <LinkContainer to={ROUTES.LANDING}>
-          <Navbar.Brand>CRS</Navbar.Brand>
+          <Navbar.Brand>
+            <img
+              className="d-inline-block align-top"
+              src={logo}
+              width="30"
+              height="30"
+              alt="CRS"
+            />
+          </Navbar.Brand>
         </LinkContainer>
-
         <Nav className="mr-auto">
           {links.map((link, i) => (
             <LinkContainer key={i} to={link.path} exact>
@@ -23,7 +31,6 @@ const Header = ({ links, isAuthenticated }) => {
             </LinkContainer>
           ))}
         </Nav>
-
         {isAuthenticated && <LogOutContainer />}
       </Navbar>
     </header>

@@ -40,7 +40,7 @@ const Profile = ({ firstName, lastName }) => {
               variant="success"
               onClick={() => history.push(ROUTES.PROFILE_EDIT)}
             >
-              Edit Profile
+              Edit
             </Button>
           </Form>
         </Card.Body>

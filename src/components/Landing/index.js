@@ -6,8 +6,7 @@ const Landing = () => {
   return (
     <Container>
       <Jumbotron className="shadow-sm">
-        <h1>Landing</h1>
-        <p>Not Protected. Anyone can see this.</p>
+        <h1>Home</h1>
       </Jumbotron>
     </Container>
   );

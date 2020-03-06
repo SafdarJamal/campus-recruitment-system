@@ -46,7 +46,7 @@ const Create = ({ title, description, handleChange, handleSubmit, error }) => {
             <Button className="mr-2" variant="success" type="submit">
               Post
             </Button>
-            <Button variant="danger" onClick={() => history.push(ROUTES.JOBS)}>
+            <Button variant="light" onClick={() => history.push(ROUTES.JOBS)}>
               Cancel
             </Button>
           </Form>
