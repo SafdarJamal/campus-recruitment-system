@@ -16,7 +16,7 @@ const Landing = () => {
         </p>
         <p>
           <Link to={ROUTES.LOG_IN}>
-            <Button variant="success">Learn More</Button>
+            <Button variant="success">Get Started</Button>
           </Link>
         </p>
       </Jumbotron>
