@@ -25,9 +25,6 @@ const jobsRoute = require('./routes/jobs');
 app.use('/api/user', authRoute);
 app.use('/jobs', jobsRoute);
 
-// ROUTES
-app.get('/', (req, res) => res.send('Home'));
-
 const PORT = 8080;
 const HOST = '0.0.0.0';
 

@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 const Admin = require('../models/Admin');
 const Company = require('../models/Company');
 const Student = require('../models/Student');
@@ -80,7 +82,8 @@ router.post('/login/admin', async (req, res) => {
   const checkPassword = bcrypt.compareSync(req.body.password, user.password);
   if (!checkPassword) return res.status(400).send('The password is invalid');
 
-  res.send('Logged In.');
+  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  res.header('auth-token', token).send(user);
 });
 
 router.post('/login/company', async (req, res) => {
@@ -96,7 +99,8 @@ router.post('/login/company', async (req, res) => {
   const checkPassword = bcrypt.compareSync(req.body.password, user.password);
   if (!checkPassword) return res.status(400).send('The password is invalid');
 
-  res.send('Logged In.');
+  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  res.header('auth-token', token).send(user);
 });
 
 router.post('/login/student', async (req, res) => {
@@ -112,7 +116,8 @@ router.post('/login/student', async (req, res) => {
   const checkPassword = bcrypt.compareSync(req.body.password, user.password);
   if (!checkPassword) return res.status(400).send('The password is invalid');
 
-  res.send('Logged In.');
+  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  res.header('auth-token', token).send(user);
 });
 
 module.exports = router;
