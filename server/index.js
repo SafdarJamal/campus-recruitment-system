@@ -19,7 +19,10 @@ mongoose.connect(
 app.use(bodyParser.json());
 app.use(cors());
 
+const authRoute = require('./routes/auth');
 const jobsRoute = require('./routes/jobs');
+
+app.use('/api/user', authRoute);
 app.use('/jobs', jobsRoute);
 
 // ROUTES
