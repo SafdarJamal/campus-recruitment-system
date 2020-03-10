@@ -3,7 +3,15 @@ const router = express.Router();
 const Company = require('../models/Company');
 const Student = require('../models/Student');
 
+const {
+  validateCompanySignUp,
+  validateStudentSignUp
+} = require('../validation');
+
 router.post('/signup/company', (req, res) => {
+  const { error } = validateCompanySignUp(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
   const company = new Company({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -21,6 +29,9 @@ router.post('/signup/company', (req, res) => {
 });
 
 router.post('/signup/student', (req, res) => {
+  const { error } = validateStudentSignUp(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
   const student = new Student({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
