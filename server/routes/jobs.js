@@ -26,4 +26,10 @@ router.get('/:id', (req, res) => {
     .catch(error => res.json({ message: error.message }));
 });
 
+router.delete('/:id', (req, res) => {
+  Job.remove({ _id: req.params.id })
+    .then(success => res.json(success.deletedCount))
+    .catch(error => res.json({ message: error.message }));
+});
+
 module.exports = router;
