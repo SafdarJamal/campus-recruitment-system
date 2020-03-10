@@ -1,0 +1,24 @@
+{
+  "name": "docker-node-app",
+  "version": "1.0.0",
+  "description": "Dockerizing a Node.js web app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": {
+    "name": "Safdar Jamal",
+    "url": "https://safdarjamal.github.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SafdarJamal/docker-node-app"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
