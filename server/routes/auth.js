@@ -8,9 +8,12 @@ const {
   validateStudentSignUp
 } = require('../validation');
 
-router.post('/signup/company', (req, res) => {
+router.post('/signup/company', async (req, res) => {
   const { error } = validateCompanySignUp(req.body);
   if (error) return res.status(400).send(error.details[0].message);
+
+  const isEmailExist = await Company.findOne({ email: req.body.email });
+  if (isEmailExist) return res.status(400).send('This email is alreay exists.');
 
   const company = new Company({
     firstName: req.body.firstName,
@@ -28,9 +31,12 @@ router.post('/signup/company', (req, res) => {
     .catch(error => res.json({ message: error.message }));
 });
 
-router.post('/signup/student', (req, res) => {
+router.post('/signup/student', async (req, res) => {
   const { error } = validateStudentSignUp(req.body);
   if (error) return res.status(400).send(error.details[0].message);
+
+  const isEmailExist = await Student.findOne({ email: req.body.email });
+  if (isEmailExist) return res.status(400).send('This email is alreay exists.');
 
   const student = new Student({
     firstName: req.body.firstName,
