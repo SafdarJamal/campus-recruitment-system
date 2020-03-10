@@ -26,6 +26,12 @@ router.get('/:id', (req, res) => {
     .catch(error => res.json({ message: error.message }));
 });
 
+router.patch('/:id', (req, res) => {
+  Job.updateOne({ _id: req.params.id }, { $set: { title: req.body.title } })
+    .then(success => res.json(success.nModified))
+    .catch(error => res.json({ message: error.message }));
+});
+
 router.delete('/:id', (req, res) => {
   Job.remove({ _id: req.params.id })
     .then(success => res.json(success.deletedCount))
