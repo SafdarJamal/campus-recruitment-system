@@ -3,7 +3,7 @@ const router = express.Router();
 const Job = require('../models/Job');
 
 router.get('/', (req, res) => {
-  Job.find()
+  Job.find({})
     .then(jobs => res.json(jobs))
     .catch(error => res.json({ message: error.message }));
 });
