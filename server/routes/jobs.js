@@ -5,7 +5,7 @@ const Job = require('../models/Job');
 router.get('/', (req, res) => {
   Job.find()
     .then(jobs => res.json(jobs))
-    .catch(error => res.json({ message: error }));
+    .catch(error => res.json({ message: error.message }));
 });
 
 router.post('/', (req, res) => {
@@ -17,7 +17,13 @@ router.post('/', (req, res) => {
   job
     .save()
     .then(data => res.json(data))
-    .catch(error => res.json({ message: error }));
+    .catch(error => res.json({ message: error.message }));
+});
+
+router.get('/:id', (req, res) => {
+  Job.findById(req.params.id)
+    .then(job => res.json(job))
+    .catch(error => res.json({ message: error.message }));
 });
 
 module.exports = router;
