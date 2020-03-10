@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 const Company = require('../models/Company');
 const Student = require('../models/Student');
 
@@ -15,6 +16,9 @@ router.post('/signup/company', async (req, res) => {
   const isEmailExist = await Company.findOne({ email: req.body.email });
   if (isEmailExist) return res.status(400).send('This email is alreay exists.');
 
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(req.body.password, salt);
+
   const company = new Company({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -22,7 +26,7 @@ router.post('/signup/company', async (req, res) => {
     companyEmail: req.body.companyEmail,
     companyPhone: req.body.companyPhone,
     email: req.body.email,
-    password: req.body.password
+    password: hash
   });
 
   company
@@ -38,12 +42,15 @@ router.post('/signup/student', async (req, res) => {
   const isEmailExist = await Student.findOne({ email: req.body.email });
   if (isEmailExist) return res.status(400).send('This email is alreay exists.');
 
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(req.body.password, salt);
+
   const student = new Student({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     phone: req.body.phone,
     email: req.body.email,
-    password: req.body.password
+    password: hash
   });
 
   student
