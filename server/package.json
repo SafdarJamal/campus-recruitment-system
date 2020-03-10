@@ -1,9 +1,9 @@
 {
   "name": "campus-recruitment-system",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon index.js"
   },
   "author": {
     "name": "Safdar Jamal",
