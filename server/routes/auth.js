@@ -1,20 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const Admin = require('../models/Admin');
 const Company = require('../models/Company');
 const Student = require('../models/Student');
 
 const {
   validateCompanySignUp,
-  validateStudentSignUp
+  validateStudentSignUp,
+  validateLogIn
 } = require('../validation');
 
 router.post('/signup/company', async (req, res) => {
   const { error } = validateCompanySignUp(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const isEmailExist = await Company.findOne({ email: req.body.email });
-  if (isEmailExist) return res.status(400).send('This email is alreay exists.');
+  const emailExist = await Company.findOne({ email: req.body.email });
+  if (emailExist)
+    return res
+      .status(400)
+      .send('The email address is already in use by another account.');
 
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(req.body.password, salt);
@@ -39,8 +44,11 @@ router.post('/signup/student', async (req, res) => {
   const { error } = validateStudentSignUp(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const isEmailExist = await Student.findOne({ email: req.body.email });
-  if (isEmailExist) return res.status(400).send('This email is alreay exists.');
+  const emailExist = await Student.findOne({ email: req.body.email });
+  if (emailExist)
+    return res
+      .status(400)
+      .send('The email address is already in use by another account.');
 
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(req.body.password, salt);
@@ -59,8 +67,52 @@ router.post('/signup/student', async (req, res) => {
     .catch(error => res.json({ message: error.message }));
 });
 
-router.post('/login', (req, res) => {
-  res.send('LogIn');
+router.post('/login/admin', async (req, res) => {
+  const { error } = validateLogIn(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  const user = await Admin.findOne({ email: req.body.email });
+  if (!user)
+    return res
+      .status(400)
+      .send('There is no user record corresponding to this identifier.');
+
+  const checkPassword = bcrypt.compareSync(req.body.password, user.password);
+  if (!checkPassword) return res.status(400).send('The password is invalid');
+
+  res.send('Logged In.');
+});
+
+router.post('/login/company', async (req, res) => {
+  const { error } = validateLogIn(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  const user = await Company.findOne({ email: req.body.email });
+  if (!user)
+    return res
+      .status(400)
+      .send('There is no user record corresponding to this identifier.');
+
+  const checkPassword = bcrypt.compareSync(req.body.password, user.password);
+  if (!checkPassword) return res.status(400).send('The password is invalid');
+
+  res.send('Logged In.');
+});
+
+router.post('/login/student', async (req, res) => {
+  const { error } = validateLogIn(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  const user = await Student.findOne({ email: req.body.email });
+  if (!user)
+    return res
+      .status(400)
+      .send('There is no user record corresponding to this identifier.');
+
+  const checkPassword = bcrypt.compareSync(req.body.password, user.password);
+  if (!checkPassword) return res.status(400).send('The password is invalid');
+
+  res.send('Logged In.');
 });
 
 module.exports = router;
