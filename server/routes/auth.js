@@ -36,9 +36,11 @@ router.post('/signup/company', async (req, res) => {
     password: hash
   });
 
+  const token = jwt.sign({ _id: company._id }, process.env.TOKEN_SECRET);
+
   company
     .save()
-    .then(data => res.json(data))
+    .then(data => res.header('auth-token', token).json(data))
     .catch(error => res.json({ message: error.message }));
 });
 
@@ -63,9 +65,11 @@ router.post('/signup/student', async (req, res) => {
     password: hash
   });
 
+  const token = jwt.sign({ _id: student._id }, process.env.TOKEN_SECRET);
+
   student
     .save()
-    .then(data => res.json(data))
+    .then(data => res.header('auth-token', token).json(data))
     .catch(error => res.json({ message: error.message }));
 });
 
