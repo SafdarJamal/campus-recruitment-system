@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const Student = require('../models/Student');
 
 router.get('/', (req, res) => {
@@ -11,12 +12,6 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Student.findById(req.params.id)
     .then(student => res.json(student))
-    .catch(error => res.json({ message: error.message }));
-});
-
-router.patch('/:id', (req, res) => {
-  Student.updateOne({ _id: req.params.id }, { $set: req.body })
-    .then(success => res.json(success.nModified))
     .catch(error => res.json({ message: error.message }));
 });
 

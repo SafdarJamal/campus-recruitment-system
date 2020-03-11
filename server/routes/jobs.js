@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const Job = require('../models/Job');
 
 router.get('/', (req, res) => {
@@ -8,8 +9,15 @@ router.get('/', (req, res) => {
     .catch(error => res.json({ message: error.message }));
 });
 
-router.post('/', (req, res) => {
+router.get('/company/:id', (req, res) => {
+  Job.find({ _companyId: req.params.id })
+    .then(jobs => res.json(jobs))
+    .catch(error => res.json({ message: error.message }));
+});
+
+router.post('/company/:id', (req, res) => {
   const job = new Job({
+    _companyId: req.params.id,
     title: req.body.title,
     description: req.body.description
   });
@@ -23,12 +31,6 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Job.findById(req.params.id)
     .then(job => res.json(job))
-    .catch(error => res.json({ message: error.message }));
-});
-
-router.patch('/:id', (req, res) => {
-  Job.updateOne({ _id: req.params.id }, { $set: { title: req.body.title } })
-    .then(success => res.json(success.nModified))
     .catch(error => res.json({ message: error.message }));
 });
 

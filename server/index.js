@@ -15,7 +15,6 @@ mongoose.connect(
   () => console.log('Connected to DB!')
 );
 
-// Middlewares
 app.use(bodyParser.json());
 app.use(cors());
 
