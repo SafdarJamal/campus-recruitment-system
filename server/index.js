@@ -23,11 +23,13 @@ const authRoute = require('./routes/auth');
 const companiesRoute = require('./routes/companies');
 const studentsRoute = require('./routes/students');
 const jobsRoute = require('./routes/jobs');
+const profileRoute = require('./routes/profile');
 
 app.use('/api/user', authRoute);
 app.use('/companies', companiesRoute);
 app.use('/students', studentsRoute);
 app.use('/jobs', jobsRoute);
+app.use('/profile', profileRoute);
 
 const PORT = 8080;
 const HOST = '0.0.0.0';
