@@ -21,10 +21,12 @@ app.use(cors());
 
 const authRoute = require('./routes/auth');
 const companiesRoute = require('./routes/companies');
+const studentsRoute = require('./routes/students');
 const jobsRoute = require('./routes/jobs');
 
 app.use('/api/user', authRoute);
 app.use('/companies', companiesRoute);
+app.use('/students', studentsRoute);
 app.use('/jobs', jobsRoute);
 
 const PORT = 8080;
