@@ -1,4 +1,4 @@
-import { SET_USER, REMOVE_USER } from '../../constants/actionTypes';
+import { SET_USER, REMOVE_USER } from '../constants/actionTypes';
 
 const setUser = payload => {
   return {

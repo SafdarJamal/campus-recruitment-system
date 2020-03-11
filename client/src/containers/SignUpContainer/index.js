@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { setUser } from '../../store/actions';
+import { setUser } from '../../actions';
 import { withFirebase } from '../../services/firebase';
 import { withRouter } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
