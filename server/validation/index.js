@@ -10,7 +10,7 @@ const validateCompanySignUp = data => {
     email: Joi.string()
       .email({
         minDomainSegments: 2,
-        tlds: { allow: ['com', 'net'] }
+        tlds: { allow: ['com', 'org'] }
       })
       .required(),
     password: Joi.string()
@@ -29,7 +29,7 @@ const validateStudentSignUp = data => {
     email: Joi.string()
       .email({
         minDomainSegments: 2,
-        tlds: { allow: ['com', 'net'] }
+        tlds: { allow: ['com', 'edu'] }
       })
       .required(),
     password: Joi.string()
@@ -45,7 +45,7 @@ const validateLogIn = data => {
     email: Joi.string()
       .email({
         minDomainSegments: 2,
-        tlds: { allow: ['com', 'net'] }
+        tlds: { allow: ['com', 'org', 'edu'] }
       })
       .required(),
     password: Joi.string()
@@ -55,6 +55,7 @@ const validateLogIn = data => {
 
   return schema.validate(data);
 };
+
 module.exports.validateCompanySignUp = validateCompanySignUp;
 module.exports.validateStudentSignUp = validateStudentSignUp;
 module.exports.validateLogIn = validateLogIn;
