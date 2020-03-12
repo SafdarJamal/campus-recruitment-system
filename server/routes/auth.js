@@ -17,8 +17,8 @@ router.post('/signup/company', async (req, res) => {
   const { error } = validateCompanySignUp(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const emailExist = await Company.findOne({ email: req.body.email });
-  if (emailExist)
+  const isEmailExist = await Company.findOne({ email: req.body.email });
+  if (isEmailExist)
     return res
       .status(400)
       .send('The email address is already in use by another account.');
@@ -36,7 +36,10 @@ router.post('/signup/company', async (req, res) => {
     password: hash
   });
 
-  const token = jwt.sign({ _id: company._id }, process.env.TOKEN_SECRET);
+  const token = jwt.sign(
+    { _id: company._id, role: 'COMPANY' },
+    process.env.TOKEN_SECRET
+  );
 
   company
     .save()
@@ -48,8 +51,8 @@ router.post('/signup/student', async (req, res) => {
   const { error } = validateStudentSignUp(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const emailExist = await Student.findOne({ email: req.body.email });
-  if (emailExist)
+  const isEmailExist = await Student.findOne({ email: req.body.email });
+  if (isEmailExist)
     return res
       .status(400)
       .send('The email address is already in use by another account.');
@@ -65,7 +68,10 @@ router.post('/signup/student', async (req, res) => {
     password: hash
   });
 
-  const token = jwt.sign({ _id: student._id }, process.env.TOKEN_SECRET);
+  const token = jwt.sign(
+    { _id: student._id, role: 'STUDENT' },
+    process.env.TOKEN_SECRET
+  );
 
   student
     .save()
@@ -86,7 +92,11 @@ router.post('/login/admin', async (req, res) => {
   const checkPassword = bcrypt.compareSync(req.body.password, user.password);
   if (!checkPassword) return res.status(400).send('The password is invalid');
 
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  const token = jwt.sign(
+    { _id: user._id, role: 'ADMIN' },
+    process.env.TOKEN_SECRET
+  );
+
   res.header('auth-token', token).send(user);
 });
 
@@ -103,7 +113,11 @@ router.post('/login/company', async (req, res) => {
   const checkPassword = bcrypt.compareSync(req.body.password, user.password);
   if (!checkPassword) return res.status(400).send('The password is invalid');
 
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  const token = jwt.sign(
+    { _id: user._id, role: 'COMPANY' },
+    process.env.TOKEN_SECRET
+  );
+
   res.header('auth-token', token).send(user);
 });
 
@@ -120,7 +134,11 @@ router.post('/login/student', async (req, res) => {
   const checkPassword = bcrypt.compareSync(req.body.password, user.password);
   if (!checkPassword) return res.status(400).send('The password is invalid');
 
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  const token = jwt.sign(
+    { _id: user._id, role: 'STUDENT' },
+    process.env.TOKEN_SECRET
+  );
+
   res.header('auth-token', token).send(user);
 });
 
