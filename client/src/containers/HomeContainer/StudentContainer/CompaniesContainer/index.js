@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withFirebase } from '../../../../services/firebase';
+import { withAPI } from '../../../../services/api';
 
 import Companies from '../../../../components/Home/Student/Companies';
 
@@ -11,18 +11,14 @@ class CompaniesContainer extends Component {
   }
 
   getCompanies = () => {
-    const { firebase } = this.props;
+    const { api } = this.props;
 
-    firebase
+    api
       .getCompanies()
-      .then(querySnapshot => {
-        const companies = [];
-
-        querySnapshot.forEach(doc => companies.push(doc.data()));
-
-        this.setState({ companies });
+      .then(response => {
+        this.setState({ companies: response.data });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   render() {
@@ -30,4 +26,4 @@ class CompaniesContainer extends Component {
   }
 }
 
-export default withFirebase(CompaniesContainer);
+export default withAPI(CompaniesContainer);
