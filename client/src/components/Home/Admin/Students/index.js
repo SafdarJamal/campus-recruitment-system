@@ -35,7 +35,7 @@ const Students = ({ students, handleDelete }) => {
                   <td>
                     <Button
                       variant="danger"
-                      data-id={student.id}
+                      data-id={student._id}
                       onClick={handleDelete}
                     >
                       Delete

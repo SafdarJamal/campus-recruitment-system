@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withFirebase } from '../../../../services/firebase';
+import { withAPI } from '../../../../services/api';
 
 import Students from '../../../../components/Home/Admin/Students';
 
@@ -11,33 +11,24 @@ class StudentsContainer extends Component {
   }
 
   getStudents = () => {
-    const { firebase } = this.props;
+    const { api } = this.props;
 
-    firebase
+    api
       .getStudents()
-      .then(querySnapshot => {
-        const students = [];
-
-        querySnapshot.forEach(doc => {
-          const data = doc.data();
-          data.id = doc.id;
-
-          students.push(data);
-        });
-
-        this.setState({ students });
+      .then(response => {
+        this.setState({ students: response.data });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   handleDelete = e => {
-    const { firebase } = this.props;
+    const { api } = this.props;
 
-    firebase
-      .deleteUser(e.target.dataset.id)
-      .then(() => console.log('Document successfully deleted!'))
+    api
+      .deleteStudent(e.target.dataset.id)
+      .then(response => console.log('Document successfully deleted!'))
       .then(() => this.getStudents())
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   render() {
@@ -50,4 +41,4 @@ class StudentsContainer extends Component {
   }
 }
 
-export default withFirebase(StudentsContainer);
+export default withAPI(StudentsContainer);

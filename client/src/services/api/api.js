@@ -38,6 +38,36 @@ class API {
     axios.delete(`/api/companies/${id}`, {
       headers: { 'Auth-Token': localStorage.getItem('token') }
     });
+
+  getStudents = () =>
+    axios.get('/api/students', {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
+  getStudent = id =>
+    axios.get(`/api/companies/${id}`, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
+  deleteStudent = id =>
+    axios.delete(`/api/companies/${id}`, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
+  getJobs = () =>
+    axios.get('/api/jobs', {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
+  getJob = id =>
+    axios.get(`/api/jobs/${id}`, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
+  deleteJob = id =>
+    axios.delete(`/api/jobs/${id}`, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
 }
 
 export default API;
