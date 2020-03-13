@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { setUser } from '../../actions';
-import { withFirebase } from '../../services/firebase';
+import { withAPI } from '../../services/api';
+import { withRouter } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
 
 import LogIn from '../../components/LogIn';
 
@@ -20,26 +23,34 @@ class LogInContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { firebase, setUser } = this.props;
+    const { api, setUser, location } = this.props;
     const { email, password } = this.state;
 
-    firebase
-      .logIn(email, password)
-      .then(success => {
-        const user = success.user;
+    let role = null;
 
-        return firebase.getUser(user.uid);
-      })
-      .then(querySnapshot => {
-        const userData = querySnapshot.data();
-        setUser({ user: userData });
-      })
-      .catch(error => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
+    switch (location.pathname) {
+      case ROUTES.LOG_IN_ADMIN:
+        role = ROLES.ADMIN;
+        break;
+      case ROUTES.LOG_IN_COMPANY:
+        role = ROLES.COMPANY;
+        break;
+      case ROUTES.LOG_IN_STUDENT:
+        role = ROLES.STUDENT;
+        break;
+      default:
+        break;
+    }
 
-        this.setState({ error: errorMessage });
-      });
+    api
+      .logIn({ email, password }, role)
+      .then(response => {
+        const { user, token } = response.data;
+
+        localStorage.setItem('token', token);
+        setUser({ user });
+      })
+      .catch(error => this.setState({ error: error.message }));
   };
 
   render() {
@@ -59,5 +70,6 @@ class LogInContainer extends Component {
 
 export default compose(
   connect(null, { setUser }),
-  withFirebase
+  withAPI,
+  withRouter
 )(LogInContainer);
