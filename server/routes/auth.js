@@ -7,14 +7,10 @@ const Admin = require('../models/Admin');
 const Company = require('../models/Company');
 const Student = require('../models/Student');
 
-const {
-  validateCompanySignUp,
-  validateStudentSignUp,
-  validateLogIn
-} = require('../validation');
+const { validateSignUp, validateLogIn } = require('../validation');
 
 router.post('/signup/company', async (req, res) => {
-  const { error } = validateCompanySignUp(req.body);
+  const { error } = validateSignUp(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   const isEmailExist = await Company.findOne({ email: req.body.email });
@@ -29,9 +25,6 @@ router.post('/signup/company', async (req, res) => {
   const company = new Company({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    companyName: req.body.companyName,
-    companyEmail: req.body.companyEmail,
-    companyPhone: req.body.companyPhone,
     email: req.body.email,
     password: hash
   });
@@ -48,7 +41,7 @@ router.post('/signup/company', async (req, res) => {
 });
 
 router.post('/signup/student', async (req, res) => {
-  const { error } = validateStudentSignUp(req.body);
+  const { error } = validateSignUp(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   const isEmailExist = await Student.findOne({ email: req.body.email });
@@ -63,7 +56,6 @@ router.post('/signup/student', async (req, res) => {
   const student = new Student({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    phone: req.body.phone,
     email: req.body.email,
     password: hash
   });
