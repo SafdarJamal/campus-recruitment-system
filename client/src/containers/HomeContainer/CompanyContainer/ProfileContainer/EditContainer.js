@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { setUser } from '../../../../actions';
-import { withFirebase } from '../../../../services/firebase';
+import { withAPI } from '../../../../services/api';
 import { withRouter } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
@@ -25,7 +25,7 @@ class EditContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { user, firebase, history, setUser } = this.props;
+    const { api, user, setUser, history } = this.props;
     const {
       firstName,
       lastName,
@@ -34,7 +34,7 @@ class EditContainer extends Component {
       companyPhone
     } = this.state;
 
-    const newData = {
+    const data = {
       firstName,
       lastName,
       companyName,
@@ -42,13 +42,11 @@ class EditContainer extends Component {
       companyPhone
     };
 
-    const userData = { ...user, ...newData };
-
-    firebase
-      .updateProfile(firebase.auth.currentUser.uid, userData)
-      .then(() => setUser({ user: userData }))
+    api
+      .updateProfile(user._id, data, user.role)
+      .then(response => setUser({ user: response.data }))
       .then(() => history.push(ROUTES.PROFILE))
-      .catch(error => this.setState({ error }));
+      .catch(error => this.setState({ error: error.message }));
   };
 
   render() {
@@ -82,6 +80,6 @@ const mapStateToProps = state => {
 
 export default compose(
   connect(mapStateToProps, { setUser }),
-  withFirebase,
+  withAPI,
   withRouter
 )(EditContainer);
