@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { setUser } from '../../actions';
-import { withFirebase } from '../../services/firebase';
+import { withAPI } from '../../services/api';
 import { withRouter } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
@@ -25,46 +25,31 @@ class SignUpContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { firebase, setUser, location } = this.props;
+    const { api, setUser, location } = this.props;
     const { firstName, lastName, email, password } = this.state;
 
-    firebase
-      .signUp(email, password)
-      .then(success => {
-        const user = success.user;
-        let role = null;
+    let role = null;
 
-        switch (location.pathname) {
-          case ROUTES.SIGN_UP_COMPANY:
-            role = ROLES.COMPANY;
-            break;
-          case ROUTES.SIGN_UP_STUDENT:
-            role = ROLES.STUDENT;
-            break;
-          default:
-            break;
-        }
+    switch (location.pathname) {
+      case ROUTES.SIGN_UP_COMPANY:
+        role = ROLES.COMPANY;
+        break;
+      case ROUTES.SIGN_UP_STUDENT:
+        role = ROLES.STUDENT;
+        break;
+      default:
+        break;
+    }
 
-        const userData = {
-          firstName,
-          lastName,
-          email,
-          role
-        };
+    api
+      .signUp({ firstName, lastName, email, password }, role)
+      .then(response => {
+        const { user, token } = response.data;
 
-        return firebase.addUser(user.uid, userData);
+        localStorage.setItem('token', token);
+        setUser({ user });
       })
-      .then(() => firebase.getUser(firebase.auth.currentUser.uid))
-      .then(querySnapshot => {
-        const userData = querySnapshot.data();
-        setUser({ user: userData });
-      })
-      .catch(error => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-
-        this.setState({ error: errorMessage });
-      });
+      .catch(error => this.setState({ error: error.message }));
   };
 
   render() {
@@ -86,6 +71,6 @@ class SignUpContainer extends Component {
 
 export default compose(
   connect(null, { setUser }),
-  withFirebase,
+  withAPI,
   withRouter
 )(SignUpContainer);
