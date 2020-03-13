@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
-import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { removeUser } from '../../actions';
-import { withFirebase } from '../../services/firebase';
 
 import LogOut from '../../components/LogOut';
 
 class LogOutContainer extends Component {
   handleLogOut = () => {
-    const { firebase, removeUser } = this.props;
+    const { removeUser } = this.props;
 
-    firebase
-      .logOut()
-      .then(() => {
-        removeUser();
-      })
-      .catch(error => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
+    localStorage.removeItem('token');
+    removeUser();
   };
 
   render() {
@@ -26,7 +17,4 @@ class LogOutContainer extends Component {
   }
 }
 
-export default compose(
-  connect(null, { removeUser }),
-  withFirebase
-)(LogOutContainer);
+export default connect(null, { removeUser })(LogOutContainer);
