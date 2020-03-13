@@ -36,7 +36,7 @@ router.post('/signup/company', async (req, res) => {
 
   company
     .save()
-    .then(data => res.header('auth-token', token).json(data))
+    .then(data => res.header('Auth-Token', token).json(data))
     .catch(error => res.json({ message: error.message }));
 });
 
@@ -67,7 +67,7 @@ router.post('/signup/student', async (req, res) => {
 
   student
     .save()
-    .then(data => res.header('auth-token', token).json(data))
+    .then(data => res.header('Auth-Token', token).json(data))
     .catch(error => res.json({ message: error.message }));
 });
 
@@ -89,7 +89,7 @@ router.post('/login/admin', async (req, res) => {
     process.env.TOKEN_SECRET
   );
 
-  res.header('auth-token', token).send(user);
+  res.header('Auth-Token', token).send(user);
 });
 
 router.post('/login/company', async (req, res) => {
@@ -110,7 +110,7 @@ router.post('/login/company', async (req, res) => {
     process.env.TOKEN_SECRET
   );
 
-  res.header('auth-token', token).send(user);
+  res.header('Auth-Token', token).send(user);
 });
 
 router.post('/login/student', async (req, res) => {
@@ -131,7 +131,7 @@ router.post('/login/student', async (req, res) => {
     process.env.TOKEN_SECRET
   );
 
-  res.header('auth-token', token).send(user);
+  res.header('Auth-Token', token).send(user);
 });
 
 module.exports = router;
