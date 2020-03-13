@@ -17,12 +17,33 @@ class API {
     if (role === ROLES.STUDENT) return this.logInStudent(data);
   };
 
+  updateProfile = (id, data, role) => {
+    if (role === ROLES.ADMIN) return this.updateAdminProfile(id, data);
+    if (role === ROLES.COMPANY) return this.updateCompanyProfile(id, data);
+    if (role === ROLES.STUDENT) return this.updateStudentProfile(id, data);
+  };
+
   signUpCompany = data => axios.post('/api/user/signup/company', data);
   signUpStudent = data => axios.post('/api/user/signup/student', data);
 
   logInAdmin = data => axios.post('/api/user/login/admin', data);
   logInCompany = data => axios.post('/api/user/login/company', data);
   logInStudent = data => axios.post('/api/user/login/student', data);
+
+  updateAdminProfile = (id, data) =>
+    axios.patch(`/api/profile/admin/${id}`, data, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
+  updateCompanyProfile = (id, data) =>
+    axios.patch(`/api/profile/company/${id}`, data, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
+  updateStudentProfile = (id, data) =>
+    axios.patch(`/api/profile/student/${id}`, data, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
 
   getCompanies = () =>
     axios.get('/api/companies', {
