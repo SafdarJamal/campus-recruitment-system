@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withFirebase } from '../../../../services/firebase';
+import { withAPI } from '../../../../services/api';
 
 import Companies from '../../../../components/Home/Admin/Companies';
 
@@ -11,33 +11,24 @@ class CompaniesContainer extends Component {
   }
 
   getCompanies = () => {
-    const { firebase } = this.props;
+    const { api } = this.props;
 
-    firebase
+    api
       .getCompanies()
-      .then(querySnapshot => {
-        const companies = [];
-
-        querySnapshot.forEach(doc => {
-          const data = doc.data();
-          data.id = doc.id;
-
-          companies.push(data);
-        });
-
-        this.setState({ companies });
+      .then(response => {
+        this.setState({ companies: response.data });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   handleDelete = e => {
-    const { firebase } = this.props;
+    const { api } = this.props;
 
-    firebase
-      .deleteUser(e.target.dataset.id)
-      .then(() => console.log('Document successfully deleted!'))
+    api
+      .deleteCompany(e.target.dataset.id)
+      .then(response => console.log('Document successfully deleted!'))
       .then(() => this.getCompanies())
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   render() {
@@ -50,4 +41,4 @@ class CompaniesContainer extends Component {
   }
 }
 
-export default withFirebase(CompaniesContainer);
+export default withAPI(CompaniesContainer);

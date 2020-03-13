@@ -33,7 +33,7 @@ const Companies = ({ companies, handleDelete }) => {
                   <td>
                     <Button
                       variant="danger"
-                      data-id={company.id}
+                      data-id={company._id}
                       onClick={handleDelete}
                     >
                       Delete

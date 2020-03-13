@@ -23,6 +23,21 @@ class API {
   logInAdmin = data => axios.post('/api/user/login/admin', data);
   logInCompany = data => axios.post('/api/user/login/company', data);
   logInStudent = data => axios.post('/api/user/login/student', data);
+
+  getCompanies = () =>
+    axios.get('/api/companies', {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
+  getCompany = id =>
+    axios.get(`/api/companies/${id}`, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
+  deleteCompany = id =>
+    axios.delete(`/api/companies/${id}`, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
 }
 
 export default API;
