@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { setUser } from '../../../../actions';
-import { withFirebase } from '../../../../services/firebase';
+import { withAPI } from '../../../../services/api';
 import { withRouter } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
@@ -18,26 +16,18 @@ class NewContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { user, firebase, history, setUser } = this.props;
+    const { api, history } = this.props;
     const { title, description } = this.state;
 
-    const jobPost = {
+    const data = {
       title,
       description
     };
 
-    if (user.jobs) {
-      user.jobs.push(jobPost);
-    } else {
-      user.jobs = [];
-      user.jobs.push(jobPost);
-    }
-
-    firebase
-      .postJob(firebase.auth.currentUser.uid, user.jobs)
-      .then(() => setUser({ user }))
-      .then(() => history.push(ROUTES.JOBS))
-      .catch(error => this.setState({ error }));
+    api
+      .postJob(data)
+      .then(response => history.push(ROUTES.JOBS))
+      .catch(error => this.setState({ error: error.message }));
   };
 
   render() {
@@ -55,12 +45,4 @@ class NewContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { user: state.user };
-};
-
-export default compose(
-  connect(mapStateToProps, { setUser }),
-  withFirebase,
-  withRouter
-)(NewContainer);
+export default compose(withAPI, withRouter)(NewContainer);
