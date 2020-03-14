@@ -152,3 +152,5 @@ router.post('/login/:role', async (req, res) => {
       .send(user);
   }
 });
+
+module.exports = router;
