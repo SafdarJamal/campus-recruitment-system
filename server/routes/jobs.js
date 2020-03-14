@@ -4,8 +4,10 @@ const auth = require('../middlewares/auth');
 
 const Job = require('../models/Job');
 
+const { ADMIN, COMPANY } = require('../constants/roles');
+
 router.get('/', auth, (req, res) => {
-  if (req.user.role === 'COMPANY')
+  if (req.user.role === COMPANY)
     return res.status(401).send({ message: 'Access denied.' });
 
   Job.find({})
@@ -14,7 +16,7 @@ router.get('/', auth, (req, res) => {
 });
 
 router.get('/company/:id', auth, (req, res) => {
-  if (req.user.role !== 'COMPANY')
+  if (req.user.role !== COMPANY)
     return res.status(401).send({ message: 'Access denied.' });
 
   Job.find({ _companyId: req.params.id })
@@ -23,7 +25,7 @@ router.get('/company/:id', auth, (req, res) => {
 });
 
 router.post('/company/:id', auth, (req, res) => {
-  if (req.user.role !== 'COMPANY')
+  if (req.user.role !== COMPANY)
     return res.status(401).send({ message: 'Access denied.' });
 
   const job = new Job({
@@ -39,7 +41,7 @@ router.post('/company/:id', auth, (req, res) => {
 });
 
 router.delete('/company/:id', auth, (req, res) => {
-  if (req.user.role !== 'COMPANY')
+  if (req.user.role !== COMPANY)
     return res.status(401).send({ message: 'Access denied.' });
 
   Job.remove({ _id: req.params.id })
@@ -48,7 +50,7 @@ router.delete('/company/:id', auth, (req, res) => {
 });
 
 router.get('/:id', auth, (req, res) => {
-  if (req.user.role === 'COMPANY')
+  if (req.user.role === COMPANY)
     return res.status(401).send({ message: 'Access denied.' });
 
   Job.findById(req.params.id)
@@ -57,7 +59,7 @@ router.get('/:id', auth, (req, res) => {
 });
 
 router.delete('/:id', auth, (req, res) => {
-  if (req.user.role !== 'ADMIN')
+  if (req.user.role !== ADMIN)
     return res.status(401).send({ message: 'Access denied.' });
 
   Job.remove({ _id: req.params.id })

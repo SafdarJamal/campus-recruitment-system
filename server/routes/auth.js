@@ -7,6 +7,7 @@ const Admin = require('../models/Admin');
 const Company = require('../models/Company');
 const Student = require('../models/Student');
 
+const { ADMIN, COMPANY, STUDENT } = require('../constants/roles');
 const { validateSignUp, validateLogIn } = require('../validation');
 
 router.post('/signup/company', async (req, res) => {
@@ -33,7 +34,7 @@ router.post('/signup/company', async (req, res) => {
   });
 
   const token = jwt.sign(
-    { _id: company._id, role: 'COMPANY' },
+    { _id: company._id, role: COMPANY },
     process.env.TOKEN_SECRET
   );
 
@@ -70,7 +71,7 @@ router.post('/signup/student', async (req, res) => {
   });
 
   const token = jwt.sign(
-    { _id: student._id, role: 'STUDENT' },
+    { _id: student._id, role: STUDENT },
     process.env.TOKEN_SECRET
   );
 
@@ -100,7 +101,7 @@ router.post('/login/admin', async (req, res) => {
     return res.status(400).send({ message: 'The password is invalid' });
 
   const token = jwt.sign(
-    { _id: user._id, role: 'ADMIN' },
+    { _id: user._id, role: ADMIN },
     process.env.TOKEN_SECRET
   );
 
@@ -125,7 +126,7 @@ router.post('/login/company', async (req, res) => {
     return res.status(400).send({ message: 'The password is invalid' });
 
   const token = jwt.sign(
-    { _id: user._id, role: 'COMPANY' },
+    { _id: user._id, role: COMPANY },
     process.env.TOKEN_SECRET
   );
 
@@ -150,7 +151,7 @@ router.post('/login/student', async (req, res) => {
     return res.status(400).send({ message: 'The password is invalid' });
 
   const token = jwt.sign(
-    { _id: user._id, role: 'STUDENT' },
+    { _id: user._id, role: STUDENT },
     process.env.TOKEN_SECRET
   );
 

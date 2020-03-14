@@ -6,8 +6,10 @@ const Admin = require('../models/Admin');
 const Company = require('../models/Company');
 const Student = require('../models/Student');
 
+const { ADMIN, COMPANY, STUDENT } = require('../constants/roles');
+
 router.get('/admin/:id', auth, (req, res) => {
-  if (req.user.role !== 'ADMIN')
+  if (req.user.role !== ADMIN)
     return res.status(401).send({ message: 'Access denied.' });
 
   Admin.findById(req.params.id)
@@ -16,7 +18,7 @@ router.get('/admin/:id', auth, (req, res) => {
 });
 
 router.get('/company/:id', auth, (req, res) => {
-  if (req.user.role !== 'COMPANY')
+  if (req.user.role !== COMPANY)
     return res.status(401).send({ message: 'Access denied.' });
 
   Company.findById(req.params.id)
@@ -25,7 +27,7 @@ router.get('/company/:id', auth, (req, res) => {
 });
 
 router.get('/student/:id', auth, (req, res) => {
-  if (req.user.role !== 'STUDENT')
+  if (req.user.role !== STUDENT)
     return res.status(401).send({ message: 'Access denied.' });
 
   Student.findById(req.params.id)
@@ -34,7 +36,7 @@ router.get('/student/:id', auth, (req, res) => {
 });
 
 router.patch('/admin/:id', auth, (req, res) => {
-  if (req.user.role !== 'ADMIN')
+  if (req.user.role !== ADMIN)
     return res.status(401).send({ message: 'Access denied.' });
 
   const { firstName, lastName } = req.body;
@@ -45,7 +47,7 @@ router.patch('/admin/:id', auth, (req, res) => {
 });
 
 router.patch('/company/:id', auth, (req, res) => {
-  if (req.user.role !== 'COMPANY')
+  if (req.user.role !== COMPANY)
     return res.status(401).send({ message: 'Access denied.' });
 
   const {
@@ -65,7 +67,7 @@ router.patch('/company/:id', auth, (req, res) => {
 });
 
 router.patch('/student/:id', auth, (req, res) => {
-  if (req.user.role !== 'STUDENT')
+  if (req.user.role !== STUDENT)
     return res.status(401).send({ message: 'Access denied.' });
 
   const { firstName, lastName, phone } = req.body;

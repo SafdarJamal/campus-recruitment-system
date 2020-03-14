@@ -4,8 +4,10 @@ const auth = require('../middlewares/auth');
 
 const Student = require('../models/Student');
 
+const { ADMIN, STUDENT } = require('../constants/roles');
+
 router.get('/', auth, (req, res) => {
-  if (req.user.role === 'STUDENT')
+  if (req.user.role === STUDENT)
     return res.status(401).send({ message: 'Access denied.' });
 
   Student.find({})
@@ -14,7 +16,7 @@ router.get('/', auth, (req, res) => {
 });
 
 router.get('/:id', auth, (req, res) => {
-  if (req.user.role === 'STUDENT')
+  if (req.user.role === STUDENT)
     return res.status(401).send({ message: 'Access denied.' });
 
   Student.findById(req.params.id)
@@ -23,7 +25,7 @@ router.get('/:id', auth, (req, res) => {
 });
 
 router.delete('/:id', auth, (req, res) => {
-  if (req.user.role !== 'ADMIN')
+  if (req.user.role !== ADMIN)
     return res.status(401).send({ message: 'Access denied.' });
 
   Student.remove({ _id: req.params.id })
