@@ -43,7 +43,7 @@ class LogInContainer extends Component {
     }
 
     api
-      .logIn({ email, password }, role)
+      .logIn(role, { email, password })
       .then(response => {
         const { user, token } = response.data;
 

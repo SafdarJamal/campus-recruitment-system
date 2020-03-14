@@ -22,7 +22,7 @@ class EditContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { api, user, setUser, history } = this.props;
+    const { api, setUser, history } = this.props;
     const { firstName, lastName } = this.state;
 
     const data = {
@@ -31,7 +31,7 @@ class EditContainer extends Component {
     };
 
     api
-      .updateProfile(user._id, data, user.role)
+      .updateProfile(data)
       .then(response => setUser({ user: response.data }))
       .then(() => history.push(ROUTES.PROFILE))
       .catch(error => this.setState({ error: error.message }));

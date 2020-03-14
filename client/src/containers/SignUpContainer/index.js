@@ -42,7 +42,7 @@ class SignUpContainer extends Component {
     }
 
     api
-      .signUp({ firstName, lastName, email, password }, role)
+      .signUp(role, { firstName, lastName, email, password })
       .then(response => {
         const { user, token } = response.data;
 
