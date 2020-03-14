@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withFirebase } from '../../../../services/firebase';
+import { withAPI } from '../../../../services/api';
 
 import Jobs from '../../../../components/Home/Student/Jobs';
 
@@ -11,24 +11,14 @@ class JobsContainer extends Component {
   }
 
   getJobs = () => {
-    const { firebase } = this.props;
+    const { api } = this.props;
 
-    firebase
-      .getCompanies()
-      .then(querySnapshot => {
-        let jobs = [];
-
-        querySnapshot.forEach(doc => {
-          const userJobs = doc.data().jobs;
-
-          if (userJobs) {
-            jobs = jobs.concat(userJobs);
-          }
-        });
-
-        this.setState({ jobs });
+    api
+      .getJobs()
+      .then(response => {
+        this.setState({ jobs: response.data });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   render() {
@@ -36,4 +26,4 @@ class JobsContainer extends Component {
   }
 }
 
-export default withFirebase(JobsContainer);
+export default withAPI(JobsContainer);

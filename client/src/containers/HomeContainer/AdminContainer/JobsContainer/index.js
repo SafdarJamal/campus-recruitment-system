@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withFirebase } from '../../../../services/firebase';
+import { withAPI } from '../../../../services/api';
 
 import Jobs from '../../../../components/Home/Admin/Jobs';
 
@@ -11,46 +11,24 @@ class JobsContainer extends Component {
   }
 
   getJobs = () => {
-    const { firebase } = this.props;
+    const { api } = this.props;
 
-    firebase
-      .getCompanies()
-      .then(querySnapshot => {
-        let jobs = [];
-
-        querySnapshot.forEach(doc => {
-          const userJobs = doc.data().jobs;
-
-          if (userJobs) {
-            userJobs.forEach((job, i) => {
-              job.uid = doc.id;
-              job.index = i;
-            });
-
-            jobs = jobs.concat(userJobs);
-          }
-        });
-
-        this.setState({ jobs });
+    api
+      .getJobs()
+      .then(response => {
+        this.setState({ jobs: response.data });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   handleDelete = e => {
-    const { firebase } = this.props;
-    const uid = e.target.dataset.uid;
-    const index = e.target.dataset.index;
+    const { api } = this.props;
 
-    firebase
-      .getUser(uid)
-      .then(querySnapshot => {
-        const jobs = querySnapshot.data().jobs;
-        jobs.splice(index, 1);
-
-        return firebase.deleteJob(uid, jobs);
-      })
+    api
+      .deleteJob(e.target.dataset.id)
+      .then(response => console.log('Document successfully deleted!'))
       .then(() => this.getJobs())
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   render() {
@@ -58,4 +36,4 @@ class JobsContainer extends Component {
   }
 }
 
-export default withFirebase(JobsContainer);
+export default withAPI(JobsContainer);
