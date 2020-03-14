@@ -7,7 +7,7 @@ const validateSignUp = data => {
     email: Joi.string()
       .email({
         minDomainSegments: 2,
-        tlds: { allow: ['com', 'org'] }
+        tlds: { allow: ['com', 'org', 'edu'] }
       })
       .required(),
     password: Joi.string()

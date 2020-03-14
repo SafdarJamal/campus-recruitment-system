@@ -11,13 +11,13 @@ const { validateSignUp, validateLogIn } = require('../validation');
 
 router.post('/signup/company', async (req, res) => {
   const { error } = validateSignUp(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send({ message: error.details[0].message });
 
   const isEmailExist = await Company.findOne({ email: req.body.email });
   if (isEmailExist)
-    return res
-      .status(400)
-      .send('The email address is already in use by another account.');
+    return res.status(400).send({
+      message: 'The email address is already in use by another account.'
+    });
 
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(req.body.password, salt);
@@ -25,6 +25,9 @@ router.post('/signup/company', async (req, res) => {
   const company = new Company({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    companyName: '',
+    companyEmail: '',
+    companyPhone: '',
     email: req.body.email,
     password: hash
   });
@@ -36,19 +39,24 @@ router.post('/signup/company', async (req, res) => {
 
   company
     .save()
-    .then(data => res.header('Auth-Token', token).json(data))
-    .catch(error => res.json({ message: error.message }));
+    .then(data =>
+      res
+        .header('Auth-Token', token)
+        .status(200)
+        .send(data)
+    )
+    .catch(error => res.status(500).send({ message: error.message }));
 });
 
 router.post('/signup/student', async (req, res) => {
   const { error } = validateSignUp(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send({ message: error.details[0].message });
 
   const isEmailExist = await Student.findOne({ email: req.body.email });
   if (isEmailExist)
-    return res
-      .status(400)
-      .send('The email address is already in use by another account.');
+    return res.status(400).send({
+      message: 'The email address is already in use by another account.'
+    });
 
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(req.body.password, salt);
@@ -56,6 +64,7 @@ router.post('/signup/student', async (req, res) => {
   const student = new Student({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    phone: '',
     email: req.body.email,
     password: hash
   });
@@ -67,71 +76,88 @@ router.post('/signup/student', async (req, res) => {
 
   student
     .save()
-    .then(data => res.header('Auth-Token', token).json(data))
-    .catch(error => res.json({ message: error.message }));
+    .then(data =>
+      res
+        .header('Auth-Token', token)
+        .status(200)
+        .send(data)
+    )
+    .catch(error => res.status(500).send({ message: error.message }));
 });
 
 router.post('/login/admin', async (req, res) => {
   const { error } = validateLogIn(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send({ message: error.details[0].message });
 
   const user = await Admin.findOne({ email: req.body.email });
   if (!user)
-    return res
-      .status(400)
-      .send('There is no user record corresponding to this identifier.');
+    return res.status(400).send({
+      message: 'There is no user record corresponding to this identifier.'
+    });
 
   const checkPassword = bcrypt.compareSync(req.body.password, user.password);
-  if (!checkPassword) return res.status(400).send('The password is invalid');
+  if (!checkPassword)
+    return res.status(400).send({ message: 'The password is invalid' });
 
   const token = jwt.sign(
     { _id: user._id, role: 'ADMIN' },
     process.env.TOKEN_SECRET
   );
 
-  res.header('Auth-Token', token).send(user);
+  res
+    .header('Auth-Token', token)
+    .status(200)
+    .send(user);
 });
 
 router.post('/login/company', async (req, res) => {
   const { error } = validateLogIn(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send({ message: error.details[0].message });
 
   const user = await Company.findOne({ email: req.body.email });
   if (!user)
-    return res
-      .status(400)
-      .send('There is no user record corresponding to this identifier.');
+    return res.status(400).send({
+      message: 'There is no user record corresponding to this identifier.'
+    });
 
   const checkPassword = bcrypt.compareSync(req.body.password, user.password);
-  if (!checkPassword) return res.status(400).send('The password is invalid');
+  if (!checkPassword)
+    return res.status(400).send({ message: 'The password is invalid' });
 
   const token = jwt.sign(
     { _id: user._id, role: 'COMPANY' },
     process.env.TOKEN_SECRET
   );
 
-  res.header('Auth-Token', token).send(user);
+  res
+    .header('Auth-Token', token)
+    .status(200)
+    .send(user);
 });
 
 router.post('/login/student', async (req, res) => {
   const { error } = validateLogIn(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(400).send({ message: error.details[0].message });
 
   const user = await Student.findOne({ email: req.body.email });
   if (!user)
-    return res
-      .status(400)
-      .send('There is no user record corresponding to this identifier.');
+    return res.status(400).send({
+      message: 'There is no user record corresponding to this identifier.'
+    });
 
   const checkPassword = bcrypt.compareSync(req.body.password, user.password);
-  if (!checkPassword) return res.status(400).send('The password is invalid');
+  if (!checkPassword)
+    return res.status(400).send({ message: 'The password is invalid' });
 
   const token = jwt.sign(
     { _id: user._id, role: 'STUDENT' },
     process.env.TOKEN_SECRET
   );
 
-  res.header('Auth-Token', token).send(user);
+  res
+    .header('Auth-Token', token)
+    .status(200)
+    .send(user);
 });
 
 module.exports = router;
