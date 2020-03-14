@@ -8,76 +8,53 @@ const Student = require('../models/Student');
 
 const { ADMIN, COMPANY, STUDENT } = require('../constants/roles');
 
-router.get('/admin/:id', auth, (req, res) => {
-  if (req.user.role !== ADMIN)
-    return res.status(401).send({ message: 'Access denied.' });
+router.get('/', auth, (req, res) => {
+  const { _id, role } = req.user;
 
-  Admin.findById(req.params.id)
-    .then(admin => res.status(200).send(admin))
-    .catch(error => res.status(500).send({ message: error.message }));
+  if (role === ADMIN)
+    return Admin.findById(_id)
+      .then(admin => res.status(200).send(admin))
+      .catch(error => res.status(500).send({ message: error.message }));
+
+  if (role === COMPANY)
+    return Company.findById(_id)
+      .then(company => res.status(200).send(company))
+      .catch(error => res.status(500).send({ message: error.message }));
+
+  if (role === STUDENT)
+    return Student.findById(_id)
+      .then(student => res.status(200).send(student))
+      .catch(error => res.status(500).send({ message: error.message }));
 });
 
-router.get('/company/:id', auth, (req, res) => {
-  if (req.user.role !== COMPANY)
-    return res.status(401).send({ message: 'Access denied.' });
-
-  Company.findById(req.params.id)
-    .then(company => res.status(200).send(company))
-    .catch(error => res.status(500).send({ message: error.message }));
-});
-
-router.get('/student/:id', auth, (req, res) => {
-  if (req.user.role !== STUDENT)
-    return res.status(401).send({ message: 'Access denied.' });
-
-  Student.findById(req.params.id)
-    .then(student => res.status(200).send(student))
-    .catch(error => res.status(500).send({ message: error.message }));
-});
-
-router.patch('/admin/:id', auth, (req, res) => {
-  if (req.user.role !== ADMIN)
-    return res.status(401).send({ message: 'Access denied.' });
-
-  const { firstName, lastName } = req.body;
-
-  Admin.updateOne({ _id: req.params.id }, { $set: { firstName, lastName } })
-    .then(success => res.status(200).send(success.nModified))
-    .catch(error => res.status(500).send({ message: error.message }));
-});
-
-router.patch('/company/:id', auth, (req, res) => {
-  if (req.user.role !== COMPANY)
-    return res.status(401).send({ message: 'Access denied.' });
-
+router.patch('/', auth, (req, res) => {
+  const { _id, role } = req.user;
   const {
     firstName,
     lastName,
     companyName,
     companyEmail,
-    companyPhone
+    companyPhone,
+    phone
   } = req.body;
 
-  Company.updateOne(
-    { _id: req.params.id },
-    { $set: { firstName, lastName, companyName, companyEmail, companyPhone } }
-  )
-    .then(success => res.status(200).send(success.nModified))
-    .catch(error => res.status(500).send({ message: error.message }));
-});
+  if (role === ADMIN)
+    return Admin.updateOne({ _id }, { $set: { firstName, lastName } })
+      .then(success => res.status(200).send(success.nModified))
+      .catch(error => res.status(500).send({ message: error.message }));
 
-router.patch('/student/:id', auth, (req, res) => {
-  if (req.user.role !== STUDENT)
-    return res.status(401).send({ message: 'Access denied.' });
+  if (role === COMPANY)
+    return Company.updateOne(
+      { _id },
+      { $set: { firstName, lastName, companyName, companyEmail, companyPhone } }
+    )
+      .then(success => res.status(200).send(success.nModified))
+      .catch(error => res.status(500).send({ message: error.message }));
 
-  const { firstName, lastName, phone } = req.body;
-
-  Student.updateOne(
-    { _id: req.params.id },
-    { $set: { firstName, lastName, phone } }
-  )
-    .then(success => res.status(200).send(success.nModified))
-    .catch(error => res.status(500).send({ message: error.message }));
+  if (role === STUDENT)
+    return Student.updateOne({ _id }, { $set: { firstName, lastName, phone } })
+      .then(success => res.status(200).send(success.nModified))
+      .catch(error => res.status(500).send({ message: error.message }));
 });
 
 module.exports = router;
