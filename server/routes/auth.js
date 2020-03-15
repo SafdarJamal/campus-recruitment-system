@@ -47,12 +47,7 @@ router.post('/signup/:role', async (req, res) => {
 
     company
       .save()
-      .then(data =>
-        res
-          .header('Auth-Token', token)
-          .status(200)
-          .send(data)
-      )
+      .then(data => res.status(200).send({ user: data, token }))
       .catch(error => res.status(500).send({ message: error.message }));
   } else if (role === STUDENT) {
     const student = new Student({
@@ -70,12 +65,7 @@ router.post('/signup/:role', async (req, res) => {
 
     student
       .save()
-      .then(data =>
-        res
-          .header('Auth-Token', token)
-          .status(200)
-          .send(data)
-      )
+      .then(data => res.status(200).send({ user: data, token }))
       .catch(error => res.status(500).send({ message: error.message }));
   }
 });
@@ -101,10 +91,7 @@ router.post('/login/:role', async (req, res) => {
 
     const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
 
-    res
-      .header('Auth-Token', token)
-      .status(200)
-      .send(user);
+    res.status(200).send({ user: data, token });
   } else if (role === COMPANY) {
     const user = await Company.findOne({ email });
 
@@ -119,10 +106,7 @@ router.post('/login/:role', async (req, res) => {
 
     const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
 
-    res
-      .header('Auth-Token', token)
-      .status(200)
-      .send(user);
+    res.status(200).send({ user: data, token });
   } else if (role === STUDENT) {
     const user = await Student.findOne({ email });
 
@@ -137,10 +121,7 @@ router.post('/login/:role', async (req, res) => {
 
     const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
 
-    res
-      .header('Auth-Token', token)
-      .status(200)
-      .send(user);
+    res.status(200).send({ user: data, token });
   }
 });
 
