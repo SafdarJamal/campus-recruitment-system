@@ -37,12 +37,11 @@ router.post('/signup/:role', async (req, res) => {
       companyEmail: '',
       companyPhone: '',
       email,
-      password: hash,
-      role
+      password: hash
     });
 
     const token = jwt.sign(
-      { _id: company._id, role: COMPANY },
+      { _id: company._id, role },
       process.env.TOKEN_SECRET
     );
 
@@ -61,12 +60,11 @@ router.post('/signup/:role', async (req, res) => {
       lastName,
       phone: '',
       email: email,
-      password: hash,
-      role
+      password: hash
     });
 
     const token = jwt.sign(
-      { _id: student._id, role: STUDENT },
+      { _id: student._id, role },
       process.env.TOKEN_SECRET
     );
 
@@ -101,10 +99,7 @@ router.post('/login/:role', async (req, res) => {
     if (!checkPassword)
       return res.status(400).send({ message: 'The password is invalid.' });
 
-    const token = jwt.sign(
-      { _id: user._id, role: ADMIN },
-      process.env.TOKEN_SECRET
-    );
+    const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
 
     res
       .header('Auth-Token', token)
@@ -122,10 +117,7 @@ router.post('/login/:role', async (req, res) => {
     if (!checkPassword)
       return res.status(400).send({ message: 'The password is invalid.' });
 
-    const token = jwt.sign(
-      { _id: user._id, role: COMPANY },
-      process.env.TOKEN_SECRET
-    );
+    const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
 
     res
       .header('Auth-Token', token)
@@ -143,10 +135,7 @@ router.post('/login/:role', async (req, res) => {
     if (!checkPassword)
       return res.status(400).send({ message: 'The password is invalid.' });
 
-    const token = jwt.sign(
-      { _id: user._id, role: STUDENT },
-      process.env.TOKEN_SECRET
-    );
+    const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
 
     res
       .header('Auth-Token', token)
