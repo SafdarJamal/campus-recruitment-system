@@ -28,7 +28,7 @@ class JobsContainer extends Component {
       .deleteJob(e.target.dataset.id)
       .then(response => console.log('Document successfully deleted!'))
       .then(() => this.getJobs())
-      .catch(error => console.log(error.message));
+      .catch(error => this.getJobs());
   };
 
   render() {

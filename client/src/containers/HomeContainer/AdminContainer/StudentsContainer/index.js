@@ -28,7 +28,7 @@ class StudentsContainer extends Component {
       .deleteStudent(e.target.dataset.id)
       .then(response => console.log('Document successfully deleted!'))
       .then(() => this.getStudents())
-      .catch(error => console.log(error.message));
+      .catch(error => this.getStudents());
   };
 
   render() {

@@ -36,7 +36,13 @@ class EditContainer extends Component {
       .updateProfile(data)
       .then(response => setUser({ user: response.data }))
       .then(() => history.push(ROUTES.PROFILE))
-      .catch(error => this.setState({ error: error.message }));
+      .catch(error =>
+        api
+          .getProfile()
+          .then(response => setUser({ user: response.data }))
+          .then(() => history.push(ROUTES.PROFILE))
+          .catch(error => this.setState({ error: error.message }))
+      );
   };
 
   render() {
