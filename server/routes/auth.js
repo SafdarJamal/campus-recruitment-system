@@ -33,9 +33,6 @@ router.post('/signup/:role', async (req, res) => {
     const company = new Company({
       firstName,
       lastName,
-      companyName: '',
-      companyEmail: '',
-      companyPhone: '',
       email,
       password: hash
     });
@@ -47,13 +44,19 @@ router.post('/signup/:role', async (req, res) => {
 
     company
       .save()
-      .then(data => res.status(200).send({ user: data, token }))
+      .then(data => {
+        const user = data.toObject();
+
+        delete user.password;
+        user.role = role;
+
+        res.status(201).send({ user, token });
+      })
       .catch(error => res.status(500).send({ message: error.message }));
   } else if (role === STUDENT) {
     const student = new Student({
       firstName,
       lastName,
-      phone: '',
       email: email,
       password: hash
     });
@@ -65,7 +68,14 @@ router.post('/signup/:role', async (req, res) => {
 
     student
       .save()
-      .then(data => res.status(200).send({ user: data, token }))
+      .then(data => {
+        const user = data.toObject();
+
+        delete user.password;
+        user.role = role;
+
+        res.status(201).send({ user, token });
+      })
       .catch(error => res.status(500).send({ message: error.message }));
   }
 });
@@ -73,6 +83,7 @@ router.post('/signup/:role', async (req, res) => {
 router.post('/login/:role', async (req, res) => {
   const { role } = req.params;
   const { email, password } = req.body;
+  console.log(role);
 
   const { error } = validateLogIn(req.body);
   if (error) return res.status(400).send({ message: error.details[0].message });
@@ -90,8 +101,12 @@ router.post('/login/:role', async (req, res) => {
       return res.status(400).send({ message: 'The password is invalid.' });
 
     const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
+    const userData = user.toObject();
 
-    res.status(200).send({ user: data, token });
+    delete userData.password;
+    userData.role = role;
+
+    res.status(200).send({ user: userData, token });
   } else if (role === COMPANY) {
     const user = await Company.findOne({ email });
 
@@ -105,8 +120,12 @@ router.post('/login/:role', async (req, res) => {
       return res.status(400).send({ message: 'The password is invalid.' });
 
     const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
+    const userData = user.toObject();
 
-    res.status(200).send({ user: data, token });
+    delete userData.password;
+    userData.role = role;
+
+    res.status(200).send({ user: userData, token });
   } else if (role === STUDENT) {
     const user = await Student.findOne({ email });
 
@@ -120,8 +139,12 @@ router.post('/login/:role', async (req, res) => {
       return res.status(400).send({ message: 'The password is invalid.' });
 
     const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
+    const userData = user.toObject();
 
-    res.status(200).send({ user: data, token });
+    delete userData.password;
+    userData.role = role;
+
+    res.status(200).send({ user: userData, token });
   }
 });
 

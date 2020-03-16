@@ -11,15 +11,15 @@ const CompanySchema = mongoose.Schema({
   },
   companyName: {
     type: String,
-    required: true
+    default: ''
   },
   companyEmail: {
     type: String,
-    required: true
+    default: ''
   },
   companyPhone: {
     type: String,
-    required: true
+    default: ''
   },
   email: {
     type: String,
