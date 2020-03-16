@@ -13,17 +13,38 @@ router.get('/', auth, (req, res) => {
 
   if (role === ADMIN)
     return Admin.findById(_id)
-      .then(admin => res.status(200).send(admin))
+      .then(data => {
+        const user = data.toObject();
+
+        delete user.password;
+        user.role = role;
+
+        res.status(200).send(user);
+      })
       .catch(error => res.status(500).send({ message: error.message }));
 
   if (role === COMPANY)
     return Company.findById(_id)
-      .then(company => res.status(200).send(company))
+      .then(data => {
+        const user = data.toObject();
+
+        delete user.password;
+        user.role = role;
+
+        res.status(200).send(user);
+      })
       .catch(error => res.status(500).send({ message: error.message }));
 
   if (role === STUDENT)
     return Student.findById(_id)
-      .then(student => res.status(200).send(student))
+      .then(data => {
+        const user = data.toObject();
+
+        delete user.password;
+        user.role = role;
+
+        res.status(200).send(user);
+      })
       .catch(error => res.status(500).send({ message: error.message }));
 });
 
