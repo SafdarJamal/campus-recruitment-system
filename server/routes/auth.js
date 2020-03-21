@@ -46,9 +46,7 @@ router.post('/signup/:role', async (req, res) => {
       .save()
       .then(data => {
         const user = data.toObject();
-
         delete user.password;
-        user.role = role;
 
         res.status(201).send({ user, token });
       })
@@ -70,9 +68,7 @@ router.post('/signup/:role', async (req, res) => {
       .save()
       .then(data => {
         const user = data.toObject();
-
         delete user.password;
-        user.role = role;
 
         res.status(201).send({ user, token });
       })
@@ -100,10 +96,9 @@ router.post('/login/:role', async (req, res) => {
       return res.status(400).send({ message: 'The password is invalid.' });
 
     const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
-    const userData = user.toObject();
 
+    const userData = user.toObject();
     delete userData.password;
-    userData.role = role;
 
     res.status(200).send({ user: userData, token });
   } else if (role === COMPANY) {
@@ -119,10 +114,9 @@ router.post('/login/:role', async (req, res) => {
       return res.status(400).send({ message: 'The password is invalid.' });
 
     const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
-    const userData = user.toObject();
 
+    const userData = user.toObject();
     delete userData.password;
-    userData.role = role;
 
     res.status(200).send({ user: userData, token });
   } else if (role === STUDENT) {
@@ -138,10 +132,9 @@ router.post('/login/:role', async (req, res) => {
       return res.status(400).send({ message: 'The password is invalid.' });
 
     const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
-    const userData = user.toObject();
 
+    const userData = user.toObject();
     delete userData.password;
-    userData.role = role;
 
     res.status(200).send({ user: userData, token });
   }

@@ -15,9 +15,7 @@ router.get('/', auth, (req, res) => {
     return Admin.findById(_id)
       .then(data => {
         const user = data.toObject();
-
         delete user.password;
-        user.role = role;
 
         res.status(200).send(user);
       })
@@ -27,9 +25,7 @@ router.get('/', auth, (req, res) => {
     return Company.findById(_id)
       .then(data => {
         const user = data.toObject();
-
         delete user.password;
-        user.role = role;
 
         res.status(200).send(user);
       })
@@ -39,9 +35,7 @@ router.get('/', auth, (req, res) => {
     return Student.findById(_id)
       .then(data => {
         const user = data.toObject();
-
         delete user.password;
-        user.role = role;
 
         res.status(200).send(user);
       })
