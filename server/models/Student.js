@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const { STUDENT } = require('../constants/roles');
+
 const StudentSchema = mongoose.Schema({
   firstName: {
     type: String,
@@ -20,6 +22,10 @@ const StudentSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  role: {
+    type: String,
+    default: STUDENT
   }
 });
 

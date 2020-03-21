@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const { COMPANY } = require('../constants/roles');
+
 const CompanySchema = mongoose.Schema({
   firstName: {
     type: String,
@@ -28,6 +30,10 @@ const CompanySchema = mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  role: {
+    type: String,
+    default: COMPANY
   }
 });
 
