@@ -26,6 +26,10 @@ const StudentSchema = mongoose.Schema({
   role: {
     type: String,
     default: STUDENT
+  },
+  date: {
+    type: String,
+    default: Date.now
   }
 });
 
