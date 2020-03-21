@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middlewares/auth');
+const authorization = require('../middleware/authorization');
 
 const Admin = require('../models/Admin');
 const Company = require('../models/Company');
@@ -8,7 +8,7 @@ const Student = require('../models/Student');
 
 const { ADMIN, COMPANY, STUDENT } = require('../constants/roles');
 
-router.get('/', auth, (req, res) => {
+router.get('/', authorization, (req, res) => {
   const { _id, role } = req.user;
 
   if (role === ADMIN)
@@ -42,7 +42,7 @@ router.get('/', auth, (req, res) => {
       .catch(error => res.status(500).send({ message: error.message }));
 });
 
-router.patch('/', auth, (req, res) => {
+router.patch('/', authorization, (req, res) => {
   const { _id, role } = req.user;
   const {
     firstName,

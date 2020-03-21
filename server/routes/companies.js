@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middlewares/auth');
+const authorization = require('../middleware/authorization');
 
 const Company = require('../models/Company');
 
 const { ADMIN, COMPANY } = require('../constants/roles');
 
-router.get('/', auth, (req, res) => {
+router.get('/', authorization, (req, res) => {
   if (req.user.role === COMPANY)
     return res.status(401).send({ message: 'Access denied.' });
 
@@ -15,7 +15,7 @@ router.get('/', auth, (req, res) => {
     .catch(error => res.status(500).send({ message: error.message }));
 });
 
-router.get('/:id', auth, (req, res) => {
+router.get('/:id', authorization, (req, res) => {
   if (req.user.role === COMPANY)
     return res.status(401).send({ message: 'Access denied.' });
 
@@ -24,7 +24,7 @@ router.get('/:id', auth, (req, res) => {
     .catch(error => res.status(500).send({ message: error.message }));
 });
 
-router.delete('/:id', auth, (req, res) => {
+router.delete('/:id', authorization, (req, res) => {
   if (req.user.role !== ADMIN)
     return res.status(401).send({ message: 'Access denied.' });
 

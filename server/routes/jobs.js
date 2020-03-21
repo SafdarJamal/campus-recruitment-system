@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middlewares/auth');
+const authorization = require('../middleware/authorization');
 
 const Job = require('../models/Job');
 
 const { COMPANY, STUDENT } = require('../constants/roles');
 
-router.get('/', auth, (req, res) => {
+router.get('/', authorization, (req, res) => {
   const { _id, role } = req.user;
 
   if (role === COMPANY)
@@ -19,7 +19,7 @@ router.get('/', auth, (req, res) => {
     .catch(error => res.status(500).send({ message: error.message }));
 });
 
-router.post('/', auth, (req, res) => {
+router.post('/', authorization, (req, res) => {
   const { _id, role } = req.user;
   const { title, description } = req.body;
 
@@ -38,7 +38,7 @@ router.post('/', auth, (req, res) => {
     .catch(error => res.status(500).send({ message: error.message }));
 });
 
-router.get('/:id', auth, (req, res) => {
+router.get('/:id', authorization, (req, res) => {
   const { _id, role } = req.user;
 
   if (role === COMPANY)
@@ -51,7 +51,7 @@ router.get('/:id', auth, (req, res) => {
     .catch(error => res.status(500).send({ message: error.message }));
 });
 
-router.delete('/:id', auth, (req, res) => {
+router.delete('/:id', authorization, (req, res) => {
   const { _id, role } = req.user;
 
   if (role === STUDENT)
