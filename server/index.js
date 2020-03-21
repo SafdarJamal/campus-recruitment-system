@@ -10,14 +10,13 @@ const studentsRoute = require('./routes/students');
 const jobsRoute = require('./routes/jobs');
 const profileRoute = require('./routes/profile');
 
-mongoose.connect(
-  process.env.MONGO_DB_URI,
-  {
+mongoose
+  .connect(process.env.MONGO_DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-  },
-  () => console.log('Connected to DB!')
-);
+  })
+  .then(() => console.log('Connected to DB!'))
+  .catch(error => console.log(error));
 
 const app = express();
 
