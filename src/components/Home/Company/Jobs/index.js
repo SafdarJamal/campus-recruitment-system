@@ -42,7 +42,7 @@ const Jobs = ({ jobs, handleDelete }) => {
                   <td>
                     <Button
                       variant="danger"
-                      data-index={i}
+                      data-id={job.id}
                       onClick={handleDelete}
                     >
                       Delete

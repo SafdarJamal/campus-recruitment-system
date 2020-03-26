@@ -1,35 +1,50 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { setUser } from '../../../../actions';
 import { withFirebase } from '../../../../services/firebase';
-import { withRouter } from 'react-router-dom';
-import * as ROUTES from '../../../../constants/routes';
 
 import Jobs from '../../../../components/Home/Company/Jobs';
 
 class JobsContainer extends Component {
-  handleDelete = e => {
-    const { user, firebase, setUser, history } = this.props;
+  state = { jobs: [] };
 
-    user.jobs.splice(e.target.dataset.index, 1);
+  componentDidMount() {
+    this.getJobs();
+  }
+
+  getJobs = () => {
+    const { firebase, user } = this.props;
 
     firebase
-      .deleteJob(firebase.auth.currentUser.uid, user.jobs)
-      .then(() => setUser({ user }))
-      .then(() => history.push(ROUTES.JOBS))
-      .catch(error => console.log(error));
+      .getCompanyJobs(user.uid)
+      .then(querySnapshot => {
+        let jobs = [];
+
+        querySnapshot.forEach(doc => {
+          const job = doc.data();
+
+          job.id = doc.id;
+          jobs.push(job);
+        });
+
+        this.setState({ jobs });
+      })
+      .catch(error => console.log(error.message));
+  };
+
+  handleDelete = e => {
+    const { firebase } = this.props;
+    const id = e.target.dataset.id;
+
+    firebase
+      .deleteJob(id)
+      .then(() => console.log('Job successfully deleted!'))
+      .then(() => this.getJobs())
+      .catch(error => console.log(error.message));
   };
 
   render() {
-    const { user } = this.props;
-
-    return (
-      <Jobs
-        jobs={user.jobs ? user.jobs : []}
-        handleDelete={this.handleDelete}
-      />
-    );
+    return <Jobs jobs={this.state.jobs} handleDelete={this.handleDelete} />;
   }
 }
 
@@ -37,8 +52,4 @@ const mapStateToProps = state => {
   return { user: state.user };
 };
 
-export default compose(
-  connect(mapStateToProps, { setUser }),
-  withFirebase,
-  withRouter
-)(JobsContainer);
+export default compose(connect(mapStateToProps), withFirebase)(JobsContainer);
