@@ -16,6 +16,7 @@ class Firebase {
     this.firestore = firebase.firestore();
 
     this.usersCollectionRef = this.firestore.collection('users');
+    this.jobsCollectionRef = this.firestore.collection('jobs');
   }
 
   signUp = (email, password) =>
@@ -44,6 +45,8 @@ class Firebase {
 
   getStudents = () =>
     this.usersCollectionRef.where('role', '==', ROLES.STUDENT).get();
+
+  getJobs = () => this.jobsCollectionRef.get();
 
   postJob = (uid, jobs) => this.usersCollectionRef.doc(uid).update({ jobs });
 
