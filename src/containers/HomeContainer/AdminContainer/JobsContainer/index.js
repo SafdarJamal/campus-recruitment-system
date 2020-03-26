@@ -14,43 +14,31 @@ class JobsContainer extends Component {
     const { firebase } = this.props;
 
     firebase
-      .getCompanies()
+      .getJobs()
       .then(querySnapshot => {
         let jobs = [];
 
         querySnapshot.forEach(doc => {
-          const userJobs = doc.data().jobs;
+          const job = doc.data();
 
-          if (userJobs) {
-            userJobs.forEach((job, i) => {
-              job.uid = doc.id;
-              job.index = i;
-            });
-
-            jobs = jobs.concat(userJobs);
-          }
+          job.id = doc.id;
+          jobs.push(job);
         });
 
         this.setState({ jobs });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   handleDelete = e => {
     const { firebase } = this.props;
-    const uid = e.target.dataset.uid;
-    const index = e.target.dataset.index;
+    const id = e.target.dataset.id;
 
     firebase
-      .getUser(uid)
-      .then(querySnapshot => {
-        const jobs = querySnapshot.data().jobs;
-        jobs.splice(index, 1);
-
-        return firebase.deleteJob(uid, jobs);
-      })
+      .deleteJob(id)
+      .then(() => console.log('Job successfully deleted!'))
       .then(() => this.getJobs())
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   render() {
