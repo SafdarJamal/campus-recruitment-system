@@ -50,7 +50,7 @@ class Firebase {
 
   postJob = (uid, jobs) => this.usersCollectionRef.doc(uid).update({ jobs });
 
-  deleteJob = (uid, jobs) => this.usersCollectionRef.doc(uid).update({ jobs });
+  deleteJob = id => this.jobsCollectionRef.doc(id).delete();
 
   updateProfile = (uid, userData) =>
     this.usersCollectionRef.doc(uid).update(userData);
