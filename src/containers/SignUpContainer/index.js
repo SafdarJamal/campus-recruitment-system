@@ -46,6 +46,7 @@ class SignUpContainer extends Component {
         }
 
         const userData = {
+          uid: user.uid,
           firstName,
           lastName,
           email,
