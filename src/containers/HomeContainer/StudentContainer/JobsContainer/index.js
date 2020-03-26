@@ -14,21 +14,18 @@ class JobsContainer extends Component {
     const { firebase } = this.props;
 
     firebase
-      .getCompanies()
+      .getJobs()
       .then(querySnapshot => {
         let jobs = [];
 
         querySnapshot.forEach(doc => {
-          const userJobs = doc.data().jobs;
-
-          if (userJobs) {
-            jobs = jobs.concat(userJobs);
-          }
+          const job = doc.data();
+          jobs.push(job);
         });
 
         this.setState({ jobs });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   render() {
