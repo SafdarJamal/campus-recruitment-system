@@ -50,7 +50,7 @@ class Firebase {
 
   getCompanyJobs = uid => this.jobsCollectionRef.where('uid', '==', uid).get();
 
-  postJob = (uid, jobs) => this.usersCollectionRef.doc(uid).update({ jobs });
+  postJob = data => this.jobsCollectionRef.add(data);
 
   deleteJob = id => this.jobsCollectionRef.doc(id).delete();
 
