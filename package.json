@@ -1,7 +1,7 @@
 {
   "name": "campus-recruitment-system",
   "version": "1.0.0",
-  "description": "",
+  "description": "Campus Recruitment System built with React/Redux (Client), Node/Express (API), and MongoDB (Database).",
   "main": "index.js",
   "scripts": {
     "install": "cd server && npm i && cd ../client && npm i",
