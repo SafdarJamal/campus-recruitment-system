@@ -60,10 +60,7 @@ class SignUpContainer extends Component {
         const user = querySnapshot.data();
         setUser({ user });
       })
-      .catch(error => {
-        const errorMessage = error.message;
-        this.setState({ error: errorMessage });
-      });
+      .catch(error => this.setState({ error: error.message }));
   };
 
   render() {
