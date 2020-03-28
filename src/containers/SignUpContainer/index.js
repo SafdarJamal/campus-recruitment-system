@@ -30,8 +30,8 @@ class SignUpContainer extends Component {
 
     firebase
       .signUp(email, password)
-      .then(success => {
-        const user = success.user;
+      .then(response => {
+        const uid = response.user.uid;
         let role = null;
 
         switch (location.pathname) {
@@ -45,25 +45,23 @@ class SignUpContainer extends Component {
             break;
         }
 
-        const userData = {
-          uid: user.uid,
+        const data = {
+          uid,
           firstName,
           lastName,
           email,
           role
         };
 
-        return firebase.addUser(user.uid, userData);
+        return firebase.addUser(uid, data);
       })
       .then(() => firebase.getUser(firebase.auth.currentUser.uid))
       .then(querySnapshot => {
-        const userData = querySnapshot.data();
-        setUser({ user: userData });
+        const user = querySnapshot.data();
+        setUser({ user });
       })
       .catch(error => {
         const errorMessage = error.message;
-        console.log(errorMessage);
-
         this.setState({ error: errorMessage });
       });
   };

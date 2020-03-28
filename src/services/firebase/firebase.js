@@ -36,7 +36,7 @@ class Firebase {
 
   updatePassword = password => this.auth.currentUser.updatePassword(password);
 
-  addUser = (uid, userData) => this.usersCollectionRef.doc(uid).set(userData);
+  addUser = (uid, data) => this.usersCollectionRef.doc(uid).set(data);
 
   getUser = uid => this.usersCollectionRef.doc(uid).get();
 
@@ -54,8 +54,7 @@ class Firebase {
 
   deleteJob = id => this.jobsCollectionRef.doc(id).delete();
 
-  updateProfile = (uid, userData) =>
-    this.usersCollectionRef.doc(uid).update(userData);
+  updateProfile = (uid, data) => this.usersCollectionRef.doc(uid).update(data);
 
   deleteUser = uid => this.usersCollectionRef.doc(uid).delete();
 }

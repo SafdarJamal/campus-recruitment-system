@@ -25,19 +25,13 @@ class LogInContainer extends Component {
 
     firebase
       .logIn(email, password)
-      .then(success => {
-        const user = success.user;
-
-        return firebase.getUser(user.uid);
-      })
+      .then(response => firebase.getUser(response.user.uid))
       .then(querySnapshot => {
-        const userData = querySnapshot.data();
-        setUser({ user: userData });
+        const user = querySnapshot.data();
+        setUser({ user });
       })
       .catch(error => {
         const errorMessage = error.message;
-        console.log(errorMessage);
-
         this.setState({ error: errorMessage });
       });
   };
