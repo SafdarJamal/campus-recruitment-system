@@ -49,7 +49,7 @@ class SignUpContainer extends Component {
         localStorage.setItem('token', token);
         setUser({ user });
       })
-      .catch(error => this.setState({ error: error.message }));
+      .catch(error => this.setState({ error: error.response.data.message }));
   };
 
   render() {
