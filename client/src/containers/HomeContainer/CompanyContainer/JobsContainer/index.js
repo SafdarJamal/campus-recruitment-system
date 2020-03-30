@@ -18,7 +18,7 @@ class JobsContainer extends Component {
       .then(response => {
         this.setState({ jobs: response.data });
       })
-      .catch(error => console.log(error.message));
+      .catch(error => console.log(error.response.data.message));
   };
 
   handleDelete = e => {
@@ -28,7 +28,7 @@ class JobsContainer extends Component {
       .deleteJob(e.target.dataset.id)
       .then(response => console.log('Document successfully deleted!'))
       .then(() => this.getJobs())
-      .catch(error => this.getJobs());
+      .catch(error => console.log(error.response.data.message));
   };
 
   render() {

@@ -18,7 +18,7 @@ class StudentsContainer extends Component {
       .then(response => {
         this.setState({ students: response.data });
       })
-      .catch(error => console.log(error.message));
+      .catch(error => console.log(error.response.data.message));
   };
 
   render() {

@@ -18,7 +18,7 @@ class JobsContainer extends Component {
       .then(response => {
         this.setState({ jobs: response.data });
       })
-      .catch(error => console.log(error.message));
+      .catch(error => console.log(error.response.data.message));
   };
 
   render() {

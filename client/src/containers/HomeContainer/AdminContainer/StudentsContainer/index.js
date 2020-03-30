@@ -18,7 +18,7 @@ class StudentsContainer extends Component {
       .then(response => {
         this.setState({ students: response.data });
       })
-      .catch(error => console.log(error.message));
+      .catch(error => console.log(error.response.data.message));
   };
 
   handleDelete = e => {
@@ -28,7 +28,7 @@ class StudentsContainer extends Component {
       .deleteStudent(e.target.dataset.id)
       .then(response => console.log('Document successfully deleted!'))
       .then(() => this.getStudents())
-      .catch(error => this.getStudents());
+      .catch(error => console.log(error.response.data.message));
   };
 
   render() {
