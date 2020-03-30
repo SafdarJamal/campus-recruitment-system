@@ -29,7 +29,7 @@ router.delete('/:id', authorization, (req, res) => {
     return res.status(401).send({ message: 'Access denied.' });
 
   Company.remove({ _id: req.params.id })
-    .then(success => res.status(200).send(success.deletedCount))
+    .then(success => res.status(200).send(success.deletedCount.toString()))
     .catch(error => res.status(500).send({ message: error.message }));
 });
 
