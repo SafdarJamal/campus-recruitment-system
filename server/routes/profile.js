@@ -55,7 +55,7 @@ router.patch('/', authorization, (req, res) => {
 
   if (role === ADMIN)
     return Admin.updateOne({ _id }, { $set: { firstName, lastName } })
-      .then(success => res.status(200).send(success.nModified))
+      .then(success => res.status(200).send(success.nModified.toString()))
       .catch(error => res.status(500).send({ message: error.message }));
 
   if (role === COMPANY)
@@ -63,12 +63,12 @@ router.patch('/', authorization, (req, res) => {
       { _id },
       { $set: { firstName, lastName, companyName, companyEmail, companyPhone } }
     )
-      .then(success => res.status(200).send(success.nModified))
+      .then(success => res.status(200).send(success.nModified.toString()))
       .catch(error => res.status(500).send({ message: error.message }));
 
   if (role === STUDENT)
     return Student.updateOne({ _id }, { $set: { firstName, lastName, phone } })
-      .then(success => res.status(200).send(success.nModified))
+      .then(success => res.status(200).send(success.nModified.toString()))
       .catch(error => res.status(500).send({ message: error.message }));
 });
 
