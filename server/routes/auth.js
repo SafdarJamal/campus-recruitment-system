@@ -50,7 +50,7 @@ router.post('/signup/:role', async (req, res) => {
 
         res.status(201).send({ user, token });
       })
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
   } else if (role === STUDENT) {
     const student = new Student({
       firstName,
@@ -72,7 +72,7 @@ router.post('/signup/:role', async (req, res) => {
 
         res.status(201).send({ user, token });
       })
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
   }
 });
 

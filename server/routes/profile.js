@@ -19,7 +19,7 @@ router.get('/', authorization, (req, res) => {
 
         res.status(200).send(user);
       })
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
 
   if (role === COMPANY)
     return Company.findById(_id)
@@ -29,7 +29,7 @@ router.get('/', authorization, (req, res) => {
 
         res.status(200).send(user);
       })
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
 
   if (role === STUDENT)
     return Student.findById(_id)
@@ -39,7 +39,7 @@ router.get('/', authorization, (req, res) => {
 
         res.status(200).send(user);
       })
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
 });
 
 router.patch('/', authorization, (req, res) => {
@@ -56,7 +56,7 @@ router.patch('/', authorization, (req, res) => {
   if (role === ADMIN)
     return Admin.updateOne({ _id }, { $set: { firstName, lastName } })
       .then(success => res.status(200).send(success.nModified.toString()))
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
 
   if (role === COMPANY)
     return Company.updateOne(
@@ -64,12 +64,12 @@ router.patch('/', authorization, (req, res) => {
       { $set: { firstName, lastName, companyName, companyEmail, companyPhone } }
     )
       .then(success => res.status(200).send(success.nModified.toString()))
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
 
   if (role === STUDENT)
     return Student.updateOne({ _id }, { $set: { firstName, lastName, phone } })
       .then(success => res.status(200).send(success.nModified.toString()))
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
 });
 
 module.exports = router;

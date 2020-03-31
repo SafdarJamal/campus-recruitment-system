@@ -12,7 +12,7 @@ router.get('/', authorization, (req, res) => {
 
   Company.find({})
     .then(companies => res.status(200).send(companies))
-    .catch(error => res.status(500).send({ message: error.message }));
+    .catch(error => res.status(400).send({ message: error.message }));
 });
 
 router.get('/:id', authorization, (req, res) => {
@@ -21,7 +21,7 @@ router.get('/:id', authorization, (req, res) => {
 
   Company.findById(req.params.id)
     .then(company => res.status(200).send(company))
-    .catch(error => res.status(500).send({ message: error.message }));
+    .catch(error => res.status(400).send({ message: error.message }));
 });
 
 router.delete('/:id', authorization, (req, res) => {
@@ -30,7 +30,7 @@ router.delete('/:id', authorization, (req, res) => {
 
   Company.remove({ _id: req.params.id })
     .then(success => res.status(200).send(success.deletedCount.toString()))
-    .catch(error => res.status(500).send({ message: error.message }));
+    .catch(error => res.status(400).send({ message: error.message }));
 });
 
 module.exports = router;

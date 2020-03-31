@@ -12,11 +12,11 @@ router.get('/', authorization, (req, res) => {
   if (role === COMPANY)
     return Job.find({ _companyId: _id })
       .then(jobs => res.status(200).send(jobs))
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
 
   Job.find({})
     .then(jobs => res.status(200).send(jobs))
-    .catch(error => res.status(500).send({ message: error.message }));
+    .catch(error => res.status(400).send({ message: error.message }));
 });
 
 router.post('/', authorization, (req, res) => {
@@ -35,7 +35,7 @@ router.post('/', authorization, (req, res) => {
   job
     .save()
     .then(data => res.status(200).send(data))
-    .catch(error => res.status(500).send({ message: error.message }));
+    .catch(error => res.status(400).send({ message: error.message }));
 });
 
 router.get('/:id', authorization, (req, res) => {
@@ -44,11 +44,11 @@ router.get('/:id', authorization, (req, res) => {
   if (role === COMPANY)
     return Job.find({ _id: req.params.id, _companyId: _id })
       .then(job => res.status(200).send(job))
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
 
   Job.findById(req.params.id)
     .then(job => res.status(200).send(job))
-    .catch(error => res.status(500).send({ message: error.message }));
+    .catch(error => res.status(400).send({ message: error.message }));
 });
 
 router.delete('/:id', authorization, (req, res) => {
@@ -60,11 +60,11 @@ router.delete('/:id', authorization, (req, res) => {
   if (role === COMPANY)
     return Job.remove({ _id: req.params.id, _companyId: _id })
       .then(success => res.status(200).send(success.deletedCount.toString()))
-      .catch(error => res.status(500).send({ message: error.message }));
+      .catch(error => res.status(400).send({ message: error.message }));
 
   Job.remove({ _id: req.params.id })
     .then(success => res.status(200).send(success.deletedCount.toString()))
-    .catch(error => res.status(500).send({ message: error.message }));
+    .catch(error => res.status(400).send({ message: error.message }));
 });
 
 module.exports = router;
