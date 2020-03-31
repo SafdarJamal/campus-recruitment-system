@@ -35,7 +35,7 @@ class CompaniesContainer extends Component {
 
     firebase
       .deleteUser(e.target.dataset.id)
-      .then(() => console.log('Document successfully deleted!'))
+      .then(() => console.log('Company successfully deleted!'))
       .then(() => this.getCompanies())
       .catch(error => console.log(error));
   };
