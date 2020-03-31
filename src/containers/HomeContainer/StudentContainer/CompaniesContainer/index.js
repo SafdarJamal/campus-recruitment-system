@@ -22,7 +22,7 @@ class CompaniesContainer extends Component {
 
         this.setState({ companies });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   render() {

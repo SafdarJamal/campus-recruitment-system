@@ -27,7 +27,7 @@ class CompaniesContainer extends Component {
 
         this.setState({ companies });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   handleDelete = e => {
@@ -37,7 +37,7 @@ class CompaniesContainer extends Component {
       .deleteUser(e.target.dataset.id)
       .then(() => console.log('Company successfully deleted!'))
       .then(() => this.getCompanies())
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   render() {

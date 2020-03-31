@@ -22,7 +22,7 @@ class StudentsContainer extends Component {
 
         this.setState({ students });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error.message));
   };
 
   render() {

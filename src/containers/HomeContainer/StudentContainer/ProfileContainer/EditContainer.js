@@ -32,13 +32,13 @@ class EditContainer extends Component {
       phone
     };
 
-    const userData = { ...user, ...newData };
+    const data = { ...user, ...newData };
 
     firebase
-      .updateProfile(firebase.auth.currentUser.uid, userData)
-      .then(() => setUser({ user: userData }))
+      .updateProfile(firebase.auth.currentUser.uid, data)
+      .then(() => setUser({ user: data }))
       .then(() => history.push(ROUTES.PROFILE))
-      .catch(error => this.setState({ error }));
+      .catch(error => this.setState({ error: error.message }));
   };
 
   render() {
