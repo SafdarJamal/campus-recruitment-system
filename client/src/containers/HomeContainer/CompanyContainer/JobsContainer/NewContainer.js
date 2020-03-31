@@ -26,7 +26,7 @@ class NewContainer extends Component {
 
     api
       .postJob(data)
-      .then(response => history.push(ROUTES.JOBS))
+      .then(() => history.push(ROUTES.JOBS))
       .catch(error => this.setState({ error: error.response.data.message }));
   };
 

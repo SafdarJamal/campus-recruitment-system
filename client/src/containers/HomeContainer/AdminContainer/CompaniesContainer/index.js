@@ -26,7 +26,6 @@ class CompaniesContainer extends Component {
 
     api
       .deleteCompany(e.target.dataset.id)
-      .then(response => console.log('Document successfully deleted!'))
       .then(() => this.getCompanies())
       .catch(error => console.log(error.response.data.message));
   };

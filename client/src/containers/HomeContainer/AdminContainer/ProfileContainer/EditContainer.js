@@ -32,15 +32,9 @@ class EditContainer extends Component {
 
     api
       .updateProfile(data)
-      .then(() => {
-        api
-          .getProfile()
-          .then(response => setUser({ user: response.data }))
-          .then(() => history.push(ROUTES.PROFILE))
-          .catch(error =>
-            this.setState({ error: error.response.data.message })
-          );
-      })
+      .then(() => api.getProfile())
+      .then(response => setUser({ user: response.data }))
+      .then(() => history.push(ROUTES.PROFILE))
       .catch(error => this.setState({ error: error.response.data.message }));
   };
 

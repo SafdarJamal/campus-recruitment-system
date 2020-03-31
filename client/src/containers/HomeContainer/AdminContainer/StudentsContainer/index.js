@@ -26,7 +26,6 @@ class StudentsContainer extends Component {
 
     api
       .deleteStudent(e.target.dataset.id)
-      .then(response => console.log('Document successfully deleted!'))
       .then(() => this.getStudents())
       .catch(error => console.log(error.response.data.message));
   };
