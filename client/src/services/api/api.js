@@ -31,12 +31,12 @@ class API {
     });
 
   getStudent = id =>
-    axios.get(`/api/companies/${id}`, {
+    axios.get(`/api/students/${id}`, {
       headers: { 'Auth-Token': localStorage.getItem('token') }
     });
 
   deleteStudent = id =>
-    axios.delete(`/api/companies/${id}`, {
+    axios.delete(`/api/students/${id}`, {
       headers: { 'Auth-Token': localStorage.getItem('token') }
     });
 
