@@ -28,7 +28,7 @@ router.delete('/:id', authorization, (req, res) => {
   if (req.user.role !== ADMIN)
     return res.status(401).send({ message: 'Access denied.' });
 
-  Company.remove({ _id: req.params.id })
+  Company.deleteOne({ _id: req.params.id })
     .then(success => res.status(200).send(success.deletedCount.toString()))
     .catch(error => res.status(400).send({ message: error.message }));
 });

@@ -58,11 +58,11 @@ router.delete('/:id', authorization, (req, res) => {
     return res.status(401).send({ message: 'Access denied.' });
 
   if (role === COMPANY)
-    return Job.remove({ _id: req.params.id, _companyId: _id })
+    return Job.deleteOne({ _id: req.params.id, _companyId: _id })
       .then(success => res.status(200).send(success.deletedCount.toString()))
       .catch(error => res.status(400).send({ message: error.message }));
 
-  Job.remove({ _id: req.params.id })
+  Job.deleteOne({ _id: req.params.id })
     .then(success => res.status(200).send(success.deletedCount.toString()))
     .catch(error => res.status(400).send({ message: error.message }));
 });
