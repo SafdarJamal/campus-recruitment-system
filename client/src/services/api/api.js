@@ -70,6 +70,11 @@ class API {
       headers: { 'Auth-Token': localStorage.getItem('token') }
     });
 
+  getProfileById = id =>
+    axios.get(`/api/profile/${id}`, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
   updateProfile = data =>
     axios.patch(`/api/profile`, data, {
       headers: { 'Auth-Token': localStorage.getItem('token') }
