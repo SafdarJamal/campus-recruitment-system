@@ -29,7 +29,7 @@ const Jobs = ({ _id, jobs, handleApply }) => {
                   <td>{job.title}</td>
                   <td>{job.description}</td>
                   <td>
-                    {job.applications.includes(_id) ? (
+                    {job.applicants.includes(_id) ? (
                       <Button variant="success" disabled>
                         Applied
                       </Button>
