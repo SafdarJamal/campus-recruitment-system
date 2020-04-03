@@ -13,7 +13,7 @@ const JobSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  applications: {
+  applicants: {
     type: Array,
     default: []
   },

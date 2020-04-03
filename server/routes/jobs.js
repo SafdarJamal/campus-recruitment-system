@@ -60,10 +60,10 @@ router.patch('/:id/apply', authorization, (req, res) => {
   Job.findById(req.params.id)
     .then(job => {
       const plainJob = job.toObject();
-      const applications = plainJob.applications;
-      applications.push(_id);
+      const applicants = plainJob.applicants;
+      applicants.push(_id);
 
-      return Job.updateOne({ _id: req.params.id }, { $set: { applications } });
+      return Job.updateOne({ _id: req.params.id }, { $set: { applicants } });
     })
     .then(success => res.status(200).send(success.nModified.toString()))
     .catch(error => res.status(400).send({ message: error.message }));
