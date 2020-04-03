@@ -13,6 +13,10 @@ const JobSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  applications: {
+    type: Array,
+    default: []
+  },
   date: {
     type: String,
     default: Date.now
