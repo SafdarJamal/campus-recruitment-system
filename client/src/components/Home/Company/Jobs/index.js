@@ -53,7 +53,7 @@ const Jobs = ({ jobs, handleDelete }) => {
                         variant="success"
                         onClick={() => handleChange(i)}
                       >
-                        See Applications
+                        See Applicants
                       </Button>
                       <Button
                         variant="danger"
@@ -68,7 +68,7 @@ const Jobs = ({ jobs, handleDelete }) => {
                     <td colSpan={4}>
                       <Accordion activeKey={eventKey}>
                         <Accordion.Collapse eventKey={i}>
-                          <Table size="sm" variant="dark" hover>
+                          <Table size="sm" hover>
                             <thead>
                               <tr>
                                 <th>No.</th>
