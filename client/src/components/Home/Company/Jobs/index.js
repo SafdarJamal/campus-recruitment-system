@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Accordion from 'react-bootstrap/Accordion';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
 const Jobs = ({ jobs, handleDelete }) => {
+  const [eventKey, setEventKey] = useState(null);
   const history = useHistory();
+
+  const handleChange = value => {
+    if (value === eventKey) return setEventKey(null);
+    setEventKey(value);
+  };
 
   return (
     <Container>
@@ -24,7 +31,7 @@ const Jobs = ({ jobs, handleDelete }) => {
           >
             Post New Job
           </Button>
-          <Table bordered hover>
+          <Table bordered>
             <thead>
               <tr>
                 <th>No.</th>
@@ -35,20 +42,59 @@ const Jobs = ({ jobs, handleDelete }) => {
             </thead>
             <tbody>
               {jobs.map((job, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{job.title}</td>
-                  <td>{job.description}</td>
-                  <td>
-                    <Button
-                      variant="danger"
-                      data-id={job._id}
-                      onClick={handleDelete}
-                    >
-                      Delete
-                    </Button>
-                  </td>
-                </tr>
+                <Fragment key={i}>
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td>{job.title}</td>
+                    <td>{job.description}</td>
+                    <td>
+                      <Button
+                        className="mr-2"
+                        variant="success"
+                        onClick={() => handleChange(i)}
+                      >
+                        See Applications
+                      </Button>
+                      <Button
+                        variant="danger"
+                        data-id={job._id}
+                        onClick={handleDelete}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={4}>
+                      <Accordion activeKey={eventKey}>
+                        <Accordion.Collapse eventKey={i}>
+                          <Table size="sm" variant="dark" hover>
+                            <thead>
+                              <tr>
+                                <th>No.</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {job.applicants.map((applicant, i) => (
+                                <tr key={i}>
+                                  <td>{i + 1}</td>
+                                  <td>{applicant.firstName}</td>
+                                  <td>{applicant.lastName}</td>
+                                  <td>{applicant.phone}</td>
+                                  <td>{applicant.email}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </Table>
+                        </Accordion.Collapse>
+                      </Accordion>
+                    </td>
+                  </tr>
+                </Fragment>
               ))}
             </tbody>
           </Table>

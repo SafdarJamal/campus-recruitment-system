@@ -55,6 +55,11 @@ class API {
       headers: { 'Auth-Token': localStorage.getItem('token') }
     });
 
+  applyToJob = id =>
+    axios.patch(`/api/jobs/${id}/apply`, null, {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
   deleteJob = id =>
     axios.delete(`/api/jobs/${id}`, {
       headers: { 'Auth-Token': localStorage.getItem('token') }
@@ -62,6 +67,11 @@ class API {
 
   getProfile = () =>
     axios.get('/api/profile', {
+      headers: { 'Auth-Token': localStorage.getItem('token') }
+    });
+
+  getProfileById = id =>
+    axios.get(`/api/profile/${id}`, {
       headers: { 'Auth-Token': localStorage.getItem('token') }
     });
 

@@ -42,6 +42,17 @@ router.get('/', authorization, (req, res) => {
       .catch(error => res.status(400).send({ message: error.message }));
 });
 
+router.get('/:id', authorization, (req, res) => {
+  Student.findById(req.params.id)
+    .then(data => {
+      const user = data.toObject();
+      delete user.password;
+
+      res.status(200).send(user);
+    })
+    .catch(error => res.status(400).send({ message: error.message }));
+});
+
 router.patch('/', authorization, (req, res) => {
   const { _id, role } = req.user;
   const {

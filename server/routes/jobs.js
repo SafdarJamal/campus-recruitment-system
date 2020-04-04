@@ -51,6 +51,24 @@ router.get('/:id', authorization, (req, res) => {
     .catch(error => res.status(400).send({ message: error.message }));
 });
 
+router.patch('/:id/apply', authorization, (req, res) => {
+  const { _id, role } = req.user;
+
+  if (role !== STUDENT)
+    return res.status(401).send({ message: 'Access denied.' });
+
+  Job.findById(req.params.id)
+    .then(job => {
+      const plainJob = job.toObject();
+      const applicants = plainJob.applicants;
+      applicants.push(_id);
+
+      return Job.updateOne({ _id: req.params.id }, { $set: { applicants } });
+    })
+    .then(success => res.status(200).send(success.nModified.toString()))
+    .catch(error => res.status(400).send({ message: error.message }));
+});
+
 router.delete('/:id', authorization, (req, res) => {
   const { _id, role } = req.user;
 

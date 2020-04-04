@@ -16,7 +16,18 @@ class JobsContainer extends Component {
     api
       .getJobs()
       .then(response => {
-        this.setState({ jobs: response.data });
+        const { data } = response;
+
+        data.forEach(job => {
+          const ids = job.applicants;
+          const promises = ids.map(id => api.getProfileById(id));
+
+          Promise.all(promises)
+            .then(data => (job.applicants = data.map(profile => profile.data)))
+            .catch(error => console.log(error.response.data.message));
+        });
+
+        this.setState({ jobs: data });
       })
       .catch(error => console.log(error.response.data.message));
   };
