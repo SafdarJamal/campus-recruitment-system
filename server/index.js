@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 require('dotenv/config');
 
 const authRoute = require('./routes/auth');
@@ -20,8 +21,9 @@ mongoose
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(helmet());
 app.use(cors());
+app.use(bodyParser.json());
 
 app.use('/api/user', authRoute);
 app.use('/api/companies', companiesRoute);
