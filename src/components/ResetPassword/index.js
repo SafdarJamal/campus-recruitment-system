@@ -57,7 +57,7 @@ ResetPassword.propTypes = {
   email: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  success: PropTypes.bool,
+  success: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
 
