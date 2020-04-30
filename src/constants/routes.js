@@ -6,6 +6,7 @@ const LOG_IN = '/login';
 const LOG_IN_ADMIN = '/login/admin';
 const LOG_IN_COMPANY = '/login/company';
 const LOG_IN_STUDENT = '/login/student';
+const RESET_PASSWORD = '/reset-password';
 const HOME = '/home';
 const COMPANIES = '/home/companies';
 const STUDENTS = '/home/students';
@@ -23,6 +24,7 @@ export {
   LOG_IN_ADMIN,
   LOG_IN_COMPANY,
   LOG_IN_STUDENT,
+  RESET_PASSWORD,
   HOME,
   COMPANIES,
   STUDENTS,

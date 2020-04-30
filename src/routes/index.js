@@ -10,6 +10,7 @@ import SignUpType from '../components/SignUpType';
 import SignUpContainer from '../containers/SignUpContainer';
 import LogInType from '../components/LogInType';
 import LogInContainer from '../containers/LogInContainer';
+import ResetPasswordContainer from '../containers/ResetPasswordContainer';
 import HomeContainer from '../containers/HomeContainer';
 import NotFound from '../components/NotFound';
 
@@ -24,6 +25,10 @@ const Routes = () => {
       <PublicRoute path={ROUTES.LOG_IN_ADMIN} component={LogInContainer} />
       <PublicRoute path={ROUTES.LOG_IN_COMPANY} component={LogInContainer} />
       <PublicRoute path={ROUTES.LOG_IN_STUDENT} component={LogInContainer} />
+      <PublicRoute
+        path={ROUTES.RESET_PASSWORD}
+        component={ResetPasswordContainer}
+      />
       <PrivateRoute path={ROUTES.HOME} component={HomeContainer} />
       <Route component={NotFound} />
     </Switch>

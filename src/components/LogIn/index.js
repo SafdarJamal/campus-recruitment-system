@@ -32,6 +32,9 @@ const LogIn = ({ email, password, handleChange, handleSubmit, error }) => {
             </Form.Group>
             <Form.Group controlId="password">
               <Form.Label>Password</Form.Label>
+              <Link class="float-right" to={ROUTES.RESET_PASSWORD}>
+                Forgot Password?
+              </Link>
               <Form.Control
                 required
                 type="password"
