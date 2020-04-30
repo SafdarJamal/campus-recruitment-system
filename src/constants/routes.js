@@ -2,6 +2,7 @@ const LANDING = '/';
 const SIGN_UP = '/signup';
 const SIGN_UP_COMPANY = '/signup/company';
 const SIGN_UP_STUDENT = '/signup/student';
+const EMAIL_VERIFICATION = '/email-verification';
 const LOG_IN = '/login';
 const LOG_IN_ADMIN = '/login/admin';
 const LOG_IN_COMPANY = '/login/company';
@@ -20,6 +21,7 @@ export {
   SIGN_UP,
   SIGN_UP_COMPANY,
   SIGN_UP_STUDENT,
+  EMAIL_VERIFICATION,
   LOG_IN,
   LOG_IN_ADMIN,
   LOG_IN_COMPANY,
