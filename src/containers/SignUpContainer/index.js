@@ -58,8 +58,6 @@ class SignUpContainer extends Component {
       .then(() => firebase.getUser(firebase.auth.currentUser.uid))
       .then(querySnapshot => {
         const user = querySnapshot.data();
-        user.emailVerified = firebase.auth.currentUser.emailVerified;
-
         setUser({ user });
       })
       .then(() => firebase.verifyEmail())

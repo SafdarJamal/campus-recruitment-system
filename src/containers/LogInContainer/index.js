@@ -28,8 +28,6 @@ class LogInContainer extends Component {
       .then(response => firebase.getUser(response.user.uid))
       .then(querySnapshot => {
         const user = querySnapshot.data();
-        user.emailVerified = firebase.auth.currentUser.emailVerified;
-
         setUser({ user });
       })
       .catch(error => this.setState({ error: error.message }));
