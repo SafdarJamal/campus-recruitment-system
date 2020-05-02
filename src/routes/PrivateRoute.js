@@ -7,15 +7,7 @@ const PrivateRoute = ({ user, component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      user ? (
-        user.emailVerified ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={ROUTES.EMAIL_VERIFICATION} />
-        )
-      ) : (
-        <Redirect to={ROUTES.LOG_IN} />
-      )
+      user ? <Component {...props} /> : <Redirect to={ROUTES.LOG_IN} />
     }
   />
 );
