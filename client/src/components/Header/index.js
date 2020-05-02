@@ -5,13 +5,12 @@ import Nav from 'react-bootstrap/Nav';
 import logo from '../../images/logo.svg';
 import { LinkContainer } from 'react-router-bootstrap';
 import * as ROUTES from '../../constants/routes';
-import styles from './style.module.css';
 
 import LogOutContainer from '../../containers/LogOutContainer';
 
 const Header = ({ links, isAuthenticated }) => {
   return (
-    <header className={styles.header}>
+    <header style={{ paddingBottom: 100 }}>
       <Navbar className="shadow-sm" bg="dark" variant="dark" fixed="top">
         <LinkContainer to={ROUTES.LANDING}>
           <Navbar.Brand>

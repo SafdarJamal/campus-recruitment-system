@@ -1,10 +1,9 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
-import styles from './style.module.css';
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
+    <footer style={{ paddingTop: 75 }}>
       <Navbar
         className="shadow-sm justify-content-center"
         bg="light"
