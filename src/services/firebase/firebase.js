@@ -27,11 +27,6 @@ class Firebase {
 
   logOut = () => this.auth.signOut();
 
-  verifyEmail = () =>
-    this.auth.currentUser.sendEmailVerification({
-      url: process.env.REACT_APP_EMAIL_CONFIRMATION_REDIRECT
-    });
-
   resetPassword = email => this.auth.sendPasswordResetEmail(email);
 
   updatePassword = password => this.auth.currentUser.updatePassword(password);
