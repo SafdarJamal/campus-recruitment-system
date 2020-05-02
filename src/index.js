@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -15,7 +15,9 @@ ReactDOM.render(
     <PersistGate persistor={persistor} loading={<div>Loading...</div>}>
       <FirebaseContext.Provider value={new Firebase()}>
         <Router>
-          <App />
+          <StrictMode>
+            <App />
+          </StrictMode>
         </Router>
       </FirebaseContext.Provider>
     </PersistGate>
