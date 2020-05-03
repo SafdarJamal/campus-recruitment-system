@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import ErrorBoundary from '../../components/ErrorBoundary';
 import HeaderContainer from '../HeaderContainer';
@@ -9,7 +9,9 @@ const App = () => {
   return (
     <ErrorBoundary>
       <HeaderContainer />
-      <Routes />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes />
+      </Suspense>
       <Footer />
     </ErrorBoundary>
   );
