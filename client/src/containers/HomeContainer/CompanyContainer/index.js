@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import * as ROUTES from '../../../constants/routes';
 
-import Company from '../../../components/Home/Company';
-import StudentsContainer from './StudentsContainer';
-import JobsContainer from './JobsContainer';
+import Company from '../../../components/Home/Company/Lazy';
+import StudentsContainer from './StudentsContainer/Lazy';
+import JobsContainer from './JobsContainer/Lazy';
 import NewContainer from './JobsContainer/NewContainer';
-import ProfileContainer from './ProfileContainer';
+import ProfileContainer from './ProfileContainer/Lazy';
 import EditContainer from './ProfileContainer/EditContainer';
-import NotFound from '../../../components/NotFound';
+import NotFound from '../../../components/NotFound/Lazy';
 
 class CompanyContainer extends Component {
   render() {

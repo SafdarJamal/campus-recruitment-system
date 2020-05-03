@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as ROLES from '../../constants/roles';
 
-import AdminContainer from './AdminContainer';
-import CompanyContainer from './CompanyContainer';
-import StudentContainer from './StudentContainer';
+import AdminContainer from './AdminContainer/Lazy';
+import CompanyContainer from './CompanyContainer/Lazy';
+import StudentContainer from './StudentContainer/Lazy';
 
 class HomeContainer extends Component {
   render() {
