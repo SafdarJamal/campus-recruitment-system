@@ -5,13 +5,13 @@ import * as ROUTES from '../constants/routes';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 
-import Landing from '../components/Landing';
-import SignUpType from '../components/SignUpType';
-import SignUpContainer from '../containers/SignUpContainer';
-import LogInType from '../components/LogInType';
-import LogInContainer from '../containers/LogInContainer';
-import HomeContainer from '../containers/HomeContainer';
-import NotFound from '../components/NotFound';
+import Landing from '../components/Landing/Lazy';
+import SignUpType from '../components/SignUpType/Lazy';
+import SignUpContainer from '../containers/SignUpContainer/Lazy';
+import LogInType from '../components/LogInType/Lazy';
+import LogInContainer from '../containers/LogInContainer/Lazy';
+import HomeContainer from '../containers/HomeContainer/Lazy';
+import NotFound from '../components/NotFound/Lazy';
 
 const Routes = () => {
   return (
