@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
-import { withAPI } from '../../../../services/api';
+import { withAPI } from '../../../../../services/api';
 import { withRouter } from 'react-router-dom';
-import * as ROUTES from '../../../../constants/routes';
+import * as ROUTES from '../../../../../constants/routes';
 
-import New from '../../../../components/Home/Company/Jobs/New';
+import New from '../../../../../components/Home/Company/Jobs/New';
 
 class NewContainer extends Component {
   state = { title: '', description: '', error: null };

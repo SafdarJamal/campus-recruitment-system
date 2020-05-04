@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { setUser } from '../../../../actions';
-import { withAPI } from '../../../../services/api';
+import { setUser } from '../../../../../actions';
+import { withAPI } from '../../../../../services/api';
 import { withRouter } from 'react-router-dom';
-import * as ROUTES from '../../../../constants/routes';
+import * as ROUTES from '../../../../../constants/routes';
 
-import Edit from '../../../../components/Home/Company/Profile/Edit';
+import Edit from '../../../../../components/Home/Admin/Profile/Edit';
 
 class EditContainer extends Component {
   state = {
     firstName: this.props.user.firstName,
     lastName: this.props.user.lastName,
-    companyName: this.props.user.companyName,
-    companyEmail: this.props.user.companyEmail,
-    companyPhone: this.props.user.companyPhone,
     error: null
   };
 
@@ -26,20 +23,11 @@ class EditContainer extends Component {
     e.preventDefault();
 
     const { api, setUser, history } = this.props;
-    const {
-      firstName,
-      lastName,
-      companyName,
-      companyEmail,
-      companyPhone
-    } = this.state;
+    const { firstName, lastName } = this.state;
 
     const data = {
       firstName,
-      lastName,
-      companyName,
-      companyEmail,
-      companyPhone
+      lastName
     };
 
     api
@@ -51,22 +39,12 @@ class EditContainer extends Component {
   };
 
   render() {
-    const {
-      firstName,
-      lastName,
-      companyName,
-      companyEmail,
-      companyPhone,
-      error
-    } = this.state;
+    const { firstName, lastName, error } = this.state;
 
     return (
       <Edit
         firstName={firstName}
         lastName={lastName}
-        companyName={companyName}
-        companyEmail={companyEmail}
-        companyPhone={companyPhone}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         error={error}

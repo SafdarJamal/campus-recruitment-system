@@ -5,9 +5,9 @@ import * as ROUTES from '../../../constants/routes';
 import Company from '../../../components/Home/Company/Lazy';
 import StudentsContainer from './StudentsContainer/Lazy';
 import JobsContainer from './JobsContainer/Lazy';
-import NewContainer from './JobsContainer/NewContainer';
+import NewContainer from './JobsContainer/NewContainer/Lazy';
 import ProfileContainer from './ProfileContainer/Lazy';
-import EditContainer from './ProfileContainer/EditContainer';
+import EditContainer from './ProfileContainer/EditContainer/Lazy';
 import NotFound from '../../../components/NotFound/Lazy';
 
 class CompanyContainer extends Component {
