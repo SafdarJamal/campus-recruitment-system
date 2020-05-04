@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { withFirebase } from '../../../../services/firebase';
+import { withFirebase } from '../../../../../services/firebase';
 import { withRouter } from 'react-router-dom';
-import * as ROUTES from '../../../../constants/routes';
+import * as ROUTES from '../../../../../constants/routes';
 
-import New from '../../../../components/Home/Company/Jobs/New';
+import New from '../../../../../components/Home/Company/Jobs/New';
 
 class NewContainer extends Component {
   state = { title: '', description: '', error: null };

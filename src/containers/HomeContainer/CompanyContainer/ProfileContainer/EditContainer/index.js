@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { setUser } from '../../../../actions';
-import { withFirebase } from '../../../../services/firebase';
+import { setUser } from '../../../../../actions';
+import { withFirebase } from '../../../../../services/firebase';
 import { withRouter } from 'react-router-dom';
-import * as ROUTES from '../../../../constants/routes';
+import * as ROUTES from '../../../../../constants/routes';
 
-import Edit from '../../../../components/Home/Company/Profile/Edit';
+import Edit from '../../../../../components/Home/Company/Profile/Edit';
 
 class EditContainer extends Component {
   state = {
