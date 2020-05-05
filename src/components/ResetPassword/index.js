@@ -12,6 +12,7 @@ const ResetPassword = ({
   email,
   handleChange,
   handleSubmit,
+  isProcessing,
   success,
   error
 }) => {
@@ -38,10 +39,11 @@ const ResetPassword = ({
                 name="email"
                 value={email}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
-            <Button variant="success" type="submit">
-              Email Me Reset Link
+            <Button variant="success" type="submit" disabled={isProcessing}>
+              {isProcessing ? 'Loading...' : 'Email Me Reset Link'}
             </Button>
           </Form>
         </Card.Body>
@@ -57,6 +59,7 @@ ResetPassword.propTypes = {
   email: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
   success: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
