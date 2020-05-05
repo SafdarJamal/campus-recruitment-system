@@ -13,6 +13,7 @@ class EditContainer extends Component {
     firstName: this.props.user.firstName,
     lastName: this.props.user.lastName,
     phone: this.props.user.phone,
+    isProcessing: false,
     error: null
   };
 
@@ -22,6 +23,7 @@ class EditContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.setState({ isProcessing: true });
 
     const { user, firebase, history, setUser } = this.props;
     const { firstName, lastName, phone } = this.state;
@@ -38,11 +40,13 @@ class EditContainer extends Component {
       .updateProfile(firebase.auth.currentUser.uid, data)
       .then(() => setUser({ user: data }))
       .then(() => history.push(ROUTES.PROFILE))
-      .catch(error => this.setState({ error: error.message }));
+      .catch(error =>
+        this.setState({ isProcessing: false, error: error.message })
+      );
   };
 
   render() {
-    const { firstName, lastName, phone, error } = this.state;
+    const { firstName, lastName, phone, isProcessing, error } = this.state;
 
     return (
       <Edit
@@ -51,6 +55,7 @@ class EditContainer extends Component {
         phone={phone}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        isProcessing={isProcessing}
         error={error}
       />
     );

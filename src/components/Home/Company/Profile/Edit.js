@@ -16,6 +16,7 @@ const Edit = ({
   companyPhone,
   handleChange,
   handleSubmit,
+  isProcessing,
   error
 }) => {
   const history = useHistory();
@@ -39,6 +40,7 @@ const Edit = ({
                 name="firstName"
                 value={firstName}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="lastName">
@@ -49,6 +51,7 @@ const Edit = ({
                 name="lastName"
                 value={lastName}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="companyName">
@@ -59,6 +62,7 @@ const Edit = ({
                 name="companyName"
                 value={companyName}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="companyEmail">
@@ -69,6 +73,7 @@ const Edit = ({
                 name="companyEmail"
                 value={companyEmail}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="companyPhone">
@@ -79,14 +84,21 @@ const Edit = ({
                 name="companyPhone"
                 value={companyPhone}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
-            <Button className="mr-2" variant="success" type="submit">
-              Update
+            <Button
+              className="mr-2"
+              variant="success"
+              type="submit"
+              disabled={isProcessing}
+            >
+              {isProcessing ? 'Loading...' : 'Update'}
             </Button>
             <Button
               variant="light"
               onClick={() => history.push(ROUTES.PROFILE)}
+              disabled={isProcessing}
             >
               Cancel
             </Button>
@@ -105,6 +117,7 @@ Edit.propTypes = {
   companyPhone: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
 

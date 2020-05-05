@@ -8,7 +8,14 @@ import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-const Edit = ({ firstName, lastName, handleChange, handleSubmit, error }) => {
+const Edit = ({
+  firstName,
+  lastName,
+  handleChange,
+  handleSubmit,
+  isProcessing,
+  error
+}) => {
   const history = useHistory();
 
   return (
@@ -30,6 +37,7 @@ const Edit = ({ firstName, lastName, handleChange, handleSubmit, error }) => {
                 name="firstName"
                 value={firstName}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="lastName">
@@ -40,14 +48,21 @@ const Edit = ({ firstName, lastName, handleChange, handleSubmit, error }) => {
                 name="lastName"
                 value={lastName}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
-            <Button className="mr-2" variant="success" type="submit">
-              Update
+            <Button
+              className="mr-2"
+              variant="success"
+              type="submit"
+              disabled={isProcessing}
+            >
+              {isProcessing ? 'Loading...' : 'Update'}
             </Button>
             <Button
               variant="light"
               onClick={() => history.push(ROUTES.PROFILE)}
+              disabled={isProcessing}
             >
               Cancel
             </Button>
@@ -63,6 +78,7 @@ Edit.propTypes = {
   lastName: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
 

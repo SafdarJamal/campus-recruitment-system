@@ -14,6 +14,7 @@ const Edit = ({
   phone,
   handleChange,
   handleSubmit,
+  isProcessing,
   error
 }) => {
   const history = useHistory();
@@ -37,6 +38,7 @@ const Edit = ({
                 name="firstName"
                 value={firstName}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="lastName">
@@ -47,6 +49,7 @@ const Edit = ({
                 name="lastName"
                 value={lastName}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="phone">
@@ -57,14 +60,21 @@ const Edit = ({
                 name="phone"
                 value={phone}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
-            <Button className="mr-2" variant="success" type="submit">
-              Update
+            <Button
+              className="mr-2"
+              variant="success"
+              type="submit"
+              disabled={isProcessing}
+            >
+              {isProcessing ? 'Loading...' : 'Update'}
             </Button>
             <Button
               variant="light"
               onClick={() => history.push(ROUTES.PROFILE)}
+              disabled={isProcessing}
             >
               Cancel
             </Button>
@@ -81,6 +91,7 @@ Edit.propTypes = {
   phone: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
 
