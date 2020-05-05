@@ -47,6 +47,7 @@ class JobsContainer extends Component {
 
   render() {
     const { jobs, isProcessing, selectedJobId } = this.state;
+
     return (
       <Jobs
         jobs={jobs}

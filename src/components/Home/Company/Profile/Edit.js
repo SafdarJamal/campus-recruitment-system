@@ -93,7 +93,7 @@ const Edit = ({
               type="submit"
               disabled={isProcessing}
             >
-              {isProcessing ? 'Loading...' : 'Update'}
+              {isProcessing ? 'Updating...' : 'Update'}
             </Button>
             <Button
               variant="light"

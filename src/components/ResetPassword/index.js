@@ -43,7 +43,7 @@ const ResetPassword = ({
               />
             </Form.Group>
             <Button variant="success" type="submit" disabled={isProcessing}>
-              {isProcessing ? 'Loading...' : 'Email Me Reset Link'}
+              {isProcessing ? 'Sending...' : 'Email Me Reset Link'}
             </Button>
           </Form>
         </Card.Body>

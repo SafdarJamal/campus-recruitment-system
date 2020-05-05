@@ -58,7 +58,7 @@ const New = ({
               type="submit"
               disabled={isProcessing}
             >
-              {isProcessing ? 'Loading...' : 'Post'}
+              {isProcessing ? 'Posting...' : 'Post'}
             </Button>
             <Button
               variant="light"

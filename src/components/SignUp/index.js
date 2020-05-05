@@ -74,7 +74,7 @@ const SignUp = ({
               />
             </Form.Group>
             <Button variant="success" type="submit" disabled={isProcessing}>
-              {isProcessing ? 'Loading...' : 'Sign Up'}
+              {isProcessing ? 'Signing Up...' : 'Sign Up'}
             </Button>
           </Form>
         </Card.Body>
