@@ -4,7 +4,7 @@ import { withFirebase } from '../../../../services/firebase';
 import Companies from '../../../../components/Home/Admin/Companies';
 
 class CompaniesContainer extends Component {
-  state = { companies: [] };
+  state = { companies: [], isProcessing: false, selectedCompanyId: '' };
 
   componentDidMount() {
     this.getCompanies();
@@ -32,19 +32,26 @@ class CompaniesContainer extends Component {
 
   handleDelete = e => {
     const { firebase } = this.props;
+    const id = e.target.dataset.id;
+
+    this.setState({ isProcessing: true, selectedCompanyId: id });
 
     firebase
-      .deleteUser(e.target.dataset.id)
+      .deleteUser(id)
       .then(() => console.log('Company successfully deleted!'))
       .then(() => this.getCompanies())
       .catch(error => console.log(error.message));
   };
 
   render() {
+    const { companies, isProcessing, selectedCompanyId } = this.state;
+
     return (
       <Companies
-        companies={this.state.companies}
+        companies={companies}
         handleDelete={this.handleDelete}
+        isProcessing={isProcessing}
+        selectedCompanyId={selectedCompanyId}
       />
     );
   }
