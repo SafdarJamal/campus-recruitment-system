@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-const Jobs = ({ jobs, handleDelete }) => {
+const Jobs = ({ jobs, handleDelete, isProcessing, selectedJobId }) => {
   const history = useHistory();
 
   return (
@@ -44,8 +44,11 @@ const Jobs = ({ jobs, handleDelete }) => {
                       variant="danger"
                       data-id={job.id}
                       onClick={handleDelete}
+                      disabled={isProcessing && job.id === selectedJobId}
                     >
-                      Delete
+                      {isProcessing && job.id === selectedJobId
+                        ? 'Deleting...'
+                        : 'Delete'}
                     </Button>
                   </td>
                 </tr>
@@ -60,7 +63,9 @@ const Jobs = ({ jobs, handleDelete }) => {
 
 Jobs.propTypes = {
   jobs: PropTypes.array.isRequired,
-  handleDelete: PropTypes.func.isRequired
+  handleDelete: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
+  selectedJobId: PropTypes.string.isRequired
 };
 
 export default Jobs;
