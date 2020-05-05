@@ -8,7 +8,14 @@ import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-const New = ({ title, description, handleChange, handleSubmit, error }) => {
+const New = ({
+  title,
+  description,
+  handleChange,
+  handleSubmit,
+  isProcessing,
+  error
+}) => {
   const history = useHistory();
 
   return (
@@ -30,6 +37,7 @@ const New = ({ title, description, handleChange, handleSubmit, error }) => {
                 name="title"
                 value={title}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="description">
@@ -41,12 +49,22 @@ const New = ({ title, description, handleChange, handleSubmit, error }) => {
                 name="description"
                 value={description}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
-            <Button className="mr-2" variant="success" type="submit">
-              Post
+            <Button
+              className="mr-2"
+              variant="success"
+              type="submit"
+              disabled={isProcessing}
+            >
+              {isProcessing ? 'Loading...' : 'Post'}
             </Button>
-            <Button variant="light" onClick={() => history.push(ROUTES.JOBS)}>
+            <Button
+              variant="light"
+              onClick={() => history.push(ROUTES.JOBS)}
+              disabled={isProcessing}
+            >
               Cancel
             </Button>
           </Form>
@@ -61,6 +79,7 @@ New.propTypes = {
   description: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
 

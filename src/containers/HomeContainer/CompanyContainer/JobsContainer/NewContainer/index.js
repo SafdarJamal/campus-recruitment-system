@@ -8,7 +8,7 @@ import * as ROUTES from '../../../../../constants/routes';
 import New from '../../../../../components/Home/Company/Jobs/New';
 
 class NewContainer extends Component {
-  state = { title: '', description: '', error: null };
+  state = { title: '', description: '', isProcessing: false, error: null };
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -16,6 +16,7 @@ class NewContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.setState({ isProcessing: true });
 
     const { firebase, user, history } = this.props;
     const { title, description } = this.state;
@@ -30,11 +31,13 @@ class NewContainer extends Component {
       .postJob(data)
       .then(() => console.log('Job successfully posted!'))
       .then(() => history.push(ROUTES.JOBS))
-      .catch(error => this.setState({ error: error.message }));
+      .catch(error =>
+        this.setState({ isProcessing: false, error: error.message })
+      );
   };
 
   render() {
-    const { title, description, error } = this.state;
+    const { title, description, isProcessing, error } = this.state;
 
     return (
       <New
@@ -42,6 +45,7 @@ class NewContainer extends Component {
         description={description}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        isProcessing={isProcessing}
         error={error}
       />
     );
