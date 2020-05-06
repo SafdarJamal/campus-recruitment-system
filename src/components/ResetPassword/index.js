@@ -14,7 +14,8 @@ const ResetPassword = ({
   handleSubmit,
   isProcessing,
   success,
-  error
+  error,
+  dismissAlert
 }) => {
   return (
     <Container className="col-md-4">
@@ -23,11 +24,21 @@ const ResetPassword = ({
           Reset Password
         </Card.Header>
         <Card.Body>
-          <Alert variant="success" show={success}>
+          <Alert
+            variant="success"
+            show={success}
+            dismissible
+            onClose={dismissAlert}
+          >
             Password reset link has been send to your provided email address,
             check you mailbox.
           </Alert>
-          <Alert variant="danger" show={error}>
+          <Alert
+            variant="danger"
+            show={error}
+            dismissible
+            onClose={dismissAlert}
+          >
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
@@ -61,7 +72,8 @@ ResetPassword.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
   success: PropTypes.bool.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  dismissAlert: PropTypes.func.isRequired
 };
 
 export default ResetPassword;

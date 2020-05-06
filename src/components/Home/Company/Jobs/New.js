@@ -14,7 +14,8 @@ const New = ({
   handleChange,
   handleSubmit,
   isProcessing,
-  error
+  error,
+  dismissAlert
 }) => {
   const history = useHistory();
 
@@ -25,7 +26,12 @@ const New = ({
           Post New Job
         </Card.Header>
         <Card.Body>
-          <Alert variant="danger" show={error}>
+          <Alert
+            variant="danger"
+            show={error}
+            dismissible
+            onClose={dismissAlert}
+          >
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
@@ -80,7 +86,8 @@ New.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  dismissAlert: PropTypes.func.isRequired
 };
 
 export default New;

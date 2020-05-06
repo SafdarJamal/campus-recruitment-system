@@ -37,6 +37,8 @@ class LogInContainer extends Component {
       );
   };
 
+  dismissAlert = () => this.setState({ error: null });
+
   render() {
     const { email, password, isProcessing, error } = this.state;
 
@@ -48,6 +50,7 @@ class LogInContainer extends Component {
         handleSubmit={this.handleSubmit}
         isProcessing={isProcessing}
         error={error}
+        dismissAlert={this.dismissAlert}
       />
     );
   }

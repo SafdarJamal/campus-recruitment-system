@@ -36,6 +36,8 @@ class ResetPasswordContainer extends Component {
       );
   };
 
+  dismissAlert = () => this.setState({ success: false, error: null });
+
   render() {
     const { email, isProcessing, success, error } = this.state;
 
@@ -47,6 +49,7 @@ class ResetPasswordContainer extends Component {
         isProcessing={isProcessing}
         success={success}
         error={error}
+        dismissAlert={this.dismissAlert}
       />
     );
   }
