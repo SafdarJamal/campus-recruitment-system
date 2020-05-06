@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store';
-import Loader from './components/Loader';
+import Spinner from './components/Spinner';
 import API, { APIContext } from './services/api';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './containers/App';
@@ -13,7 +13,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate persistor={persistor} loading={<Loader />}>
+    <PersistGate persistor={persistor} loading={<Spinner />}>
       <APIContext.Provider value={new API()}>
         <Router>
           <StrictMode>
