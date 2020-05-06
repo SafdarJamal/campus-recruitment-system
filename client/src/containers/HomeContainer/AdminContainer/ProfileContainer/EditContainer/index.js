@@ -12,6 +12,7 @@ class EditContainer extends Component {
   state = {
     firstName: this.props.user.firstName,
     lastName: this.props.user.lastName,
+    isProcessing: false,
     error: null
   };
 
@@ -21,6 +22,7 @@ class EditContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.setState({ isProcessing: true });
 
     const { api, setUser, history } = this.props;
     const { firstName, lastName } = this.state;
@@ -35,11 +37,16 @@ class EditContainer extends Component {
       .then(() => api.getProfile())
       .then(response => setUser({ user: response.data }))
       .then(() => history.push(ROUTES.PROFILE))
-      .catch(error => this.setState({ error: error.response.data.message }));
+      .catch(error =>
+        this.setState({
+          isProcessing: false,
+          error: error.response.data.message
+        })
+      );
   };
 
   render() {
-    const { firstName, lastName, error } = this.state;
+    const { firstName, lastName, isProcessing, error } = this.state;
 
     return (
       <Edit
@@ -47,6 +54,7 @@ class EditContainer extends Component {
         lastName={lastName}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        isProcessing={isProcessing}
         error={error}
       />
     );
