@@ -50,7 +50,7 @@ const LogIn = ({
               />
             </Form.Group>
             <Button variant="success" type="submit" disabled={isProcessing}>
-              {isProcessing ? 'Loading...' : 'Log In'}
+              {isProcessing ? 'Logging In...' : 'Log In'}
             </Button>
           </Form>
         </Card.Body>
