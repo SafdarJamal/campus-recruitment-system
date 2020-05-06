@@ -57,6 +57,8 @@ class EditContainer extends Component {
       );
   };
 
+  dismissAlert = () => this.setState({ error: null });
+
   render() {
     const {
       firstName,
@@ -79,6 +81,7 @@ class EditContainer extends Component {
         handleSubmit={this.handleSubmit}
         isProcessing={isProcessing}
         error={error}
+        dismissAlert={this.dismissAlert}
       />
     );
   }

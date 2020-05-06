@@ -14,7 +14,8 @@ const LogIn = ({
   handleChange,
   handleSubmit,
   isProcessing,
-  error
+  error,
+  dismissAlert
 }) => {
   return (
     <Container className="col-md-4">
@@ -23,7 +24,12 @@ const LogIn = ({
           Log In
         </Card.Header>
         <Card.Body>
-          <Alert variant="danger" show={error}>
+          <Alert
+            variant="danger"
+            show={error}
+            dismissible
+            onClose={dismissAlert}
+          >
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
@@ -68,7 +74,8 @@ LogIn.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  dismissAlert: PropTypes.func.isRequired
 };
 
 export default LogIn;

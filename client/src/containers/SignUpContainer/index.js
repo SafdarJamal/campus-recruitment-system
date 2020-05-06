@@ -59,6 +59,8 @@ class SignUpContainer extends Component {
       );
   };
 
+  dismissAlert = () => this.setState({ error: null });
+
   render() {
     const {
       firstName,
@@ -79,6 +81,7 @@ class SignUpContainer extends Component {
         handleSubmit={this.handleSubmit}
         isProcessing={isProcessing}
         error={error}
+        dismissAlert={this.dismissAlert}
       />
     );
   }

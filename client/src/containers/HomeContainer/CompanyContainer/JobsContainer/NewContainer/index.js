@@ -36,6 +36,8 @@ class NewContainer extends Component {
       );
   };
 
+  dismissAlert = () => this.setState({ error: null });
+
   render() {
     const { title, description, isProcessing, error } = this.state;
 
@@ -47,6 +49,7 @@ class NewContainer extends Component {
         handleSubmit={this.handleSubmit}
         isProcessing={isProcessing}
         error={error}
+        dismissAlert={this.dismissAlert}
       />
     );
   }
