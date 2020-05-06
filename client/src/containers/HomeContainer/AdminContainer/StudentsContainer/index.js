@@ -4,7 +4,7 @@ import { withAPI } from '../../../../services/api';
 import Students from '../../../../components/Home/Admin/Students';
 
 class StudentsContainer extends Component {
-  state = { students: [] };
+  state = { students: [], isProcessing: false, selectedStudentId: '' };
 
   componentDidMount() {
     this.getStudents();
@@ -23,18 +23,25 @@ class StudentsContainer extends Component {
 
   handleDelete = e => {
     const { api } = this.props;
+    const id = e.target.dataset.id;
+
+    this.setState({ isProcessing: true, selectedStudentId: id });
 
     api
-      .deleteStudent(e.target.dataset.id)
+      .deleteStudent(id)
       .then(() => this.getStudents())
       .catch(error => console.log(error.response.data.message));
   };
 
   render() {
+    const { students, isProcessing, selectedStudentId } = this.state;
+
     return (
       <Students
-        students={this.state.students}
+        students={students}
         handleDelete={this.handleDelete}
+        isProcessing={isProcessing}
+        selectedStudentId={selectedStudentId}
       />
     );
   }
