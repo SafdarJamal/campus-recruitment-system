@@ -7,17 +7,31 @@ import { withFirebase } from '../../services/firebase';
 import LogOut from '../../components/LogOut';
 
 class LogOutContainer extends Component {
+  state = { isProcessing: false };
+
   handleLogOut = () => {
+    this.setState({ isProcessing: true });
+
     const { firebase, removeUser } = this.props;
 
-    firebase
-      .logOut()
-      .then(() => removeUser())
-      .catch(error => console.log(error.message));
+    setTimeout(() => {
+      firebase
+        .logOut()
+        .then(() => removeUser())
+        .catch(error => {
+          this.setState({ isProcessing: false });
+          console.log(error.message);
+        });
+    }, 1000);
   };
 
   render() {
-    return <LogOut handleLogOut={this.handleLogOut} />;
+    return (
+      <LogOut
+        isProcessing={this.state.isProcessing}
+        handleLogOut={this.handleLogOut}
+      />
+    );
   }
 }
 
