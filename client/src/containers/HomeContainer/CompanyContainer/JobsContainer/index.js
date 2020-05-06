@@ -4,7 +4,7 @@ import { withAPI } from '../../../../services/api';
 import Jobs from '../../../../components/Home/Company/Jobs';
 
 class JobsContainer extends Component {
-  state = { jobs: [] };
+  state = { jobs: [], isProcessing: false, selectedJobId: '' };
 
   componentDidMount() {
     this.getJobs();
@@ -34,15 +34,27 @@ class JobsContainer extends Component {
 
   handleDelete = e => {
     const { api } = this.props;
+    const id = e.target.dataset.id;
+
+    this.setState({ isProcessing: true, selectedJobId: id });
 
     api
-      .deleteJob(e.target.dataset.id)
+      .deleteJob(id)
       .then(() => this.getJobs())
       .catch(error => console.log(error.response.data.message));
   };
 
   render() {
-    return <Jobs jobs={this.state.jobs} handleDelete={this.handleDelete} />;
+    const { jobs, isProcessing, selectedJobId } = this.state;
+
+    return (
+      <Jobs
+        jobs={jobs}
+        handleDelete={this.handleDelete}
+        isProcessing={isProcessing}
+        selectedJobId={selectedJobId}
+      />
+    );
   }
 }
 

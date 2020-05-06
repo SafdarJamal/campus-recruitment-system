@@ -8,7 +8,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import { useHistory } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-const Jobs = ({ jobs, handleDelete }) => {
+const Jobs = ({ jobs, handleDelete, isProcessing, selectedJobId }) => {
   const [eventKey, setEventKey] = useState(null);
   const history = useHistory();
 
@@ -59,8 +59,11 @@ const Jobs = ({ jobs, handleDelete }) => {
                         variant="danger"
                         data-id={job._id}
                         onClick={handleDelete}
+                        disabled={isProcessing && job._id === selectedJobId}
                       >
-                        Delete
+                        {isProcessing && job._id === selectedJobId
+                          ? 'Deleting...'
+                          : 'Delete'}
                       </Button>
                     </td>
                   </tr>
@@ -106,7 +109,9 @@ const Jobs = ({ jobs, handleDelete }) => {
 
 Jobs.propTypes = {
   jobs: PropTypes.array.isRequired,
-  handleDelete: PropTypes.func.isRequired
+  handleDelete: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
+  selectedJobId: PropTypes.string.isRequired
 };
 
 export default Jobs;
