@@ -8,7 +8,14 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
-const LogIn = ({ email, password, handleChange, handleSubmit, error }) => {
+const LogIn = ({
+  email,
+  password,
+  handleChange,
+  handleSubmit,
+  isProcessing,
+  error
+}) => {
   return (
     <Container className="col-md-4">
       <Card className="shadow-sm">
@@ -28,6 +35,7 @@ const LogIn = ({ email, password, handleChange, handleSubmit, error }) => {
                 name="email"
                 value={email}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="password">
@@ -38,10 +46,11 @@ const LogIn = ({ email, password, handleChange, handleSubmit, error }) => {
                 name="password"
                 value={password}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
-            <Button variant="success" type="submit">
-              Log In
+            <Button variant="success" type="submit" disabled={isProcessing}>
+              {isProcessing ? 'Loading...' : 'Log In'}
             </Button>
           </Form>
         </Card.Body>
@@ -58,6 +67,7 @@ LogIn.propTypes = {
   password: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
 

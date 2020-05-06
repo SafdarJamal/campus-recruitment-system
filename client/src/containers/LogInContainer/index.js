@@ -13,6 +13,7 @@ class LogInContainer extends Component {
   state = {
     email: '',
     password: '',
+    isProcessing: false,
     error: null
   };
 
@@ -22,6 +23,7 @@ class LogInContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.setState({ isProcessing: true });
 
     const { api, setUser, location } = this.props;
     const { email, password } = this.state;
@@ -50,11 +52,16 @@ class LogInContainer extends Component {
         localStorage.setItem('token', token);
         setUser({ user });
       })
-      .catch(error => this.setState({ error: error.response.data.message }));
+      .catch(error =>
+        this.setState({
+          isProcessing: false,
+          error: error.response.data.message
+        })
+      );
   };
 
   render() {
-    const { email, password, error } = this.state;
+    const { email, password, isProcessing, error } = this.state;
 
     return (
       <LogIn
@@ -62,6 +69,7 @@ class LogInContainer extends Component {
         password={password}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        isProcessing={isProcessing}
         error={error}
       />
     );
