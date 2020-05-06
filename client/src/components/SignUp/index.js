@@ -15,6 +15,7 @@ const SignUp = ({
   password,
   handleChange,
   handleSubmit,
+  isProcessing,
   error
 }) => {
   return (
@@ -36,6 +37,7 @@ const SignUp = ({
                 name="firstName"
                 value={firstName}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="lastName">
@@ -46,6 +48,7 @@ const SignUp = ({
                 name="lastName"
                 value={lastName}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="email">
@@ -56,6 +59,7 @@ const SignUp = ({
                 name="email"
                 value={email}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
             <Form.Group controlId="password">
@@ -66,10 +70,11 @@ const SignUp = ({
                 name="password"
                 value={password}
                 onChange={handleChange}
+                disabled={isProcessing}
               />
             </Form.Group>
-            <Button variant="success" type="submit">
-              Sign Up
+            <Button variant="success" type="submit" disabled={isProcessing}>
+              {isProcessing ? 'Loading...' : 'Sign Up'}
             </Button>
           </Form>
         </Card.Body>
@@ -88,6 +93,7 @@ SignUp.propTypes = {
   password: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string
 };
 
