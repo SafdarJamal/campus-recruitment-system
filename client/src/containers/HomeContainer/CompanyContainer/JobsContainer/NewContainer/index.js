@@ -7,7 +7,7 @@ import * as ROUTES from '../../../../../constants/routes';
 import New from '../../../../../components/Home/Company/Jobs/New';
 
 class NewContainer extends Component {
-  state = { title: '', description: '', error: null };
+  state = { title: '', description: '', isProcessing: false, error: null };
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -15,6 +15,7 @@ class NewContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.setState({ isProcessing: true });
 
     const { api, history } = this.props;
     const { title, description } = this.state;
@@ -27,11 +28,16 @@ class NewContainer extends Component {
     api
       .postJob(data)
       .then(() => history.push(ROUTES.JOBS))
-      .catch(error => this.setState({ error: error.response.data.message }));
+      .catch(error =>
+        this.setState({
+          isProcessing: false,
+          error: error.response.data.message
+        })
+      );
   };
 
   render() {
-    const { title, description, error } = this.state;
+    const { title, description, isProcessing, error } = this.state;
 
     return (
       <New
@@ -39,6 +45,7 @@ class NewContainer extends Component {
         description={description}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        isProcessing={isProcessing}
         error={error}
       />
     );
