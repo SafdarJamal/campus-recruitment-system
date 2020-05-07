@@ -107,7 +107,7 @@ const Edit = ({
               disabled={isProcessing}
             >
               Cancel
-            </>
+            </Button>
           </Form>
         </Card.Body>
       </Card>
