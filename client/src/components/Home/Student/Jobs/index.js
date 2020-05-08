@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-const Jobs = ({ _id, jobs, handleApply }) => {
+const Jobs = ({ _id, jobs, handleApply, isProcessing, selectedJobId }) => {
   return (
     <Container>
       <Card className="shadow-sm">
@@ -38,8 +38,11 @@ const Jobs = ({ _id, jobs, handleApply }) => {
                         variant="success"
                         data-id={job._id}
                         onClick={handleApply}
+                        disabled={isProcessing && job._id === selectedJobId}
                       >
-                        Apply
+                        {isProcessing && job._id === selectedJobId
+                          ? 'Applying...'
+                          : 'Apply'}
                       </Button>
                     )}
                   </td>
@@ -56,7 +59,9 @@ const Jobs = ({ _id, jobs, handleApply }) => {
 Jobs.propTypes = {
   _id: PropTypes.string.isRequired,
   jobs: PropTypes.array.isRequired,
-  handleApply: PropTypes.func.isRequired
+  handleApply: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
+  selectedJobId: PropTypes.string.isRequired
 };
 
 export default Jobs;

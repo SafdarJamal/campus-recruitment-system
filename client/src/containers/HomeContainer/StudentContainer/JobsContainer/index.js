@@ -6,7 +6,7 @@ import { withAPI } from '../../../../services/api';
 import Jobs from '../../../../components/Home/Student/Jobs';
 
 class JobsContainer extends Component {
-  state = { jobs: [] };
+  state = { jobs: [], isProcessing: false, selectedJobId: '' };
 
   componentDidMount() {
     this.getJobs();
@@ -25,19 +25,26 @@ class JobsContainer extends Component {
 
   handleApply = e => {
     const { api } = this.props;
+    const id = e.target.dataset.id;
+
+    this.setState({ isProcessing: true, selectedJobId: id });
 
     api
-      .applyToJob(e.target.dataset.id)
+      .applyToJob(id)
       .then(() => this.getJobs())
       .catch(error => console.log(error.response.data.message));
   };
 
   render() {
+    const { jobs, isProcessing, selectedJobId } = this.state;
+
     return (
       <Jobs
         _id={this.props._id}
-        jobs={this.state.jobs}
+        jobs={jobs}
         handleApply={this.handleApply}
+        isProcessing={isProcessing}
+        selectedJobId={selectedJobId}
       />
     );
   }
