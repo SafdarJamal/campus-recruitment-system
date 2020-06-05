@@ -15,7 +15,7 @@ router.post('/signup/:role', async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
   const { error } = validateSignUp(req.body);
-  if (error) return res.status(400).send({ message: error.details[0].message });
+  if (error) return res.status(400).send({ message: error.message });
 
   const isEmailExistInAdmins = await Admin.findOne({ email });
   const isEmailExistInCompanies = await Company.findOne({ email });
@@ -37,10 +37,7 @@ router.post('/signup/:role', async (req, res) => {
       password: hash
     });
 
-    const token = jwt.sign(
-      { _id: company._id, role },
-      process.env.TOKEN_SECRET
-    );
+    const token = jwt.sign({ _id: company._id, role }, process.env.JWT_SECRET);
 
     company
       .save()
@@ -59,10 +56,7 @@ router.post('/signup/:role', async (req, res) => {
       password: hash
     });
 
-    const token = jwt.sign(
-      { _id: student._id, role },
-      process.env.TOKEN_SECRET
-    );
+    const token = jwt.sign({ _id: student._id, role }, process.env.JWT_SECRET);
 
     student
       .save()
@@ -81,7 +75,7 @@ router.post('/login/:role', async (req, res) => {
   const { email, password } = req.body;
 
   const { error } = validateLogIn(req.body);
-  if (error) return res.status(400).send({ message: error.details[0].message });
+  if (error) return res.status(400).send({ message: error.message });
 
   if (role === ADMIN) {
     const user = await Admin.findOne({ email });
@@ -95,7 +89,7 @@ router.post('/login/:role', async (req, res) => {
     if (!checkPassword)
       return res.status(400).send({ message: 'The password is invalid.' });
 
-    const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
+    const token = jwt.sign({ _id: user._id, role }, process.env.JWT_SECRET);
 
     const userData = user.toObject();
     delete userData.password;
@@ -113,7 +107,7 @@ router.post('/login/:role', async (req, res) => {
     if (!checkPassword)
       return res.status(400).send({ message: 'The password is invalid.' });
 
-    const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
+    const token = jwt.sign({ _id: user._id, role }, process.env.JWT_SECRET);
 
     const userData = user.toObject();
     delete userData.password;
@@ -131,7 +125,7 @@ router.post('/login/:role', async (req, res) => {
     if (!checkPassword)
       return res.status(400).send({ message: 'The password is invalid.' });
 
-    const token = jwt.sign({ _id: user._id, role }, process.env.TOKEN_SECRET);
+    const token = jwt.sign({ _id: user._id, role }, process.env.JWT_SECRET);
 
     const userData = user.toObject();
     delete userData.password;
