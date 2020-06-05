@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const authorization = require('../middlewares/authorization');
+const authorization = require('../../middlewares/authorization');
 
-const Job = require('../models/Job');
+const Job = require('../../models/Job');
 
-const { COMPANY, STUDENT } = require('../constants/roles');
+const { COMPANY, STUDENT } = require('../../constants/roles');
 
 router.get('/', authorization, (req, res) => {
   const { _id, role } = req.user;
