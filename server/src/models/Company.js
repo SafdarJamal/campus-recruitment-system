@@ -35,9 +35,9 @@ const CompanySchema = mongoose.Schema({
     type: String,
     default: COMPANY
   },
-  date: {
-    type: String,
-    default: Date.now
+  createdAt: {
+    type: Date,
+    default: new Date()
   }
 });
 

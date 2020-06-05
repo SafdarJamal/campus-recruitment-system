@@ -23,9 +23,9 @@ const AdminSchema = mongoose.Schema({
     type: String,
     default: ADMIN
   },
-  date: {
-    type: String,
-    default: Date.now
+  createdAt: {
+    type: Date,
+    default: new Date()
   }
 });
 

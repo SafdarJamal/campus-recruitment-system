@@ -27,9 +27,9 @@ const StudentSchema = mongoose.Schema({
     type: String,
     default: STUDENT
   },
-  date: {
-    type: String,
-    default: Date.now
+  createdAt: {
+    type: Date,
+    default: new Date()
   }
 });
 
