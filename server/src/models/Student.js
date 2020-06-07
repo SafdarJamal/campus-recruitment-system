@@ -29,7 +29,7 @@ const StudentSchema = mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: new Date()
+    default: Date
   }
 });
 
