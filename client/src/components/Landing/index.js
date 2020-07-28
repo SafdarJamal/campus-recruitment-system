@@ -9,11 +9,13 @@ const Landing = () => {
   return (
     <Container>
       <Jumbotron className="shadow-sm">
-        <h1>Hello, World!</h1>
+        <h1>Recruit faster with CRS!</h1>
         <p>
-          This is a simple hero unit, a simple jumbotron-style component for
-          calling extra attention to featured content or information.
+          Campus Recruitment System (CRS) is a recruiting app that makes the
+          hiring process faster and simpler so that your team can hire the best
+          people, faster.
         </p>
+        <hr />
         <p>
           <Link to={ROUTES.LOG_IN}>
             <Button variant="success">Get Started</Button>
