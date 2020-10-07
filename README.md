@@ -17,20 +17,22 @@ Install dependencies:
 npm install
 ```
 
-Finally, you need to start a local web server. Run:
+Now, you can start a local web server by running:
 
 ```
 npm start
 ```
 
-#### npm scripts
+and then you can open http://localhost:3000 to view it in the browser.
 
-| Script         | Description                           |
-| -------------- | ------------------------------------- |
-| npm install    | Installs the dependencies.            |
-| npm run server | Runs the server-side code.            |
-| npm run client | Runs the client-side code.            |
-| npm start      | Runs the app in the development mode. |
+#### Available npm Scripts
+
+| Script         | Description                       |
+| -------------- | --------------------------------- |
+| npm install    | Installs the dependencies.        |
+| npm run server | Runs the server-side code.        |
+| npm run client | Runs the client-side code.        |
+| npm start      | Runs the app in development mode. |
 
 ## License
 
