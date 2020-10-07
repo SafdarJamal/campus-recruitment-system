@@ -51,7 +51,7 @@ const Jobs = ({ jobs, handleDelete, isProcessing, selectedJobId }) => {
                       <Button
                         className="mr-2"
                         variant="success"
-                        onClick={() => handleChange(i)}
+                        onClick={() => handleChange(i + 1)}
                       >
                         See Applicants
                       </Button>
@@ -70,7 +70,7 @@ const Jobs = ({ jobs, handleDelete, isProcessing, selectedJobId }) => {
                   <tr>
                     <td colSpan={4}>
                       <Accordion activeKey={eventKey}>
-                        <Accordion.Collapse eventKey={i}>
+                        <Accordion.Collapse eventKey={i + 1}>
                           <Table size="sm" hover>
                             <thead>
                               <tr>
