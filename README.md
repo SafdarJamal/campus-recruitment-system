@@ -36,7 +36,7 @@ And then open http://localhost:3000 to view it in the browser.
 
 ## Credits
 
-campus-recruitment-system is built and maintained by [Safdar Jamal](https://safdarjamal.github.io).
+Campus Recruitment System is built and maintained by [Safdar Jamal](https://safdarjamal.github.io).
 
 ## License
 
