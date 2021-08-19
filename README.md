@@ -34,6 +34,10 @@ And then open http://localhost:3000 to view it in the browser.
 | npm run client | Runs the client-side code.        |
 | npm start      | Runs the app in development mode. |
 
+## Credits
+
+campus-recruitment-system is built and maintained by [Safdar Jamal](https://safdarjamal.github.io).
+
 ## License
 
 This project is licensed under the terms of the [Apache License 2.0](https://github.com/SafdarJamal/campus-recruitment-system/blob/with-mern-stack/LICENSE).
