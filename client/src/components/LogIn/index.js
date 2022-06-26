@@ -15,7 +15,7 @@ const LogIn = ({
   handleSubmit,
   isProcessing,
   error,
-  dismissAlert
+  dismissAlert,
 }) => {
   return (
     <Container className="col-md-4">
@@ -44,6 +44,7 @@ const LogIn = ({
                 disabled={isProcessing}
               />
             </Form.Group>
+            <br />
             <Form.Group controlId="password">
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -55,7 +56,12 @@ const LogIn = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Button variant="success" type="submit" disabled={isProcessing}>
+            <Button
+              className="mt-3"
+              variant="success"
+              type="submit"
+              disabled={isProcessing}
+            >
               {isProcessing ? 'Logging In...' : 'Log In'}
             </Button>
           </Form>
@@ -75,7 +81,7 @@ LogIn.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string,
-  dismissAlert: PropTypes.func.isRequired
+  dismissAlert: PropTypes.func.isRequired,
 };
 
 export default LogIn;
