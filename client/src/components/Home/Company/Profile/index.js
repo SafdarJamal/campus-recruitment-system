@@ -12,7 +12,7 @@ const Profile = ({
   lastName,
   companyName,
   companyEmail,
-  companyPhone
+  companyPhone,
 }) => {
   const history = useHistory();
 
@@ -70,6 +70,7 @@ const Profile = ({
               />
             </Form.Group>
             <Button
+              className="mt-3"
               variant="success"
               onClick={() => history.push(ROUTES.PROFILE_EDIT)}
             >
@@ -87,7 +88,7 @@ Profile.propTypes = {
   lastName: PropTypes.string.isRequired,
   companyName: PropTypes.string.isRequired,
   companyEmail: PropTypes.string.isRequired,
-  companyPhone: PropTypes.string.isRequired
+  companyPhone: PropTypes.string.isRequired,
 };
 
 export default Profile;

@@ -41,6 +41,7 @@ const Profile = ({ firstName, lastName, phone }) => {
               <Form.Control readOnly type="text" name="phone" value={phone} />
             </Form.Group>
             <Button
+              className="mt-3"
               variant="success"
               onClick={() => history.push(ROUTES.PROFILE_EDIT)}
             >
@@ -56,7 +57,7 @@ const Profile = ({ firstName, lastName, phone }) => {
 Profile.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired
+  phone: PropTypes.string.isRequired,
 };
 
 export default Profile;

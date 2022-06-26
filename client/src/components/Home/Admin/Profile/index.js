@@ -37,6 +37,7 @@ const Profile = ({ firstName, lastName }) => {
               />
             </Form.Group>
             <Button
+              className="mt-3"
               variant="success"
               onClick={() => history.push(ROUTES.PROFILE_EDIT)}
             >
@@ -51,7 +52,7 @@ const Profile = ({ firstName, lastName }) => {
 
 Profile.propTypes = {
   firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired
+  lastName: PropTypes.string.isRequired,
 };
 
 export default Profile;
