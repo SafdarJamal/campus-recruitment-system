@@ -16,7 +16,7 @@ const Edit = ({
   handleSubmit,
   isProcessing,
   error,
-  dismissAlert
+  dismissAlert,
 }) => {
   const history = useHistory();
 
@@ -69,21 +69,23 @@ const Edit = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Button
-              className="mr-2"
-              variant="success"
-              type="submit"
-              disabled={isProcessing}
-            >
-              {isProcessing ? 'Updating...' : 'Update'}
-            </Button>
-            <Button
-              variant="light"
-              onClick={() => history.push(ROUTES.PROFILE)}
-              disabled={isProcessing}
-            >
-              Cancel
-            </Button>
+            <div className="mt-3">
+              <Button
+                className="me-2"
+                variant="success"
+                type="submit"
+                disabled={isProcessing}
+              >
+                {isProcessing ? 'Updating...' : 'Update'}
+              </Button>
+              <Button
+                variant="light"
+                onClick={() => history.push(ROUTES.PROFILE)}
+                disabled={isProcessing}
+              >
+                Cancel
+              </Button>
+            </div>
           </Form>
         </Card.Body>
       </Card>
@@ -99,7 +101,7 @@ Edit.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string,
-  dismissAlert: PropTypes.func.isRequired
+  dismissAlert: PropTypes.func.isRequired,
 };
 
 export default Edit;
