@@ -14,21 +14,23 @@ const LogInType = () => {
           Log In As
         </Card.Header>
         <Card.Body>
-          <LinkContainer to={ROUTES.LOG_IN_ADMIN}>
-            <Button variant="light" size="lg" block>
-              Admin
-            </Button>
-          </LinkContainer>
-          <LinkContainer to={ROUTES.LOG_IN_COMPANY}>
-            <Button variant="light" size="lg" block>
-              Company
-            </Button>
-          </LinkContainer>
-          <LinkContainer to={ROUTES.LOG_IN_STUDENT}>
-            <Button variant="light" size="lg" block>
-              Student
-            </Button>
-          </LinkContainer>
+          <div className="d-grid gap-2">
+            <LinkContainer to={ROUTES.LOG_IN_ADMIN}>
+              <Button variant="light" size="lg">
+                Admin
+              </Button>
+            </LinkContainer>
+            <LinkContainer to={ROUTES.LOG_IN_COMPANY}>
+              <Button variant="light" size="lg">
+                Company
+              </Button>
+            </LinkContainer>
+            <LinkContainer to={ROUTES.LOG_IN_STUDENT}>
+              <Button variant="light" size="lg">
+                Student
+              </Button>
+            </LinkContainer>
+          </div>
         </Card.Body>
         <Card.Footer className="text-muted text-center">
           Don't have an account? <Link to={ROUTES.SIGN_UP}>Create One</Link>
