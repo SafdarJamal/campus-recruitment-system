@@ -13,7 +13,7 @@ class EditContainer extends Component {
     firstName: this.props.user.firstName,
     lastName: this.props.user.lastName,
     isProcessing: false,
-    error: null
+    error: null,
   };
 
   handleChange = e => {
@@ -29,7 +29,7 @@ class EditContainer extends Component {
 
     const data = {
       firstName,
-      lastName
+      lastName,
     };
 
     api
@@ -40,7 +40,7 @@ class EditContainer extends Component {
       .catch(error =>
         this.setState({
           isProcessing: false,
-          error: error.response.data.message
+          error: error.response.data.message,
         })
       );
   };

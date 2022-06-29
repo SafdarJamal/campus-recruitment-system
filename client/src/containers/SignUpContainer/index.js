@@ -16,7 +16,7 @@ class SignUpContainer extends Component {
     email: '',
     password: '',
     isProcessing: false,
-    error: null
+    error: null,
   };
 
   handleChange = e => {
@@ -54,7 +54,7 @@ class SignUpContainer extends Component {
       .catch(error =>
         this.setState({
           isProcessing: false,
-          error: error.response.data.message
+          error: error.response.data.message,
         })
       );
   };
@@ -62,14 +62,8 @@ class SignUpContainer extends Component {
   dismissAlert = () => this.setState({ error: null });
 
   render() {
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      isProcessing,
-      error
-    } = this.state;
+    const { firstName, lastName, email, password, isProcessing, error } =
+      this.state;
 
     return (
       <SignUp
