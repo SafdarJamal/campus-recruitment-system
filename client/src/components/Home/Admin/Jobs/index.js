@@ -54,7 +54,7 @@ Jobs.propTypes = {
   jobs: PropTypes.array.isRequired,
   handleDelete: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
-  selectedJobId: PropTypes.string.isRequired
+  selectedJobId: PropTypes.string.isRequired,
 };
 
 export default Jobs;

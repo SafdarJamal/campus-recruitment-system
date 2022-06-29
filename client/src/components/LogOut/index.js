@@ -12,7 +12,7 @@ const LogOut = ({ handleLogOut, isProcessing }) => {
 
 LogOut.propTypes = {
   handleLogOut: PropTypes.func.isRequired,
-  isProcessing: PropTypes.bool.isRequired
+  isProcessing: PropTypes.bool.isRequired,
 };
 
 export default LogOut;

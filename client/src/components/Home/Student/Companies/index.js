@@ -39,7 +39,7 @@ const Companies = ({ companies }) => {
 };
 
 Companies.propTypes = {
-  companies: PropTypes.array.isRequired
+  companies: PropTypes.array.isRequired,
 };
 
 export default Companies;
