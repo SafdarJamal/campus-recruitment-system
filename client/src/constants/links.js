@@ -3,77 +3,77 @@ import * as ROUTES from './routes';
 const PUBLIC_LINKS = [
   {
     path: ROUTES.LANDING,
-    text: 'Home'
+    text: 'Home',
   },
   {
     path: ROUTES.SIGN_UP,
-    text: 'Sign Up'
+    text: 'Sign Up',
   },
   {
     path: ROUTES.LOG_IN,
-    text: 'Log In'
-  }
+    text: 'Log In',
+  },
 ];
 
 const ADMIN_LINKS = [
   {
     path: ROUTES.HOME,
-    text: 'Home'
+    text: 'Home',
   },
   {
     path: ROUTES.COMPANIES,
-    text: 'Companies'
+    text: 'Companies',
   },
   {
     path: ROUTES.STUDENTS,
-    text: 'Students'
+    text: 'Students',
   },
   {
     path: ROUTES.JOBS,
-    text: 'Jobs'
+    text: 'Jobs',
   },
   {
     path: ROUTES.PROFILE,
-    text: 'Profile'
-  }
+    text: 'Profile',
+  },
 ];
 
 const COMPANY_LINKS = [
   {
     path: ROUTES.HOME,
-    text: 'Home'
+    text: 'Home',
   },
   {
     path: ROUTES.STUDENTS,
-    text: 'Students'
+    text: 'Students',
   },
   {
     path: ROUTES.JOBS,
-    text: 'Jobs'
+    text: 'Jobs',
   },
   {
     path: ROUTES.PROFILE,
-    text: 'Profile'
-  }
+    text: 'Profile',
+  },
 ];
 
 const STUDENT_LINKS = [
   {
     path: ROUTES.HOME,
-    text: 'Home'
+    text: 'Home',
   },
   {
     path: ROUTES.COMPANIES,
-    text: 'Companies'
+    text: 'Companies',
   },
   {
     path: ROUTES.JOBS,
-    text: 'Jobs'
+    text: 'Jobs',
   },
   {
     path: ROUTES.PROFILE,
-    text: 'Profile'
-  }
+    text: 'Profile',
+  },
 ];
 
 export { PUBLIC_LINKS, ADMIN_LINKS, COMPANY_LINKS, STUDENT_LINKS };
