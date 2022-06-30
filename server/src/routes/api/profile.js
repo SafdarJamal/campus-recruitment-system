@@ -61,7 +61,7 @@ router.patch('/', authorization, (req, res) => {
     companyName,
     companyEmail,
     companyPhone,
-    phone
+    phone,
   } = req.body;
 
   if (role === ADMIN)
