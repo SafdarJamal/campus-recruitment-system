@@ -5,28 +5,28 @@ const { ADMIN } = require('../constants/roles');
 const AdminSchema = mongoose.Schema({
   firstName: {
     type: String,
-    required: true
+    required: true,
   },
   lastName: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
-    default: ADMIN
+    default: ADMIN,
   },
   createdAt: {
     type: Date,
-    default: Date
-  }
+    default: Date,
+  },
 });
 
 module.exports = mongoose.model('Admins', AdminSchema);
