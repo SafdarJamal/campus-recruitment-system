@@ -35,7 +35,7 @@ const SignUp = ({
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="firstName">
+            <Form.Group controlId="firstName" className="mb-3">
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 required
@@ -46,8 +46,7 @@ const SignUp = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <br />
-            <Form.Group controlId="lastName">
+            <Form.Group controlId="lastName" className="mb-3">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 required
@@ -58,8 +57,7 @@ const SignUp = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <br />
-            <Form.Group controlId="email">
+            <Form.Group controlId="email" className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 required
@@ -70,8 +68,7 @@ const SignUp = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <br />
-            <Form.Group controlId="password">
+            <Form.Group controlId="password" className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 required
@@ -82,12 +79,7 @@ const SignUp = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Button
-              className="mt-3"
-              variant="success"
-              type="submit"
-              disabled={isProcessing}
-            >
+            <Button variant="success" type="submit" disabled={isProcessing}>
               {isProcessing ? 'Signing Up...' : 'Sign Up'}
             </Button>
           </Form>
