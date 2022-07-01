@@ -33,7 +33,7 @@ const LogIn = ({
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="email">
+            <Form.Group controlId="email" className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 required
@@ -44,8 +44,7 @@ const LogIn = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <br />
-            <Form.Group controlId="password">
+            <Form.Group controlId="password" className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 required
@@ -56,12 +55,7 @@ const LogIn = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Button
-              className="mt-3"
-              variant="success"
-              type="submit"
-              disabled={isProcessing}
-            >
+            <Button variant="success" type="submit" disabled={isProcessing}>
               {isProcessing ? 'Logging In...' : 'Log In'}
             </Button>
           </Form>
