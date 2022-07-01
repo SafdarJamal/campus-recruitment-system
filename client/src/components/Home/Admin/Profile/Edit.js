@@ -35,7 +35,7 @@ const Edit = ({
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="firstName">
+            <Form.Group controlId="firstName" className="mb-3">
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 required
