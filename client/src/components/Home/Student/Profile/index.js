@@ -18,7 +18,7 @@ const Profile = ({ firstName, lastName, phone }) => {
         </Card.Header>
         <Card.Body>
           <Form>
-            <Form.Group controlId="firstName">
+            <Form.Group controlId="firstName" className="mb-3">
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 readOnly
@@ -27,7 +27,7 @@ const Profile = ({ firstName, lastName, phone }) => {
                 value={firstName}
               />
             </Form.Group>
-            <Form.Group controlId="lastName">
+            <Form.Group controlId="lastName" className="mb-3">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 readOnly
