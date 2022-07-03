@@ -27,7 +27,7 @@ const Profile = ({ firstName, lastName }) => {
                 value={firstName}
               />
             </Form.Group>
-            <Form.Group controlId="lastName">
+            <Form.Group controlId="lastName" className="mb-3">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 readOnly
@@ -37,7 +37,6 @@ const Profile = ({ firstName, lastName }) => {
               />
             </Form.Group>
             <Button
-              className="mt-3"
               variant="success"
               onClick={() => history.push(ROUTES.PROFILE_EDIT)}
             >

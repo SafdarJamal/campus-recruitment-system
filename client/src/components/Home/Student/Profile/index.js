@@ -36,12 +36,11 @@ const Profile = ({ firstName, lastName, phone }) => {
                 value={lastName}
               />
             </Form.Group>
-            <Form.Group controlId="phone">
+            <Form.Group controlId="phone" className="mb-3">
               <Form.Label>Phone</Form.Label>
               <Form.Control readOnly type="text" name="phone" value={phone} />
             </Form.Group>
             <Button
-              className="mt-3"
               variant="success"
               onClick={() => history.push(ROUTES.PROFILE_EDIT)}
             >

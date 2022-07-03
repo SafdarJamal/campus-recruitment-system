@@ -60,7 +60,7 @@ const Profile = ({
                 value={companyEmail}
               />
             </Form.Group>
-            <Form.Group controlId="companyPhone">
+            <Form.Group controlId="companyPhone" className="mb-3">
               <Form.Label>Company Phone</Form.Label>
               <Form.Control
                 readOnly
@@ -70,7 +70,6 @@ const Profile = ({
               />
             </Form.Group>
             <Button
-              className="mt-3"
               variant="success"
               onClick={() => history.push(ROUTES.PROFILE_EDIT)}
             >
