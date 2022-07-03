@@ -35,7 +35,7 @@ const New = ({
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="title">
+            <Form.Group controlId="title" className="mb-3">
               <Form.Label>Title</Form.Label>
               <Form.Control
                 required
@@ -46,7 +46,7 @@ const New = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Form.Group controlId="description">
+            <Form.Group controlId="description" className="mb-3">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 required
@@ -58,23 +58,21 @@ const New = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <div className="mt-3">
-              <Button
-                className="me-2"
-                variant="success"
-                type="submit"
-                disabled={isProcessing}
-              >
-                {isProcessing ? 'Posting...' : 'Post'}
-              </Button>
-              <Button
-                variant="light"
-                onClick={() => history.push(ROUTES.JOBS)}
-                disabled={isProcessing}
-              >
-                Cancel
-              </Button>
-            </div>
+            <Button
+              className="me-2"
+              variant="success"
+              type="submit"
+              disabled={isProcessing}
+            >
+              {isProcessing ? 'Posting...' : 'Post'}
+            </Button>
+            <Button
+              variant="light"
+              onClick={() => history.push(ROUTES.JOBS)}
+              disabled={isProcessing}
+            >
+              Cancel
+            </Button>
           </Form>
         </Card.Body>
       </Card>
