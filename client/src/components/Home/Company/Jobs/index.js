@@ -49,7 +49,7 @@ const Jobs = ({ jobs, handleDelete, isProcessing, selectedJobId }) => {
                     <td>{job.description}</td>
                     <td>
                       <Button
-                        className="mr-2"
+                        className="me-2"
                         variant="success"
                         onClick={() => handleChange(i + 1)}
                       >
