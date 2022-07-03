@@ -46,7 +46,7 @@ const Edit = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Form.Group controlId="lastName">
+            <Form.Group controlId="lastName" className="mb-3">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 required
@@ -57,23 +57,21 @@ const Edit = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <div className="mt-3">
-              <Button
-                className="me-2"
-                variant="success"
-                type="submit"
-                disabled={isProcessing}
-              >
-                {isProcessing ? 'Updating...' : 'Update'}
-              </Button>
-              <Button
-                variant="light"
-                onClick={() => history.push(ROUTES.PROFILE)}
-                disabled={isProcessing}
-              >
-                Cancel
-              </Button>
-            </div>
+            <Button
+              className="me-2"
+              variant="success"
+              type="submit"
+              disabled={isProcessing}
+            >
+              {isProcessing ? 'Updating...' : 'Update'}
+            </Button>
+            <Button
+              variant="light"
+              onClick={() => history.push(ROUTES.PROFILE)}
+              disabled={isProcessing}
+            >
+              Cancel
+            </Button>
           </Form>
         </Card.Body>
       </Card>
