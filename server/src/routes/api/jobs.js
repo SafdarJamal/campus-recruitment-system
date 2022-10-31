@@ -29,7 +29,7 @@ router.post('/', authorization, (req, res) => {
   const job = new Job({
     _companyId: _id,
     title,
-    description
+    description,
   });
 
   job

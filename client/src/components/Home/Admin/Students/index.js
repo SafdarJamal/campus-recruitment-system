@@ -9,7 +9,7 @@ const Students = ({
   students,
   handleDelete,
   isProcessing,
-  selectedStudentId
+  selectedStudentId,
 }) => {
   return (
     <Container>
@@ -65,7 +65,7 @@ Students.propTypes = {
   students: PropTypes.array.isRequired,
   handleDelete: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
-  selectedStudentId: PropTypes.string.isRequired
+  selectedStudentId: PropTypes.string.isRequired,
 };
 
 export default Students;

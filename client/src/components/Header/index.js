@@ -11,7 +11,12 @@ import LogOutContainer from '../../containers/LogOutContainer';
 const Header = ({ links, isAuthenticated }) => {
   return (
     <header style={{ paddingBottom: 100 }}>
-      <Navbar className="shadow-sm" bg="dark" variant="dark" fixed="top">
+      <Navbar
+        className="shadow-sm ps-3 pe-3"
+        bg="dark"
+        variant="dark"
+        fixed="top"
+      >
         <LinkContainer to={ROUTES.LANDING}>
           <Navbar.Brand>
             <img
@@ -23,7 +28,7 @@ const Header = ({ links, isAuthenticated }) => {
             />
           </Navbar.Brand>
         </LinkContainer>
-        <Nav className="mr-auto">
+        <Nav className="me-auto">
           {links.map((link, i) => (
             <LinkContainer key={i} to={link.path} exact>
               <Nav.Link>{link.text}</Nav.Link>
@@ -38,7 +43,7 @@ const Header = ({ links, isAuthenticated }) => {
 
 Header.propTypes = {
   links: PropTypes.array.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 export default Header;

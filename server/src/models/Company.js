@@ -5,40 +5,40 @@ const { COMPANY } = require('../constants/roles');
 const CompanySchema = mongoose.Schema({
   firstName: {
     type: String,
-    required: true
+    required: true,
   },
   lastName: {
     type: String,
-    required: true
+    required: true,
   },
   companyName: {
     type: String,
-    default: ''
+    default: '',
   },
   companyEmail: {
     type: String,
-    default: ''
+    default: '',
   },
   companyPhone: {
     type: String,
-    default: ''
+    default: '',
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
-    default: COMPANY
+    default: COMPANY,
   },
   createdAt: {
     type: Date,
-    default: Date
-  }
+    default: Date,
+  },
 });
 
 module.exports = mongoose.model('Companies', CompanySchema);

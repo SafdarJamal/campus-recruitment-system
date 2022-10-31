@@ -6,7 +6,7 @@ import Profile from '../../../../components/Home/Admin/Profile';
 class ProfileContainer extends Component {
   state = {
     firstName: this.props.user.firstName,
-    lastName: this.props.user.lastName
+    lastName: this.props.user.lastName,
   };
 
   render() {

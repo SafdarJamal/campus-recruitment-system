@@ -22,7 +22,7 @@ class NewContainer extends Component {
 
     const data = {
       title,
-      description
+      description,
     };
 
     api
@@ -31,7 +31,7 @@ class NewContainer extends Component {
       .catch(error =>
         this.setState({
           isProcessing: false,
-          error: error.response.data.message
+          error: error.response.data.message,
         })
       );
   };

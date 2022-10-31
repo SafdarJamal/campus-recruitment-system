@@ -14,16 +14,18 @@ const SignUpType = () => {
           Sign Up As
         </Card.Header>
         <Card.Body>
-          <LinkContainer to={ROUTES.SIGN_UP_COMPANY}>
-            <Button variant="light" size="lg" block>
-              Company
-            </Button>
-          </LinkContainer>
-          <LinkContainer to={ROUTES.SIGN_UP_STUDENT}>
-            <Button variant="light" size="lg" block>
-              Student
-            </Button>
-          </LinkContainer>
+          <div className="d-grid gap-2">
+            <LinkContainer to={ROUTES.SIGN_UP_COMPANY}>
+              <Button variant="light" size="lg">
+                Company
+              </Button>
+            </LinkContainer>
+            <LinkContainer to={ROUTES.SIGN_UP_STUDENT}>
+              <Button variant="light" size="lg">
+                Student
+              </Button>
+            </LinkContainer>
+          </div>
         </Card.Body>
         <Card.Footer className="text-muted text-center">
           Already have an account? <Link to={ROUTES.LOG_IN}>Log In</Link>

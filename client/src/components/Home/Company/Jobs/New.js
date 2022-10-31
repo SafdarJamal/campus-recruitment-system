@@ -15,7 +15,7 @@ const New = ({
   handleSubmit,
   isProcessing,
   error,
-  dismissAlert
+  dismissAlert,
 }) => {
   const history = useHistory();
 
@@ -35,7 +35,7 @@ const New = ({
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="title">
+            <Form.Group controlId="title" className="mb-3">
               <Form.Label>Title</Form.Label>
               <Form.Control
                 required
@@ -46,7 +46,7 @@ const New = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Form.Group controlId="description">
+            <Form.Group controlId="description" className="mb-3">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 required
@@ -59,7 +59,7 @@ const New = ({
               />
             </Form.Group>
             <Button
-              className="mr-2"
+              className="me-2"
               variant="success"
               type="submit"
               disabled={isProcessing}
@@ -87,7 +87,7 @@ New.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string,
-  dismissAlert: PropTypes.func.isRequired
+  dismissAlert: PropTypes.func.isRequired,
 };
 
 export default New;

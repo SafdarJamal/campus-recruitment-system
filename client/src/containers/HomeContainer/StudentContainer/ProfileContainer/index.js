@@ -7,7 +7,7 @@ class ProfileContainer extends Component {
   state = {
     firstName: this.props.user.firstName,
     lastName: this.props.user.lastName,
-    phone: this.props.user.phone
+    phone: this.props.user.phone,
   };
 
   render() {

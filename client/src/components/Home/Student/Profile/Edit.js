@@ -16,7 +16,7 @@ const Edit = ({
   handleSubmit,
   isProcessing,
   error,
-  dismissAlert
+  dismissAlert,
 }) => {
   const history = useHistory();
 
@@ -36,7 +36,7 @@ const Edit = ({
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="firstName">
+            <Form.Group controlId="firstName" className="mb-3">
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 required
@@ -47,7 +47,7 @@ const Edit = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Form.Group controlId="lastName">
+            <Form.Group controlId="lastName" className="mb-3">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 required
@@ -58,7 +58,7 @@ const Edit = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Form.Group controlId="phone">
+            <Form.Group controlId="phone" className="mb-3">
               <Form.Label>Phone</Form.Label>
               <Form.Control
                 required
@@ -70,7 +70,7 @@ const Edit = ({
               />
             </Form.Group>
             <Button
-              className="mr-2"
+              className="me-2"
               variant="success"
               type="submit"
               disabled={isProcessing}
@@ -99,7 +99,7 @@ Edit.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string,
-  dismissAlert: PropTypes.func.isRequired
+  dismissAlert: PropTypes.func.isRequired,
 };
 
 export default Edit;

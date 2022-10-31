@@ -41,7 +41,7 @@ const Students = ({ students }) => {
 };
 
 Students.propTypes = {
-  students: PropTypes.array.isRequired
+  students: PropTypes.array.isRequired,
 };
 
 export default Students;

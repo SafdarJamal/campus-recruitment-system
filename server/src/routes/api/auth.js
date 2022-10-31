@@ -23,7 +23,7 @@ router.post('/signup/:role', async (req, res) => {
 
   if (isEmailExistInAdmins || isEmailExistInCompanies || isEmailExistInStudents)
     return res.status(400).send({
-      message: 'The email address is already in use by another account.'
+      message: 'The email address is already in use by another account.',
     });
 
   const salt = bcrypt.genSaltSync(10);
@@ -34,7 +34,7 @@ router.post('/signup/:role', async (req, res) => {
       firstName,
       lastName,
       email,
-      password: hash
+      password: hash,
     });
 
     const token = jwt.sign({ _id: company._id, role }, process.env.JWT_SECRET);
@@ -53,7 +53,7 @@ router.post('/signup/:role', async (req, res) => {
       firstName,
       lastName,
       email: email,
-      password: hash
+      password: hash,
     });
 
     const token = jwt.sign({ _id: student._id, role }, process.env.JWT_SECRET);
@@ -82,7 +82,7 @@ router.post('/login/:role', async (req, res) => {
 
     if (!user)
       return res.status(400).send({
-        message: 'There is no user record corresponding to this identifier.'
+        message: 'There is no user record corresponding to this identifier.',
       });
 
     const checkPassword = bcrypt.compareSync(password, user.password);
@@ -100,7 +100,7 @@ router.post('/login/:role', async (req, res) => {
 
     if (!user)
       return res.status(400).send({
-        message: 'There is no user record corresponding to this identifier.'
+        message: 'There is no user record corresponding to this identifier.',
       });
 
     const checkPassword = bcrypt.compareSync(password, user.password);
@@ -118,7 +118,7 @@ router.post('/login/:role', async (req, res) => {
 
     if (!user)
       return res.status(400).send({
-        message: 'There is no user record corresponding to this identifier.'
+        message: 'There is no user record corresponding to this identifier.',
       });
 
     const checkPassword = bcrypt.compareSync(password, user.password);

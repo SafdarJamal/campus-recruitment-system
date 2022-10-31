@@ -5,32 +5,32 @@ const { STUDENT } = require('../constants/roles');
 const StudentSchema = mongoose.Schema({
   firstName: {
     type: String,
-    required: true
+    required: true,
   },
   lastName: {
     type: String,
-    required: true
+    required: true,
   },
   phone: {
     type: String,
-    default: ''
+    default: '',
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
-    default: STUDENT
+    default: STUDENT,
   },
   createdAt: {
     type: Date,
-    default: Date
-  }
+    default: Date,
+  },
 });
 
 module.exports = mongoose.model('Students', StudentSchema);

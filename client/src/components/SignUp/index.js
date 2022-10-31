@@ -17,7 +17,7 @@ const SignUp = ({
   handleSubmit,
   isProcessing,
   error,
-  dismissAlert
+  dismissAlert,
 }) => {
   return (
     <Container className="col-md-4">
@@ -35,7 +35,7 @@ const SignUp = ({
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="firstName">
+            <Form.Group controlId="firstName" className="mb-3">
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 required
@@ -46,7 +46,7 @@ const SignUp = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Form.Group controlId="lastName">
+            <Form.Group controlId="lastName" className="mb-3">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 required
@@ -57,7 +57,7 @@ const SignUp = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Form.Group controlId="email">
+            <Form.Group controlId="email" className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 required
@@ -68,7 +68,7 @@ const SignUp = ({
                 disabled={isProcessing}
               />
             </Form.Group>
-            <Form.Group controlId="password">
+            <Form.Group controlId="password" className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 required
@@ -101,7 +101,7 @@ SignUp.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string,
-  dismissAlert: PropTypes.func.isRequired
+  dismissAlert: PropTypes.func.isRequired,
 };
 
 export default SignUp;

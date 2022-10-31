@@ -29,5 +29,5 @@ export {
   JOBS,
   JOBS_NEW,
   PROFILE,
-  PROFILE_EDIT
+  PROFILE_EDIT,
 };

@@ -9,7 +9,7 @@ const Companies = ({
   companies,
   handleDelete,
   isProcessing,
-  selectedCompanyId
+  selectedCompanyId,
 }) => {
   return (
     <Container>
@@ -63,7 +63,7 @@ Companies.propTypes = {
   companies: PropTypes.array.isRequired,
   handleDelete: PropTypes.func.isRequired,
   isProcessing: PropTypes.bool.isRequired,
-  selectedCompanyId: PropTypes.string.isRequired
+  selectedCompanyId: PropTypes.string.isRequired,
 };
 
 export default Companies;

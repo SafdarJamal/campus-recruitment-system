@@ -9,17 +9,12 @@ class ProfileContainer extends Component {
     lastName: this.props.user.lastName,
     companyName: this.props.user.companyName,
     companyEmail: this.props.user.companyEmail,
-    companyPhone: this.props.user.companyPhone
+    companyPhone: this.props.user.companyPhone,
   };
 
   render() {
-    const {
-      firstName,
-      lastName,
-      companyName,
-      companyEmail,
-      companyPhone
-    } = this.state;
+    const { firstName, lastName, companyName, companyEmail, companyPhone } =
+      this.state;
 
     return (
       <Profile
