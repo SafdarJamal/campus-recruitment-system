@@ -16,11 +16,11 @@ import NotFound from '../components/NotFound/Lazy';
 const AppRoutes = () => {
   return (
     <Routes>
-      <PublicRoute path={ROUTES.LANDING} component={Landing} exact />
-      <PublicRoute path={ROUTES.SIGN_UP} component={SignUpType} exact />
+      <PublicRoute path={ROUTES.LANDING} component={Landing} />
+      <PublicRoute path={ROUTES.SIGN_UP} component={SignUpType} />
       <PublicRoute path={ROUTES.SIGN_UP_COMPANY} component={SignUpContainer} />
       <PublicRoute path={ROUTES.SIGN_UP_STUDENT} component={SignUpContainer} />
-      <PublicRoute path={ROUTES.LOG_IN} component={LogInType} exact />
+      <PublicRoute path={ROUTES.LOG_IN} component={LogInType} />
       <PublicRoute path={ROUTES.LOG_IN_ADMIN} component={LogInContainer} />
       <PublicRoute path={ROUTES.LOG_IN_COMPANY} component={LogInContainer} />
       <PublicRoute path={ROUTES.LOG_IN_STUDENT} component={LogInContainer} />
