@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 
 import PublicRoute from './PublicRoute';
@@ -13,9 +13,9 @@ import LogInContainer from '../containers/LogInContainer/Lazy';
 import HomeContainer from '../containers/HomeContainer/Lazy';
 import NotFound from '../components/NotFound/Lazy';
 
-const Routes = () => {
+const AppRoutes = () => {
   return (
-    <Switch>
+    <Routes>
       <PublicRoute path={ROUTES.LANDING} component={Landing} exact />
       <PublicRoute path={ROUTES.SIGN_UP} component={SignUpType} exact />
       <PublicRoute path={ROUTES.SIGN_UP_COMPANY} component={SignUpContainer} />
@@ -26,8 +26,8 @@ const Routes = () => {
       <PublicRoute path={ROUTES.LOG_IN_STUDENT} component={LogInContainer} />
       <PrivateRoute path={ROUTES.HOME} component={HomeContainer} />
       <Route component={NotFound} />
-    </Switch>
+    </Routes>
   );
 };
 
-export default Routes;
+export default AppRoutes;
