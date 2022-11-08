@@ -14,11 +14,11 @@ class AdminContainer extends Component {
   render() {
     return (
       <Routes>
-        <Route path={ROUTES.HOME} element={<Admin />} exact />
+        <Route path={ROUTES.HOME} element={<Admin />} />
         <Route path={ROUTES.COMPANIES} element={<CompaniesContainer />} />
         <Route path={ROUTES.STUDENTS} element={<StudentsContainer />} />
         <Route path={ROUTES.JOBS} element={<JobsContainer />} />
-        <Route path={ROUTES.PROFILE} element={<ProfileContainer />} exact />
+        <Route path={ROUTES.PROFILE} element={<ProfileContainer />} />
         <Route path={ROUTES.PROFILE_EDIT} element={<EditContainer />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

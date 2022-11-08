@@ -14,11 +14,11 @@ class CompanyContainer extends Component {
   render() {
     return (
       <Routes>
-        <Route path={ROUTES.HOME} element={<Company />} exact />
+        <Route path={ROUTES.HOME} element={<Company />} />
         <Route path={ROUTES.STUDENTS} element={<StudentsContainer />} />
-        <Route path={ROUTES.JOBS} element={<JobsContainer />} exact />
+        <Route path={ROUTES.JOBS} element={<JobsContainer />} />
         <Route path={ROUTES.JOBS_NEW} element={<NewContainer />} />
-        <Route path={ROUTES.PROFILE} element={<ProfileContainer />} exact />
+        <Route path={ROUTES.PROFILE} element={<ProfileContainer />} />
         <Route path={ROUTES.PROFILE_EDIT} element={<EditContainer />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
