@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import * as ROUTES from '../../../constants/routes';
 
 import Company from '../../../components/Home/Company/Lazy';
@@ -13,15 +13,15 @@ import NotFound from '../../../components/NotFound/Lazy';
 class CompanyContainer extends Component {
   render() {
     return (
-      <Switch>
-        <Route path={ROUTES.HOME} component={Company} exact />
-        <Route path={ROUTES.STUDENTS} component={StudentsContainer} />
-        <Route path={ROUTES.JOBS} component={JobsContainer} exact />
-        <Route path={ROUTES.JOBS_NEW} component={NewContainer} />
-        <Route path={ROUTES.PROFILE} component={ProfileContainer} exact />
-        <Route path={ROUTES.PROFILE_EDIT} component={EditContainer} />
-        <Route component={NotFound} />
-      </Switch>
+      <Routes>
+        <Route path={ROUTES.HOME} element={<Company />} exact />
+        <Route path={ROUTES.STUDENTS} element={<StudentsContainer />} />
+        <Route path={ROUTES.JOBS} element={<JobsContainer />} exact />
+        <Route path={ROUTES.JOBS_NEW} element={<NewContainer />} />
+        <Route path={ROUTES.PROFILE} element={<ProfileContainer />} exact />
+        <Route path={ROUTES.PROFILE_EDIT} element={<EditContainer />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     );
   }
 }
