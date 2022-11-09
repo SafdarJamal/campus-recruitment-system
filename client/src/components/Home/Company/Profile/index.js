@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
 const Profile = ({
@@ -14,7 +14,7 @@ const Profile = ({
   companyEmail,
   companyPhone,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <Container className="col-md-4">
@@ -71,7 +71,7 @@ const Profile = ({
             </Form.Group>
             <Button
               variant="success"
-              onClick={() => history.push(ROUTES.PROFILE_EDIT)}
+              onClick={() => navigate(ROUTES.PROFILE_EDIT)}
             >
               Edit
             </Button>
