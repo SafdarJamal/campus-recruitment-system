@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { setUser } from '../../../../../actions';
 import { withAPI } from '../../../../../services/api';
-import { withRouter } from 'react-router-dom';
+import withRouter from '../../../../../services/withRouter';
 import * as ROUTES from '../../../../../constants/routes';
 
 import Edit from '../../../../../components/Home/Company/Profile/Edit';

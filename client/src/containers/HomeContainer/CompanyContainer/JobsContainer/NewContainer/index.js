@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { withAPI } from '../../../../../services/api';
-import { withRouter } from 'react-router-dom';
+import withRouter from '../../../../../services/withRouter';
 import * as ROUTES from '../../../../../constants/routes';
 
 import New from '../../../../../components/Home/Company/Jobs/New';
