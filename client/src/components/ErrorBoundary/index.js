@@ -21,7 +21,6 @@ class ErrorBoundary extends Component {
               <Button
                 variant="success"
                 size="lg"
-                block
                 onClick={() => window.location.reload()}
               >
                 Reload
