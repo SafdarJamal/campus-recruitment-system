@@ -48,7 +48,7 @@ const AppRoutes = () => {
         path={ROUTES.LOG_IN_STUDENT}
         element={<PublicRoute component={LogInContainer} />}
       />
-      <PrivateRoute
+      <Route
         path={ROUTES.HOME}
         element={<PrivateRoute component={HomeContainer} />}
       />
