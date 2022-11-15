@@ -13,7 +13,7 @@ class StudentContainer extends Component {
   render() {
     return (
       <Routes>
-        <Route path={ROUTES.HOME} element={<Student />} />
+        <Route index element={<Student />} />
         <Route path={ROUTES.COMPANIES} element={<CompaniesContainer />} />
         <Route path={ROUTES.JOBS} element={<JobsContainer />} />
         <Route path={ROUTES.PROFILE} element={<ProfileContainer />} />

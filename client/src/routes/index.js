@@ -49,7 +49,7 @@ const AppRoutes = () => {
         element={<PublicRoute component={LogInContainer} />}
       />
       <Route
-        path={ROUTES.HOME}
+        path={`${ROUTES.HOME}/*`}
         element={<PrivateRoute component={HomeContainer} />}
       />
       <Route path="*" element={<NotFound />} />

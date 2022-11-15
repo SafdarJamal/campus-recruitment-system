@@ -14,7 +14,7 @@ class AdminContainer extends Component {
   render() {
     return (
       <Routes>
-        <Route path={ROUTES.HOME} element={<Admin />} />
+        <Route index element={<Admin />} />
         <Route path={ROUTES.COMPANIES} element={<CompaniesContainer />} />
         <Route path={ROUTES.STUDENTS} element={<StudentsContainer />} />
         <Route path={ROUTES.JOBS} element={<JobsContainer />} />
