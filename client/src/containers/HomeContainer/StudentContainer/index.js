@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
-// import * as ROUTES from '../../../constants/routes';
 
 import Student from '../../../components/Home/Student/Lazy';
 import CompaniesContainer from './CompaniesContainer/Lazy';
