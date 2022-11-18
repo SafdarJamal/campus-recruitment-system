@@ -24,7 +24,7 @@ class EditContainer extends Component {
     e.preventDefault();
     this.setState({ isProcessing: true });
 
-    const { api, setUser, router } = this.props;
+    const { api, setUser, navigate } = this.props;
     const { firstName, lastName } = this.state;
 
     const data = {
@@ -36,7 +36,7 @@ class EditContainer extends Component {
       .updateProfile(data)
       .then(() => api.getProfile())
       .then(response => setUser({ user: response.data }))
-      .then(() => router.navigate(ROUTES.PROFILE))
+      .then(() => navigate(ROUTES.PROFILE))
       .catch(error =>
         this.setState({
           isProcessing: false,
