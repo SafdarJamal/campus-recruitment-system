@@ -17,7 +17,7 @@ class NewContainer extends Component {
     e.preventDefault();
     this.setState({ isProcessing: true });
 
-    const { api, history } = this.props;
+    const { api, navigate } = this.props;
     const { title, description } = this.state;
 
     const data = {
@@ -27,7 +27,7 @@ class NewContainer extends Component {
 
     api
       .postJob(data)
-      .then(() => history.push(ROUTES.JOBS))
+      .then(() => navigate(ROUTES.JOBS))
       .catch(error =>
         this.setState({
           isProcessing: false,
