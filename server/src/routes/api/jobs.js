@@ -65,7 +65,7 @@ router.patch('/:id/apply', authorization, (req, res) => {
 
       return Job.updateOne({ _id: req.params.id }, { $set: { applicants } });
     })
-    .then(success => res.status(200).send(success.nModified.toString()))
+    .then(success => res.status(200).send(success.nModifieds))
     .catch(error => res.status(400).send({ message: error.message }));
 });
 
@@ -77,11 +77,11 @@ router.delete('/:id', authorization, (req, res) => {
 
   if (role === COMPANY)
     return Job.deleteOne({ _id: req.params.id, _companyId: _id })
-      .then(success => res.status(200).send(success.deletedCount.toString()))
+      .then(success => res.status(200).send(success.deletedCount))
       .catch(error => res.status(400).send({ message: error.message }));
 
   Job.deleteOne({ _id: req.params.id })
-    .then(success => res.status(200).send(success.deletedCount.toString()))
+    .then(success => res.status(200).send(success.deletedCount))
     .catch(error => res.status(400).send({ message: error.message }));
 });
 
