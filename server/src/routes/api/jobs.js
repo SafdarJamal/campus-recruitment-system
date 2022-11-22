@@ -77,11 +77,11 @@ router.delete('/:id', authorization, (req, res) => {
 
   if (role === COMPANY)
     return Job.deleteOne({ _id: req.params.id, _companyId: _id })
-      .then(success => res.status(200).send(success.deletedCount))
+      .then(success => res.status(200).send(success.deletedCount.toString()))
       .catch(error => res.status(400).send({ message: error.message }));
 
   Job.deleteOne({ _id: req.params.id })
-    .then(success => res.status(200).send(success.deletedCount))
+    .then(success => res.status(200).send(success.deletedCount.toString()))
     .catch(error => res.status(400).send({ message: error.message }));
 });
 
