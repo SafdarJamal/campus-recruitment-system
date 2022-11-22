@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
 const Edit = ({
@@ -17,7 +17,7 @@ const Edit = ({
   error,
   dismissAlert,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <Container className="col-md-4">
@@ -67,7 +67,7 @@ const Edit = ({
             </Button>
             <Button
               variant="light"
-              onClick={() => history.push(ROUTES.PROFILE)}
+              onClick={() => navigate(ROUTES.PROFILE)}
               disabled={isProcessing}
             >
               Cancel

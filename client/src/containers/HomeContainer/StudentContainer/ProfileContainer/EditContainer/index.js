@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { setUser } from '../../../../../actions';
 import { withAPI } from '../../../../../services/api';
-import { withRouter } from 'react-router-dom';
+import withRouter from '../../../../../services/withRouter';
 import * as ROUTES from '../../../../../constants/routes';
 
 import Edit from '../../../../../components/Home/Student/Profile/Edit';
@@ -25,7 +25,7 @@ class EditContainer extends Component {
     e.preventDefault();
     this.setState({ isProcessing: true });
 
-    const { api, setUser, history } = this.props;
+    const { api, setUser, navigate } = this.props;
     const { firstName, lastName, phone } = this.state;
 
     const data = {
@@ -38,7 +38,7 @@ class EditContainer extends Component {
       .updateProfile(data)
       .then(() => api.getProfile())
       .then(response => setUser({ user: response.data }))
-      .then(() => history.push(ROUTES.PROFILE))
+      .then(() => navigate(ROUTES.PROFILE))
       .catch(error =>
         this.setState({
           isProcessing: false,

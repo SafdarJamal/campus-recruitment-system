@@ -30,7 +30,7 @@ const Header = ({ links, isAuthenticated }) => {
         </LinkContainer>
         <Nav className="me-auto">
           {links.map((link, i) => (
-            <LinkContainer key={i} to={link.path} exact>
+            <LinkContainer key={i} to={link.path}>
               <Nav.Link>{link.text}</Nav.Link>
             </LinkContainer>
           ))}

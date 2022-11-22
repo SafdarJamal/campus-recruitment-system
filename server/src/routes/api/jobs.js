@@ -65,7 +65,7 @@ router.patch('/:id/apply', authorization, (req, res) => {
 
       return Job.updateOne({ _id: req.params.id }, { $set: { applicants } });
     })
-    .then(success => res.status(200).send(success.nModified.toString()))
+    .then(success => res.status(200).send(success.nModifieds))
     .catch(error => res.status(400).send({ message: error.message }));
 });
 

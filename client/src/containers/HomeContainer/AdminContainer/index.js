@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import * as ROUTES from '../../../constants/routes';
+import { Routes, Route } from 'react-router-dom';
 
 import Admin from '../../../components/Home/Admin/Lazy';
 import CompaniesContainer from './CompaniesContainer/Lazy';
@@ -13,15 +12,15 @@ import NotFound from '../../../components/NotFound/Lazy';
 class AdminContainer extends Component {
   render() {
     return (
-      <Switch>
-        <Route path={ROUTES.HOME} component={Admin} exact />
-        <Route path={ROUTES.COMPANIES} component={CompaniesContainer} />
-        <Route path={ROUTES.STUDENTS} component={StudentsContainer} />
-        <Route path={ROUTES.JOBS} component={JobsContainer} />
-        <Route path={ROUTES.PROFILE} component={ProfileContainer} exact />
-        <Route path={ROUTES.PROFILE_EDIT} component={EditContainer} />
-        <Route component={NotFound} />
-      </Switch>
+      <Routes>
+        <Route index element={<Admin />} />
+        <Route path="companies" element={<CompaniesContainer />} />
+        <Route path="students" element={<StudentsContainer />} />
+        <Route path="jobs" element={<JobsContainer />} />
+        <Route path="profile" element={<ProfileContainer />} />
+        <Route path="profile/edit" element={<EditContainer />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     );
   }
 }

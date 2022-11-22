@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { withAPI } from '../../../../../services/api';
-import { withRouter } from 'react-router-dom';
+import withRouter from '../../../../../services/withRouter';
 import * as ROUTES from '../../../../../constants/routes';
 
 import New from '../../../../../components/Home/Company/Jobs/New';
@@ -17,7 +17,7 @@ class NewContainer extends Component {
     e.preventDefault();
     this.setState({ isProcessing: true });
 
-    const { api, history } = this.props;
+    const { api, navigate } = this.props;
     const { title, description } = this.state;
 
     const data = {
@@ -27,7 +27,7 @@ class NewContainer extends Component {
 
     api
       .postJob(data)
-      .then(() => history.push(ROUTES.JOBS))
+      .then(() => navigate(ROUTES.JOBS))
       .catch(error =>
         this.setState({
           isProcessing: false,

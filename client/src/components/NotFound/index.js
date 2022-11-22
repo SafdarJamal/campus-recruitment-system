@@ -13,7 +13,7 @@ const NotFound = () => {
           <h1>404 - Not Found</h1>
           <br />
           <Link to={ROUTES.LANDING} style={{ textDecoration: 'none' }}>
-            <Button variant="success" size="lg" block>
+            <Button variant="success" size="lg">
               Go to Home
             </Button>
           </Link>

@@ -5,12 +5,12 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
 const Jobs = ({ jobs, handleDelete, isProcessing, selectedJobId }) => {
   const [eventKey, setEventKey] = useState(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleChange = value => {
     if (value === eventKey) return setEventKey(null);
@@ -27,7 +27,7 @@ const Jobs = ({ jobs, handleDelete, isProcessing, selectedJobId }) => {
           <Button
             className="mb-4"
             variant="success"
-            onClick={() => history.push(ROUTES.JOBS_NEW)}
+            onClick={() => navigate(ROUTES.JOBS_NEW)}
           >
             Post New Job
           </Button>
