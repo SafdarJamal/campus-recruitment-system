@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/SafdarJamal/campus-recruitment-system#readme",
   "devDependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "^8.2.0"
   }
 }
