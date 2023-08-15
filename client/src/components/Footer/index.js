@@ -11,7 +11,7 @@ const Footer = () => {
         fixed="bottom"
       >
         <Navbar.Text>
-          © 2020-2022{' '}
+          © 2020-2023{' '}
           <a
             href="https://safdarjamal.github.io"
             target="_blank"
